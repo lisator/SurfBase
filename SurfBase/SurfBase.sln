@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurfBase", "SurfBase\SurfBase.csproj", "{DE84A66D-2EAF-4ED2-B9CA-4F8E79E4FCBB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE84A66D-2EAF-4ED2-B9CA-4F8E79E4FCBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE84A66D-2EAF-4ED2-B9CA-4F8E79E4FCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE84A66D-2EAF-4ED2-B9CA-4F8E79E4FCBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE84A66D-2EAF-4ED2-B9CA-4F8E79E4FCBB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F18F9920-890D-4BFB-9468-2C7961F258A8}
+	EndGlobalSection
+EndGlobal
