@@ -5,8 +5,7 @@ using System.Text;
 
 namespace SurfBase
 {
-    public abstract class User
+    public interface IAdminInterface
     {
-        private int id;
     }
 }

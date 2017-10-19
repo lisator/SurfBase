@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Base.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BaseStoreContainer">
+    <EntitySet Name="Hangars" EntityType="Base.Store.Hangars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rigs" EntityType="Base.Store.Rigs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments" EntityType="Base.Store.Equipments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Boards" EntityType="Base.Store.Boards" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sails" EntityType="Base.Store.Sails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_Wetsuit" EntityType="Base.Store.Equipments_Wetsuit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_Harness" EntityType="Base.Store.Equipments_Harness" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_Vest" EntityType="Base.Store.Equipments_Vest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_WindHarness" EntityType="Base.Store.Equipments_WindHarness" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_KiteHarness" EntityType="Base.Store.Equipments_KiteHarness" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="HangarRig" Association="Base.Store.HangarRig">
+      <End Role="Hangar" EntitySet="Hangars" />
+      <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="EquipmentHangar" Association="Base.Store.EquipmentHangar">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Hangar" EntitySet="Hangars" />
+    </AssociationSet>
+    <AssociationSet Name="BoardRig" Association="Base.Store.BoardRig">
+      <End Role="Board" EntitySet="Boards" />
+      <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="SailRig" Association="Base.Store.SailRig">
+      <End Role="Sail" EntitySet="Sails" />
+      <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wetsuit_inherits_Equipment" Association="Base.Store.FK_Wetsuit_inherits_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Wetsuit" EntitySet="Equipments_Wetsuit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Harness_inherits_Equipment" Association="Base.Store.FK_Harness_inherits_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Harness" EntitySet="Equipments_Harness" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vest_inherits_Equipment" Association="Base.Store.FK_Vest_inherits_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Vest" EntitySet="Equipments_Vest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WindHarness_inherits_Harness" Association="Base.Store.FK_WindHarness_inherits_Harness">
+      <End Role="Harness" EntitySet="Equipments_Harness" />
+      <End Role="WindHarness" EntitySet="Equipments_WindHarness" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KiteHarness_inherits_Harness" Association="Base.Store.FK_KiteHarness_inherits_Harness">
+      <End Role="Harness" EntitySet="Equipments_Harness" />
+      <End Role="KiteHarness" EntitySet="Equipments_KiteHarness" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hangars">
+    <Key>
+      <PropertyRef Name="Hangar_id" />
+    </Key>
+    <Property Name="Hangar_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rigs">
+    <Key>
+      <PropertyRef Name="Rig_id" />
+    </Key>
+    <Property Name="Rig_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hangar_Hangar_id" Type="int" Nullable="false" />
+    <Property Name="Board_Board_id" Type="int" Nullable="false" />
+    <Property Name="Sail_Sail_id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Equipments">
+    <Key>
+      <PropertyRef Name="Equipment_id" />
+    </Key>
+    <Property Name="Equipment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hangar_Hangar_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Boards">
+    <Key>
+      <PropertyRef Name="Board_id" />
+    </Key>
+    <Property Name="Board_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Length" Type="int" Nullable="true" />
+    <Property Name="Volume" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sails">
+    <Key>
+      <PropertyRef Name="Sail_id" />
+    </Key>
+    <Property Name="Sail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipments_Wetsuit">
+    <Key>
+      <PropertyRef Name="Equipment_id" />
+    </Key>
+    <Property Name="Wetsuit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="bit" Nullable="true" />
+    <Property Name="Equipment_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipments_Harness">
+    <Key>
+      <PropertyRef Name="Equipment_id" />
+    </Key>
+    <Property Name="Harness_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Equipment_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipments_Vest">
+    <Key>
+      <PropertyRef Name="Equipment_id" />
+    </Key>
+    <Property Name="Vest_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Buoyancy" Type="int" Nullable="true" />
+    <Property Name="Equipment_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipments_WindHarness">
+    <Key>
+      <PropertyRef Name="Equipment_id" />
+    </Key>
+    <Property Name="WindHarness_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Equipment_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipments_KiteHarness">
+    <Key>
+      <PropertyRef Name="Equipment_id" />
+    </Key>
+    <Property Name="KiteHarness_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Equipment_id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="HangarRig">
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hangar">
+        <PropertyRef Name="Hangar_id" />
+      </Principal>
+      <Dependent Role="Rig">
+        <PropertyRef Name="Hangar_Hangar_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipmentHangar">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="*" />
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Hangar">
+        <PropertyRef Name="Hangar_id" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="Hangar_Hangar_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BoardRig">
+    <End Role="Board" Type="Base.Store.Boards" Multiplicity="1" />
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Board">
+        <PropertyRef Name="Board_id" />
+      </Principal>
+      <Dependent Role="Rig">
+        <PropertyRef Name="Board_Board_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SailRig">
+    <End Role="Sail" Type="Base.Store.Sails" Multiplicity="0..1" />
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sail">
+        <PropertyRef Name="Sail_id" />
+      </Principal>
+      <Dependent Role="Rig">
+        <PropertyRef Name="Sail_Sail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wetsuit_inherits_Equipment">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Wetsuit" Type="Base.Store.Equipments_Wetsuit" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_id" />
+      </Principal>
+      <Dependent Role="Wetsuit">
+        <PropertyRef Name="Equipment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Harness_inherits_Equipment">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Harness" Type="Base.Store.Equipments_Harness" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_id" />
+      </Principal>
+      <Dependent Role="Harness">
+        <PropertyRef Name="Equipment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vest_inherits_Equipment">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Vest" Type="Base.Store.Equipments_Vest" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Equipment_id" />
+      </Principal>
+      <Dependent Role="Vest">
+        <PropertyRef Name="Equipment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WindHarness_inherits_Harness">
+    <End Role="Harness" Type="Base.Store.Equipments_Harness" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="WindHarness" Type="Base.Store.Equipments_WindHarness" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Harness">
+        <PropertyRef Name="Equipment_id" />
+      </Principal>
+      <Dependent Role="WindHarness">
+        <PropertyRef Name="Equipment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KiteHarness_inherits_Harness">
+    <End Role="Harness" Type="Base.Store.Equipments_Harness" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="KiteHarness" Type="Base.Store.Equipments_KiteHarness" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Harness">
+        <PropertyRef Name="Equipment_id" />
+      </Principal>
+      <Dependent Role="KiteHarness">
+        <PropertyRef Name="Equipment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Base" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="BaseContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hangars" EntityType="Base.Hangar" />
+          <EntitySet Name="Rigs" EntityType="Base.Rig" />
+          <EntitySet Name="Equipments" EntityType="Base.Equipment" />
+          <AssociationSet Name="HangarRig" Association="Base.HangarRig">
+            <End Role="Hangar" EntitySet="Hangars" />
+            <End Role="Rig" EntitySet="Rigs" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentHangar" Association="Base.EquipmentHangar">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="Hangar" EntitySet="Hangars" />
+          </AssociationSet>
+          <EntitySet Name="Boards" EntityType="Base.Board" />
+          <EntitySet Name="Sails" EntityType="Base.Sail" />
+          <AssociationSet Name="BoardRig" Association="Base.BoardRig">
+            <End Role="Board" EntitySet="Boards" />
+            <End Role="Rig" EntitySet="Rigs" />
+          </AssociationSet>
+          <AssociationSet Name="SailRig" Association="Base.SailRig">
+            <End Role="Sail" EntitySet="Sails" />
+            <End Role="Rig" EntitySet="Rigs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Hangar">
+          <Key>
+            <PropertyRef Name="Hangar_id" />
+          </Key>
+          <Property Name="Hangar_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Rigs" Relationship="Base.HangarRig" FromRole="Hangar" ToRole="Rig" />
+          <NavigationProperty Name="Equipment" Relationship="Base.EquipmentHangar" FromRole="Hangar" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="Rig">
+          <Key>
+            <PropertyRef Name="Rig_id" />
+          </Key>
+          <Property Name="Rig_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Hangar" Relationship="Base.HangarRig" FromRole="Rig" ToRole="Hangar" />
+          <NavigationProperty Name="Board" Relationship="Base.BoardRig" FromRole="Rig" ToRole="Board" />
+          <NavigationProperty Name="Sail" Relationship="Base.SailRig" FromRole="Rig" ToRole="Sail" />
+        </EntityType>
+        <EntityType Name="Sail">
+          <Key>
+            <PropertyRef Name="Sail_id" />
+          </Key>
+          <Property Name="Sail_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rigs" Relationship="Base.SailRig" FromRole="Sail" ToRole="Rig" />
+        </EntityType>
+        <EntityType Name="Board">
+          <Key>
+            <PropertyRef Name="Board_id" />
+          </Key>
+          <Property Name="Board_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Length" Type="Int32" Nullable="true" />
+          <Property Name="Volume" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rigs" Relationship="Base.BoardRig" FromRole="Board" ToRole="Rig" />
+        </EntityType>
+        <EntityType Name="Wetsuit" BaseType="Base.Equipment">
+          <Property Name="Wetsuit_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="String" Nullable="false" />
+          <Property Name="Type" Type="Boolean" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Equipment_id" />
+          </Key>
+          <Property Name="Equipment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Hangar" Relationship="Base.EquipmentHangar" FromRole="Equipment" ToRole="Hangar" />
+        </EntityType>
+        <EntityType Name="Harness" BaseType="Base.Equipment">
+          <Property Name="Harness_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="String" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Vest" BaseType="Base.Equipment">
+          <Property Name="Vest_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="String" Nullable="false" />
+          <Property Name="Buoyancy" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="HangarRig">
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
+          <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
+        </Association>
+        <Association Name="EquipmentHangar">
+          <End Type="Base.Equipment" Role="Equipment" Multiplicity="*" />
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
+        </Association>
+        <EntityType Name="WindHarness" BaseType="Base.Harness">
+          <Property Name="WindHarness_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="KiteHarness" BaseType="Base.Harness">
+          <Property Name="KiteHarness_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="BoardRig">
+          <End Type="Base.Board" Role="Board" Multiplicity="1" />
+          <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
+        </Association>
+        <Association Name="SailRig">
+          <End Type="Base.Sail" Role="Sail" Multiplicity="0..1" />
+          <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BaseStoreContainer" CdmEntityContainer="BaseContainer">
+    <EntitySetMapping Name="Hangars">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Hangar)">
+        <MappingFragment StoreEntitySet="Hangars">
+          <ScalarProperty Name="Hangar_id" ColumnName="Hangar_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rigs">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Rig)">
+        <MappingFragment StoreEntitySet="Rigs">
+          <ScalarProperty Name="Rig_id" ColumnName="Rig_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipments">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Equipment)">
+        <MappingFragment StoreEntitySet="Equipments">
+          <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Wetsuit)">
+        <MappingFragment StoreEntitySet="Equipments_Wetsuit">
+          <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
+          <ScalarProperty Name="Wetsuit_id" ColumnName="Wetsuit_id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Harness)">
+        <MappingFragment StoreEntitySet="Equipments_Harness">
+          <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
+          <ScalarProperty Name="Harness_id" ColumnName="Harness_id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Vest)">
+        <MappingFragment StoreEntitySet="Equipments_Vest">
+          <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
+          <ScalarProperty Name="Vest_id" ColumnName="Vest_id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Buoyancy" ColumnName="Buoyancy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.WindHarness)">
+        <MappingFragment StoreEntitySet="Equipments_WindHarness">
+          <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
+          <ScalarProperty Name="WindHarness_id" ColumnName="WindHarness_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.KiteHarness)">
+        <MappingFragment StoreEntitySet="Equipments_KiteHarness">
+          <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
+          <ScalarProperty Name="KiteHarness_id" ColumnName="KiteHarness_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Boards">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Board)">
+        <MappingFragment StoreEntitySet="Boards">
+          <ScalarProperty Name="Board_id" ColumnName="Board_id" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sails">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Sail)">
+        <MappingFragment StoreEntitySet="Sails">
+          <ScalarProperty Name="Sail_id" ColumnName="Sail_id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="HangarRig" TypeName="Base.HangarRig" StoreEntitySet="Rigs">
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Hangar_id" ColumnName="Hangar_Hangar_id" />
+      </EndProperty>
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Rig_id" ColumnName="Rig_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EquipmentHangar" TypeName="Base.EquipmentHangar" StoreEntitySet="Equipments">
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Hangar_id" ColumnName="Hangar_Hangar_id" />
+      </EndProperty>
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BoardRig" TypeName="Base.BoardRig" StoreEntitySet="Rigs">
+      <EndProperty Name="Board">
+        <ScalarProperty Name="Board_id" ColumnName="Board_Board_id" />
+      </EndProperty>
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Rig_id" ColumnName="Rig_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SailRig" TypeName="Base.SailRig" StoreEntitySet="Rigs">
+      <EndProperty Name="Sail">
+        <ScalarProperty Name="Sail_id" ColumnName="Sail_Sail_id" />
+      </EndProperty>
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Rig_id" ColumnName="Rig_id" />
+      </EndProperty>
+      <Condition ColumnName="Sail_Sail_id" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

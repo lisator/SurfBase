@@ -13,5 +13,28 @@ namespace SurfBase
             throw new System.NotImplementedException();
         }
 
+        public User User
+        {
+            get => default(User);
+            set
+            {
+            }
+        }
+
+        public User User1
+        {
+            get => default(User);
+            set
+            {
+            }
+        }
+
+        public Schedule Schedule
+        {
+            get => default(Schedule);
+            set
+            {
+            }
+        }
     }
 }

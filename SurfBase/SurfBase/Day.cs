@@ -5,8 +5,7 @@ using System.Text;
 
 namespace SurfBase
 {
-    public abstract class User
+    public class Day
     {
-        private int id;
     }
 }
