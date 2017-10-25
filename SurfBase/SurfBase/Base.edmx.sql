@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/25/2017 13:08:16
+-- Date Created: 10/25/2017 17:15:43
 -- Generated from EDMX file: C:\Users\Lisek\Polibuda\Programming Technologies\SurfBase\SurfBase\SurfBase\Base.edmx
 -- --------------------------------------------------
 
@@ -17,9 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_HangarRig]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Rigs] DROP CONSTRAINT [FK_HangarRig];
-GO
 IF OBJECT_ID(N'[dbo].[FK_EquipmentHangar]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Equipments] DROP CONSTRAINT [FK_EquipmentHangar];
 GO
@@ -34,6 +31,18 @@ IF OBJECT_ID(N'[dbo].[FK_ScheduleDay]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_DayHour]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Hours] DROP CONSTRAINT [FK_DayHour];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RentalRig]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rigs] DROP CONSTRAINT [FK_RentalRig];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HangarSail]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Sails] DROP CONSTRAINT [FK_HangarSail];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HangarBoard]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Boards] DROP CONSTRAINT [FK_HangarBoard];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RentalHistoryRental]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rentals] DROP CONSTRAINT [FK_RentalHistoryRental];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Wetsuit_inherits_Equipment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Equipments_Wetsuit] DROP CONSTRAINT [FK_Wetsuit_inherits_Equipment];
@@ -78,6 +87,12 @@ IF OBJECT_ID(N'[dbo].[Days]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Hours]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Hours];
+GO
+IF OBJECT_ID(N'[dbo].[Rentals]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Rentals];
+GO
+IF OBJECT_ID(N'[dbo].[RentalHistory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RentalHistory];
 GO
 IF OBJECT_ID(N'[dbo].[Equipments_Wetsuit]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Equipments_Wetsuit];
@@ -150,21 +165,28 @@ GO
 -- Creating table 'Days'
 CREATE TABLE [dbo].[Days] (
     [Day_id] int IDENTITY(1,1) NOT NULL,
-    [Week_day] nvarchar(max)  NOT NULL,
+    [Week_day] smallint  NOT NULL,
     [Schedule_Schedule_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Hours'
 CREATE TABLE [dbo].[Hours] (
-    [Time] time  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Day_Day_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Rentals'
 CREATE TABLE [dbo].[Rentals] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [RentalHistory_RentalHistory_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'RentalHistory'
+CREATE TABLE [dbo].[RentalHistory] (
+    [RentalHistory_id] int IDENTITY(1,1) NOT NULL
 );
 GO
 
@@ -252,16 +274,22 @@ ADD CONSTRAINT [PK_Days]
     PRIMARY KEY CLUSTERED ([Day_id] ASC);
 GO
 
--- Creating primary key on [Time] in table 'Hours'
+-- Creating primary key on [Id] in table 'Hours'
 ALTER TABLE [dbo].[Hours]
 ADD CONSTRAINT [PK_Hours]
-    PRIMARY KEY CLUSTERED ([Time] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Rentals'
 ALTER TABLE [dbo].[Rentals]
 ADD CONSTRAINT [PK_Rentals]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [RentalHistory_id] in table 'RentalHistory'
+ALTER TABLE [dbo].[RentalHistory]
+ADD CONSTRAINT [PK_RentalHistory]
+    PRIMARY KEY CLUSTERED ([RentalHistory_id] ASC);
 GO
 
 -- Creating primary key on [Equipment_id] in table 'Equipments_Wetsuit'
@@ -416,6 +444,21 @@ GO
 CREATE INDEX [IX_FK_HangarBoard]
 ON [dbo].[Boards]
     ([Hangar_Hangar_id]);
+GO
+
+-- Creating foreign key on [RentalHistory_RentalHistory_id] in table 'Rentals'
+ALTER TABLE [dbo].[Rentals]
+ADD CONSTRAINT [FK_RentalHistoryRental]
+    FOREIGN KEY ([RentalHistory_RentalHistory_id])
+    REFERENCES [dbo].[RentalHistory]
+        ([RentalHistory_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RentalHistoryRental'
+CREATE INDEX [IX_FK_RentalHistoryRental]
+ON [dbo].[Rentals]
+    ([RentalHistory_RentalHistory_id]);
 GO
 
 -- Creating foreign key on [Equipment_id] in table 'Equipments_Wetsuit'

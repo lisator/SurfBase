@@ -32,11 +32,13 @@
         <AssociationConnector Association="Base.RentalRig" />
         <AssociationConnector Association="Base.HangarSail" />
         <AssociationConnector Association="Base.HangarBoard" ManuallyRouted="true" >
-          <ConnectorPoint PointX="7.125" PointY="1.648150546308877" />
-          <ConnectorPoint PointX="8.1875" PointY="1.648150546308877" />
-          <ConnectorPoint PointX="8.1875" PointY="5.9284236653645834" />
-          <ConnectorPoint PointX="8.875" PointY="5.9284236653645834" />
+          <ConnectorPoint PointX="7.125" PointY="1.7612742513020834" />
+          <ConnectorPoint PointX="8.0416666666666679" PointY="1.7612742513020834" />
+          <ConnectorPoint PointX="8.0416666666666679" PointY="6.0781555989583325" />
+          <ConnectorPoint PointX="8.875" PointY="6.0781555989583325" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="Base.RentalHistory" Width="1.5" PointX="14.375" PointY="0.5" />
+        <AssociationConnector Association="Base.RentalHistoryRental" ></AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

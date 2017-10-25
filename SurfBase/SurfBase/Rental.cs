@@ -24,8 +24,6 @@ namespace SurfBase
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rig> Rigs { get; set; }
-
-        public System.TimeSpan Time { get; set; }
-        
+        public virtual RentalHistory RentalHistory { get; set; }
     }
 }

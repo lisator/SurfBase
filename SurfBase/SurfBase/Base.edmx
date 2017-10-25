@@ -15,6 +15,7 @@
     <EntitySet Name="Days" EntityType="Base.Store.Days" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Hours" EntityType="Base.Store.Hours" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Rentals" EntityType="Base.Store.Rentals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RentalHistory" EntityType="Base.Store.RentalHistory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Wetsuit" EntityType="Base.Store.Equipments_Wetsuit" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Harness" EntityType="Base.Store.Equipments_Harness" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Vest" EntityType="Base.Store.Equipments_Vest" store:Type="Tables" Schema="dbo" />
@@ -51,6 +52,10 @@
     <AssociationSet Name="HangarBoard" Association="Base.Store.HangarBoard">
       <End Role="Hangar" EntitySet="Hangars" />
       <End Role="Board" EntitySet="Boards" />
+    </AssociationSet>
+    <AssociationSet Name="RentalHistoryRental" Association="Base.Store.RentalHistoryRental">
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+      <End Role="Rental" EntitySet="Rentals" />
     </AssociationSet>
     <AssociationSet Name="FK_Wetsuit_inherits_Equipment" Association="Base.Store.FK_Wetsuit_inherits_Equipment">
       <End Role="Equipment" EntitySet="Equipments" />
@@ -126,14 +131,14 @@
       <PropertyRef Name="Day_id" />
     </Key>
     <Property Name="Day_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Week_day" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Week_day" Type="smallint" Nullable="false" />
     <Property Name="Schedule_Schedule_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Hours">
     <Key>
-      <PropertyRef Name="Time" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Time" Type="time" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Day_Day_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rentals">
@@ -141,6 +146,13 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RentalHistory_RentalHistory_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RentalHistory">
+    <Key>
+      <PropertyRef Name="RentalHistory_id" />
+    </Key>
+    <Property Name="RentalHistory_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Equipments_Wetsuit">
     <Key>
@@ -276,6 +288,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="RentalHistoryRental">
+    <End Role="RentalHistory" Type="Base.Store.RentalHistory" Multiplicity="1" />
+    <End Role="Rental" Type="Base.Store.Rentals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RentalHistory">
+        <PropertyRef Name="RentalHistory_id" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="RentalHistory_RentalHistory_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Wetsuit_inherits_Equipment">
     <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -392,6 +416,11 @@
             <End Role="Hangar" EntitySet="Hangars" />
             <End Role="Board" EntitySet="Boards" />
           </AssociationSet>
+          <EntitySet Name="RentalHistory" EntityType="Base.RentalHistory" />
+          <AssociationSet Name="RentalHistoryRental" Association="Base.RentalHistoryRental">
+            <End Role="RentalHistory" EntitySet="RentalHistory" />
+            <End Role="Rental" EntitySet="Rentals" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Hangar">
           <Key>
@@ -492,9 +521,9 @@
         </Association>
         <EntityType Name="Hour">
           <Key>
-            <PropertyRef Name="Time" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Time" Type="Time" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Day" Relationship="Base.DayHour" FromRole="Hour" ToRole="Day" />
         </EntityType>
         <Association Name="DayHour">
@@ -507,6 +536,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Rigs" Relationship="Base.RentalRig" FromRole="Rental" ToRole="Rig" />
+          <NavigationProperty Name="RentalHistory" Relationship="Base.RentalHistoryRental" FromRole="Rental" ToRole="RentalHistory" />
         </EntityType>
         <Association Name="RentalRig">
           <End Type="Base.Rental" Role="Rental" Multiplicity="1" />
@@ -519,6 +549,17 @@
         <Association Name="HangarBoard">
           <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
           <End Type="Base.Board" Role="Board" Multiplicity="*" />
+        </Association>
+        <EntityType Name="RentalHistory">
+          <Key>
+            <PropertyRef Name="RentalHistory_id" />
+          </Key>
+          <Property Name="RentalHistory_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Rentals" Relationship="Base.RentalHistoryRental" FromRole="RentalHistory" ToRole="Rental" />
+        </EntityType>
+        <Association Name="RentalHistoryRental">
+          <End Type="Base.RentalHistory" Role="RentalHistory" Multiplicity="1" />
+          <End Type="Base.Rental" Role="Rental" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -618,7 +659,7 @@
     <EntitySetMapping Name="Hours">
       <EntityTypeMapping TypeName="IsTypeOf(Base.Hour)">
         <MappingFragment StoreEntitySet="Hours">
-          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -626,6 +667,13 @@
       <EntityTypeMapping TypeName="IsTypeOf(Base.Rental)">
         <MappingFragment StoreEntitySet="Rentals">
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RentalHistory">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.RentalHistory)">
+        <MappingFragment StoreEntitySet="RentalHistory">
+          <ScalarProperty Name="RentalHistory_id" ColumnName="RentalHistory_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -667,7 +715,7 @@
         <ScalarProperty Name="Day_id" ColumnName="Day_Day_id" />
       </EndProperty>
       <EndProperty Name="Hour">
-        <ScalarProperty Name="Time" ColumnName="Time" />
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="RentalRig" TypeName="Base.RentalRig" StoreEntitySet="Rigs">
@@ -694,6 +742,14 @@
         <ScalarProperty Name="Board_id" ColumnName="Board_id" />
       </EndProperty>
     </AssociationSetMapping>
+    <AssociationSetMapping Name="RentalHistoryRental" TypeName="Base.RentalHistoryRental" StoreEntitySet="Rentals">
+      <EndProperty Name="RentalHistory">
+        <ScalarProperty Name="RentalHistory_id" ColumnName="RentalHistory_RentalHistory_id" />
+      </EndProperty>
+      <EndProperty Name="Rental">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -710,6 +766,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

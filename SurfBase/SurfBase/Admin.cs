@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SurfBase
 {
-    public class Admin : User, IAdminInterface
+    public class Admin : User
     {
         internal CheckValidity CheckValidity
         {

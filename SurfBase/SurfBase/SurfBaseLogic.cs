@@ -29,12 +29,7 @@ namespace SurfBase
             }
         }
 
-        public Hangar Hangar
-        {
-            get => default(Hangar);
-            set
-            {
-            }
-        }
+        public ICollection<Hangar> Hangar { get; set; }
+    
     }
 }

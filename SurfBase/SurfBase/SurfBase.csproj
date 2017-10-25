@@ -120,6 +120,9 @@
     <Compile Include="Rental.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="RentalHistory.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="Rig.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
