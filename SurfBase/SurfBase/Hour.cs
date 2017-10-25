@@ -12,17 +12,10 @@ namespace SurfBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Schedule
+    public partial class Hour
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Schedule()
-        {
-            this.Days = new HashSet<Day>();
-        }
+        public System.TimeSpan Time { get; set; }
     
-        public int Schedule_id { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Day> Days { get; set; }
+        public virtual Day Day { get; set; }
     }
 }

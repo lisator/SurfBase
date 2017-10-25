@@ -11,15 +11,15 @@
     <EntitySet Name="Equipments" EntityType="Base.Store.Equipments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Boards" EntityType="Base.Store.Boards" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Sails" EntityType="Base.Store.Sails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Schedules" EntityType="Base.Store.Schedules" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Days" EntityType="Base.Store.Days" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Hours" EntityType="Base.Store.Hours" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rentals" EntityType="Base.Store.Rentals" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Wetsuit" EntityType="Base.Store.Equipments_Wetsuit" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Harness" EntityType="Base.Store.Equipments_Harness" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Vest" EntityType="Base.Store.Equipments_Vest" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_WindHarness" EntityType="Base.Store.Equipments_WindHarness" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_KiteHarness" EntityType="Base.Store.Equipments_KiteHarness" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="HangarRig" Association="Base.Store.HangarRig">
-      <End Role="Hangar" EntitySet="Hangars" />
-      <End Role="Rig" EntitySet="Rigs" />
-    </AssociationSet>
     <AssociationSet Name="EquipmentHangar" Association="Base.Store.EquipmentHangar">
       <End Role="Equipment" EntitySet="Equipments" />
       <End Role="Hangar" EntitySet="Hangars" />
@@ -31,6 +31,26 @@
     <AssociationSet Name="SailRig" Association="Base.Store.SailRig">
       <End Role="Sail" EntitySet="Sails" />
       <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="ScheduleDay" Association="Base.Store.ScheduleDay">
+      <End Role="Schedule" EntitySet="Schedules" />
+      <End Role="Day" EntitySet="Days" />
+    </AssociationSet>
+    <AssociationSet Name="DayHour" Association="Base.Store.DayHour">
+      <End Role="Day" EntitySet="Days" />
+      <End Role="Hour" EntitySet="Hours" />
+    </AssociationSet>
+    <AssociationSet Name="RentalRig" Association="Base.Store.RentalRig">
+      <End Role="Rental" EntitySet="Rentals" />
+      <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="HangarSail" Association="Base.Store.HangarSail">
+      <End Role="Hangar" EntitySet="Hangars" />
+      <End Role="Sail" EntitySet="Sails" />
+    </AssociationSet>
+    <AssociationSet Name="HangarBoard" Association="Base.Store.HangarBoard">
+      <End Role="Hangar" EntitySet="Hangars" />
+      <End Role="Board" EntitySet="Boards" />
     </AssociationSet>
     <AssociationSet Name="FK_Wetsuit_inherits_Equipment" Association="Base.Store.FK_Wetsuit_inherits_Equipment">
       <End Role="Equipment" EntitySet="Equipments" />
@@ -64,9 +84,9 @@
       <PropertyRef Name="Rig_id" />
     </Key>
     <Property Name="Rig_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Hangar_Hangar_id" Type="int" Nullable="false" />
     <Property Name="Board_Board_id" Type="int" Nullable="false" />
     <Property Name="Sail_Sail_id" Type="int" Nullable="true" />
+    <Property Name="Rental_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Equipments">
     <Key>
@@ -82,6 +102,9 @@
     <Property Name="Board_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Length" Type="int" Nullable="true" />
     <Property Name="Volume" Type="int" Nullable="false" />
+    <Property Name="Make" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Type" Type="bit" Nullable="false" />
+    <Property Name="Hangar_Hangar_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Sails">
     <Key>
@@ -89,6 +112,35 @@
     </Key>
     <Property Name="Sail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Size" Type="int" Nullable="false" />
+    <Property Name="Make" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Hangar_Hangar_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Schedules">
+    <Key>
+      <PropertyRef Name="Schedule_id" />
+    </Key>
+    <Property Name="Schedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Days">
+    <Key>
+      <PropertyRef Name="Day_id" />
+    </Key>
+    <Property Name="Day_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Week_day" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Schedule_Schedule_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hours">
+    <Key>
+      <PropertyRef Name="Time" />
+    </Key>
+    <Property Name="Time" Type="time" Nullable="false" />
+    <Property Name="Day_Day_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rentals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="Equipments_Wetsuit">
     <Key>
@@ -120,28 +172,14 @@
     <Key>
       <PropertyRef Name="Equipment_id" />
     </Key>
-    <Property Name="WindHarness_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Equipment_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Equipments_KiteHarness">
     <Key>
       <PropertyRef Name="Equipment_id" />
     </Key>
-    <Property Name="KiteHarness_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Equipment_id" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="HangarRig">
-    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
-    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Hangar">
-        <PropertyRef Name="Hangar_id" />
-      </Principal>
-      <Dependent Role="Rig">
-        <PropertyRef Name="Hangar_Hangar_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="EquipmentHangar">
     <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="*" />
     <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
@@ -175,6 +213,66 @@
       </Principal>
       <Dependent Role="Rig">
         <PropertyRef Name="Sail_Sail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ScheduleDay">
+    <End Role="Schedule" Type="Base.Store.Schedules" Multiplicity="1" />
+    <End Role="Day" Type="Base.Store.Days" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="Schedule_id" />
+      </Principal>
+      <Dependent Role="Day">
+        <PropertyRef Name="Schedule_Schedule_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DayHour">
+    <End Role="Day" Type="Base.Store.Days" Multiplicity="1" />
+    <End Role="Hour" Type="Base.Store.Hours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Day">
+        <PropertyRef Name="Day_id" />
+      </Principal>
+      <Dependent Role="Hour">
+        <PropertyRef Name="Day_Day_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RentalRig">
+    <End Role="Rental" Type="Base.Store.Rentals" Multiplicity="1" />
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rental">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rig">
+        <PropertyRef Name="Rental_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HangarSail">
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
+    <End Role="Sail" Type="Base.Store.Sails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hangar">
+        <PropertyRef Name="Hangar_id" />
+      </Principal>
+      <Dependent Role="Sail">
+        <PropertyRef Name="Hangar_Hangar_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HangarBoard">
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
+    <End Role="Board" Type="Base.Store.Boards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hangar">
+        <PropertyRef Name="Hangar_id" />
+      </Principal>
+      <Dependent Role="Board">
+        <PropertyRef Name="Hangar_Hangar_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -256,10 +354,6 @@
           <EntitySet Name="Hangars" EntityType="Base.Hangar" />
           <EntitySet Name="Rigs" EntityType="Base.Rig" />
           <EntitySet Name="Equipments" EntityType="Base.Equipment" />
-          <AssociationSet Name="HangarRig" Association="Base.HangarRig">
-            <End Role="Hangar" EntitySet="Hangars" />
-            <End Role="Rig" EntitySet="Rigs" />
-          </AssociationSet>
           <AssociationSet Name="EquipmentHangar" Association="Base.EquipmentHangar">
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="Hangar" EntitySet="Hangars" />
@@ -274,23 +368,48 @@
             <End Role="Sail" EntitySet="Sails" />
             <End Role="Rig" EntitySet="Rigs" />
           </AssociationSet>
+          <EntitySet Name="Schedules" EntityType="Base.Schedule" />
+          <EntitySet Name="Days" EntityType="Base.Day" />
+          <AssociationSet Name="ScheduleDay" Association="Base.ScheduleDay">
+            <End Role="Schedule" EntitySet="Schedules" />
+            <End Role="Day" EntitySet="Days" />
+          </AssociationSet>
+          <EntitySet Name="Hours" EntityType="Base.Hour" />
+          <AssociationSet Name="DayHour" Association="Base.DayHour">
+            <End Role="Day" EntitySet="Days" />
+            <End Role="Hour" EntitySet="Hours" />
+          </AssociationSet>
+          <EntitySet Name="Rentals" EntityType="Base.Rental" />
+          <AssociationSet Name="RentalRig" Association="Base.RentalRig">
+            <End Role="Rental" EntitySet="Rentals" />
+            <End Role="Rig" EntitySet="Rigs" />
+          </AssociationSet>
+          <AssociationSet Name="HangarSail" Association="Base.HangarSail">
+            <End Role="Hangar" EntitySet="Hangars" />
+            <End Role="Sail" EntitySet="Sails" />
+          </AssociationSet>
+          <AssociationSet Name="HangarBoard" Association="Base.HangarBoard">
+            <End Role="Hangar" EntitySet="Hangars" />
+            <End Role="Board" EntitySet="Boards" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Hangar">
           <Key>
             <PropertyRef Name="Hangar_id" />
           </Key>
           <Property Name="Hangar_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Rigs" Relationship="Base.HangarRig" FromRole="Hangar" ToRole="Rig" />
           <NavigationProperty Name="Equipment" Relationship="Base.EquipmentHangar" FromRole="Hangar" ToRole="Equipment" />
+          <NavigationProperty Name="Sails" Relationship="Base.HangarSail" FromRole="Hangar" ToRole="Sail" />
+          <NavigationProperty Name="Boards" Relationship="Base.HangarBoard" FromRole="Hangar" ToRole="Board" />
         </EntityType>
         <EntityType Name="Rig">
           <Key>
             <PropertyRef Name="Rig_id" />
           </Key>
           <Property Name="Rig_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Hangar" Relationship="Base.HangarRig" FromRole="Rig" ToRole="Hangar" />
           <NavigationProperty Name="Board" Relationship="Base.BoardRig" FromRole="Rig" ToRole="Board" />
           <NavigationProperty Name="Sail" Relationship="Base.SailRig" FromRole="Rig" ToRole="Sail" />
+          <NavigationProperty Name="Rental" Relationship="Base.RentalRig" FromRole="Rig" ToRole="Rental" />
         </EntityType>
         <EntityType Name="Sail">
           <Key>
@@ -299,6 +418,8 @@
           <Property Name="Sail_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="Size" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rigs" Relationship="Base.SailRig" FromRole="Sail" ToRole="Rig" />
+          <Property Name="Make" Type="String" Nullable="true" />
+          <NavigationProperty Name="Hangar" Relationship="Base.HangarSail" FromRole="Sail" ToRole="Hangar" />
         </EntityType>
         <EntityType Name="Board">
           <Key>
@@ -308,6 +429,9 @@
           <Property Name="Length" Type="Int32" Nullable="true" />
           <Property Name="Volume" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Rigs" Relationship="Base.BoardRig" FromRole="Board" ToRole="Rig" />
+          <Property Name="Make" Type="String" Nullable="true" />
+          <Property Name="Type" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Hangar" Relationship="Base.HangarBoard" FromRole="Board" ToRole="Hangar" />
         </EntityType>
         <EntityType Name="Wetsuit" BaseType="Base.Equipment">
           <Property Name="Wetsuit_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
@@ -330,19 +454,13 @@
           <Property Name="Size" Type="String" Nullable="false" />
           <Property Name="Buoyancy" Type="Int32" Nullable="true" />
         </EntityType>
-        <Association Name="HangarRig">
-          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
-          <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
-        </Association>
         <Association Name="EquipmentHangar">
           <End Type="Base.Equipment" Role="Equipment" Multiplicity="*" />
           <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
         </Association>
         <EntityType Name="WindHarness" BaseType="Base.Harness">
-          <Property Name="WindHarness_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="KiteHarness" BaseType="Base.Harness">
-          <Property Name="KiteHarness_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="BoardRig">
           <End Type="Base.Board" Role="Board" Multiplicity="1" />
@@ -351,6 +469,56 @@
         <Association Name="SailRig">
           <End Type="Base.Sail" Role="Sail" Multiplicity="0..1" />
           <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Schedule">
+          <Key>
+            <PropertyRef Name="Schedule_id" />
+          </Key>
+          <Property Name="Schedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Days" Relationship="Base.ScheduleDay" FromRole="Schedule" ToRole="Day" />
+        </EntityType>
+        <EntityType Name="Day">
+          <Key>
+            <PropertyRef Name="Day_id" />
+          </Key>
+          <Property Name="Day_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Week_day" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Schedule" Relationship="Base.ScheduleDay" FromRole="Day" ToRole="Schedule" />
+          <NavigationProperty Name="Hours" Relationship="Base.DayHour" FromRole="Day" ToRole="Hour" />
+        </EntityType>
+        <Association Name="ScheduleDay">
+          <End Type="Base.Schedule" Role="Schedule" Multiplicity="1" />
+          <End Type="Base.Day" Role="Day" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Hour">
+          <Key>
+            <PropertyRef Name="Time" />
+          </Key>
+          <Property Name="Time" Type="Time" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Day" Relationship="Base.DayHour" FromRole="Hour" ToRole="Day" />
+        </EntityType>
+        <Association Name="DayHour">
+          <End Type="Base.Day" Role="Day" Multiplicity="1" />
+          <End Type="Base.Hour" Role="Hour" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Rental">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Rigs" Relationship="Base.RentalRig" FromRole="Rental" ToRole="Rig" />
+        </EntityType>
+        <Association Name="RentalRig">
+          <End Type="Base.Rental" Role="Rental" Multiplicity="1" />
+          <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
+        </Association>
+        <Association Name="HangarSail">
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
+          <End Type="Base.Sail" Role="Sail" Multiplicity="*" />
+        </Association>
+        <Association Name="HangarBoard">
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
+          <End Type="Base.Board" Role="Board" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -404,13 +572,11 @@
       <EntityTypeMapping TypeName="IsTypeOf(Base.WindHarness)">
         <MappingFragment StoreEntitySet="Equipments_WindHarness">
           <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
-          <ScalarProperty Name="WindHarness_id" ColumnName="WindHarness_id" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Base.KiteHarness)">
         <MappingFragment StoreEntitySet="Equipments_KiteHarness">
           <ScalarProperty Name="Equipment_id" ColumnName="Equipment_id" />
-          <ScalarProperty Name="KiteHarness_id" ColumnName="KiteHarness_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -420,6 +586,8 @@
           <ScalarProperty Name="Board_id" ColumnName="Board_id" />
           <ScalarProperty Name="Length" ColumnName="Length" />
           <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -428,17 +596,39 @@
         <MappingFragment StoreEntitySet="Sails">
           <ScalarProperty Name="Sail_id" ColumnName="Sail_id" />
           <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="HangarRig" TypeName="Base.HangarRig" StoreEntitySet="Rigs">
-      <EndProperty Name="Hangar">
-        <ScalarProperty Name="Hangar_id" ColumnName="Hangar_Hangar_id" />
-      </EndProperty>
-      <EndProperty Name="Rig">
-        <ScalarProperty Name="Rig_id" ColumnName="Rig_id" />
-      </EndProperty>
-    </AssociationSetMapping>
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Schedule)">
+        <MappingFragment StoreEntitySet="Schedules">
+          <ScalarProperty Name="Schedule_id" ColumnName="Schedule_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Days">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Day)">
+        <MappingFragment StoreEntitySet="Days">
+          <ScalarProperty Name="Day_id" ColumnName="Day_id" />
+          <ScalarProperty Name="Week_day" ColumnName="Week_day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hours">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Hour)">
+        <MappingFragment StoreEntitySet="Hours">
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rentals">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Rental)">
+        <MappingFragment StoreEntitySet="Rentals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="EquipmentHangar" TypeName="Base.EquipmentHangar" StoreEntitySet="Equipments">
       <EndProperty Name="Hangar">
         <ScalarProperty Name="Hangar_id" ColumnName="Hangar_Hangar_id" />
@@ -463,6 +653,46 @@
         <ScalarProperty Name="Rig_id" ColumnName="Rig_id" />
       </EndProperty>
       <Condition ColumnName="Sail_Sail_id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ScheduleDay" TypeName="Base.ScheduleDay" StoreEntitySet="Days">
+      <EndProperty Name="Schedule">
+        <ScalarProperty Name="Schedule_id" ColumnName="Schedule_Schedule_id" />
+      </EndProperty>
+      <EndProperty Name="Day">
+        <ScalarProperty Name="Day_id" ColumnName="Day_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DayHour" TypeName="Base.DayHour" StoreEntitySet="Hours">
+      <EndProperty Name="Day">
+        <ScalarProperty Name="Day_id" ColumnName="Day_Day_id" />
+      </EndProperty>
+      <EndProperty Name="Hour">
+        <ScalarProperty Name="Time" ColumnName="Time" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RentalRig" TypeName="Base.RentalRig" StoreEntitySet="Rigs">
+      <EndProperty Name="Rental">
+        <ScalarProperty Name="Id" ColumnName="Rental_Id" />
+      </EndProperty>
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Rig_id" ColumnName="Rig_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HangarSail" TypeName="Base.HangarSail" StoreEntitySet="Sails">
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Hangar_id" ColumnName="Hangar_Hangar_id" />
+      </EndProperty>
+      <EndProperty Name="Sail">
+        <ScalarProperty Name="Sail_id" ColumnName="Sail_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HangarBoard" TypeName="Base.HangarBoard" StoreEntitySet="Boards">
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Hangar_id" ColumnName="Hangar_Hangar_id" />
+      </EndProperty>
+      <EndProperty Name="Board">
+        <ScalarProperty Name="Board_id" ColumnName="Board_id" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

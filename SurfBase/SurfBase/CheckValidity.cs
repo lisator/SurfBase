@@ -5,8 +5,7 @@ using System.Text;
 
 namespace SurfBase
 {
-    public interface IAdminInterface
+    internal class CheckValidity
     {
-        MainWindow MainWindow { get; set; }
     }
 }

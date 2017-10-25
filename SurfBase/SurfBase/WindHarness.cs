@@ -14,6 +14,5 @@ namespace SurfBase
     
     public partial class WindHarness : Harness
     {
-        public int WindHarness_id { get; set; }
     }
 }

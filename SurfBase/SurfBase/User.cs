@@ -7,6 +7,12 @@ namespace SurfBase
 {
     public abstract class User
     {
-        private int id;
+        public int User_id
+        {
+            get => default(int);
+            set
+            {
+            }
+        }
     }
 }

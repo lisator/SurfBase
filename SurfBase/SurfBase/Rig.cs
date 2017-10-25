@@ -16,8 +16,8 @@ namespace SurfBase
     {
         public int Rig_id { get; set; }
     
-        public virtual Hangar Hangar { get; set; }
         public virtual Board Board { get; set; }
         public virtual Sail Sail { get; set; }
+        public virtual Rental Rental { get; set; }
     }
 }

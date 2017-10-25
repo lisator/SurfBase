@@ -21,17 +21,17 @@ namespace SurfBase
             }
         }
 
-        public User User1
+        public Schedule Schedule
         {
-            get => default(User);
+            get => default(Schedule);
             set
             {
             }
         }
 
-        public Schedule Schedule
+        public Hangar Hangar
         {
-            get => default(Schedule);
+            get => default(Hangar);
             set
             {
             }

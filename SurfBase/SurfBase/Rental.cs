@@ -12,20 +12,20 @@ namespace SurfBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Sail
+    public partial class Rental
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sail()
+        public Rental()
         {
             this.Rigs = new HashSet<Rig>();
         }
     
-        public int Sail_id { get; set; }
-        public int Size { get; set; }
-        public string Make { get; set; }
+        public int Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rig> Rigs { get; set; }
-        public virtual Hangar Hangar { get; set; }
+
+        public System.TimeSpan Time { get; set; }
+        
     }
 }

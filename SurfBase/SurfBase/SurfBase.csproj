@@ -97,7 +97,10 @@
     <Compile Include="Board.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="Day.cs" />
+    <Compile Include="CheckValidity.cs" />
+    <Compile Include="Day.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="Equipment.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
@@ -107,8 +110,14 @@
     <Compile Include="Harness.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="Hour.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="IAdminInterface.cs" />
     <Compile Include="KiteHarness.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rental.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="Rig.cs">
@@ -117,7 +126,9 @@
     <Compile Include="Sail.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
-    <Compile Include="Schedule.cs" />
+    <Compile Include="Schedule.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="SurfBaseLogic.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Vest.cs">

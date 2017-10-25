@@ -7,5 +7,12 @@ namespace SurfBase
 {
     public class Admin : User, IAdminInterface
     {
+        internal CheckValidity CheckValidity
+        {
+            get => default(CheckValidity);
+            set
+            {
+            }
+        }
     }
 }

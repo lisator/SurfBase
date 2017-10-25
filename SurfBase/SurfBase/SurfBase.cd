@@ -4,102 +4,170 @@
     <Position X="2.75" Y="1.25" Width="1.5" />
     <AssociationLine Name="User" Type="SurfBase.User" FixedFromPoint="true">
       <Path>
-        <Point X="3" Y="2.353" />
-        <Point X="3" Y="3.25" />
+        <Point X="3.5" Y="2.353" />
+        <Point X="3.5" Y="3.25" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.12" Y="0.091" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="User1" Type="SurfBase.User" FixedFromPoint="true">
-      <Path>
-        <Point X="3.938" Y="2.353" />
-        <Point X="3.938" Y="3.25" />
-      </Path>
-    </AssociationLine>
     <AssociationLine Name="Schedule" Type="SurfBase.Schedule" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="4.25" Y="2.25" />
-        <Point X="5.938" Y="2.25" />
-        <Point X="5.938" Y="3" />
+        <Point X="5.751" Y="2.25" />
+        <Point X="5.751" Y="3" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAIAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAgAAEAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SurfBaseLogic.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="User" />
-      <Property Name="User1" />
       <Property Name="Schedule" />
+      <Property Name="Hangar" />
     </ShowAsAssociation>
   </Class>
   <Class Name="SurfBase.User">
     <Position X="2.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Admin">
     <Position X="2.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Admin.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CheckValidity" />
+    </ShowAsAssociation>
     <Lollipop Orientation="Left" Position="0.429" />
   </Class>
   <Class Name="SurfBase.Schedule">
-    <Position X="5.75" Y="3" Width="1.5" />
+    <Position X="5.5" Y="3" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAA=</HashCode>
       <FileName>Schedule.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Day" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="SurfBase.Board">
-    <Position X="7.75" Y="6.25" Width="2.25" />
+    <Position X="8.5" Y="7.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAEAAAABAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAEAAAAAAAAAAEAAAAhAAAAAAAAAAQIAAAIAAAA=</HashCode>
       <FileName>Board.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Sail">
-    <Position X="10.75" Y="6.25" Width="2.5" />
+    <Position X="8.5" Y="5.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAACEAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAACEAAAAAgAAAAAAAAAgAAAAAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>Sail.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SurfBase.Day">
-    <Position X="5.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Day.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SurfBase.Equipment">
-    <Position X="8.75" Y="4.25" Width="2" />
+    <Position X="15.75" Y="4" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAQAAAAAA=</HashCode>
       <FileName>Equipment.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Hangar">
-    <Position X="8.25" Y="1.5" Width="3.5" />
+    <Position X="12" Y="1.5" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAAAAAAAAAAAQAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAQAAAAAgAAAAAAAACAAAAA=</HashCode>
       <FileName>Hangar.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="SurfBase.IAdminInterface">
+  <Class Name="SurfBase.Day">
+    <Position X="5.5" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAABAAAAAAEAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Day.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.Harness">
+    <Position X="16" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Harness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.Rig">
+    <Position X="11.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASAAAAA=</HashCode>
+      <FileName>Rig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.Vest">
+    <Position X="18" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAgAAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Vest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.Wetsuit">
+    <Position X="14.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAACQAAAAAAAAA=</HashCode>
+      <FileName>Wetsuit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.WindHarness">
+    <Position X="15" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>WindHarness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.KiteHarness">
+    <Position X="17" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KiteHarness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.Hour">
+    <Position X="5.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Hour.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.Rental">
+    <Position X="11.5" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Rental.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.CheckValidity">
     <Position X="2.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CheckValidity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SurfBase.MainWindow">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Interface Name="SurfBase.IAdminInterface">
+    <Position X="0.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>IAdminInterface.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MainWindow" />
+    </ShowAsAssociation>
   </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
