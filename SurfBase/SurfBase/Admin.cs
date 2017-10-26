@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SurfBase
 {
-    public class Admin : User
+    public class Admin : User, IAdminInterface
     {
         internal CheckValidity CheckValidity
         {
@@ -14,5 +14,9 @@ namespace SurfBase
             {
             }
         }
+        public virtual MainWindow MainWindow { get; set; }
+
+
+
     }
 }

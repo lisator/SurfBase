@@ -13,23 +13,14 @@ namespace SurfBase
             throw new System.NotImplementedException();
         }
 
-        public User User
+        public System.Collections.Generic.ICollection<SurfBase.User> User { get; set; }
+
+        public School School
         {
-            get => default(User);
+            get => default(School);
             set
             {
             }
         }
-
-        public Schedule Schedule
-        {
-            get => default(Schedule);
-            set
-            {
-            }
-        }
-
-        public ICollection<Hangar> Hangar { get; set; }
-    
     }
 }

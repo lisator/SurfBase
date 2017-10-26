@@ -4,41 +4,55 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" >
-        <EntityTypeShape EntityType="Base.Hangar" Width="1.5" PointX="5.625" PointY="0.5" />
-        <EntityTypeShape EntityType="Base.Rig" Width="1.5" PointX="11.125" PointY="3.625" />
-        <EntityTypeShape EntityType="Base.Sail" Width="1.5" PointX="8.875" PointY="2.75" />
-        <EntityTypeShape EntityType="Base.Board" Width="1.5" PointX="8.875" PointY="5" />
-        <EntityTypeShape EntityType="Base.Wetsuit" Width="1.5" PointX="4.25" PointY="3.875" />
-        <EntityTypeShape EntityType="Base.Equipment" Width="1.5" PointX="2.375" PointY="1.5" />
-        <EntityTypeShape EntityType="Base.Harness" Width="1.5" PointX="2.375" PointY="3.875" />
-        <EntityTypeShape EntityType="Base.Vest" Width="1.5" PointX="0.5" PointY="3.875" />
+      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" ZoomLevel="63" >
+        <EntityTypeShape EntityType="Base.Hangar" Width="1.5" PointX="6.75" PointY="2.75" />
+        <EntityTypeShape EntityType="Base.Rig" Width="1.5" PointX="7.25" PointY="9.375" />
+        <EntityTypeShape EntityType="Base.Sail" Width="1.5" PointX="6.25" PointY="5.875" />
+        <EntityTypeShape EntityType="Base.Board" Width="1.5" PointX="8.125" PointY="5.875" />
+        <EntityTypeShape EntityType="Base.Wetsuit" Width="1.5" PointX="4.25" PointY="6.125" />
+        <EntityTypeShape EntityType="Base.Equipment" Width="1.5" PointX="2.375" PointY="3.75" />
+        <EntityTypeShape EntityType="Base.Harness" Width="1.5" PointX="2.375" PointY="6.125" />
+        <EntityTypeShape EntityType="Base.Vest" Width="1.5" PointX="0.5" PointY="6.125" />
         <InheritanceConnector EntityType="Base.Wetsuit" />
         <InheritanceConnector EntityType="Base.Harness" />
         <InheritanceConnector EntityType="Base.Vest" />
         <AssociationConnector Association="Base.EquipmentHangar" />
-        <EntityTypeShape EntityType="Base.WindHarness" Width="1.5" PointX="3.25" PointY="5.75" />
-        <EntityTypeShape EntityType="Base.KiteHarness" Width="1.5" PointX="1.5" PointY="5.75" />
+        <EntityTypeShape EntityType="Base.WindHarness" Width="1.5" PointX="3.25" PointY="8" />
+        <EntityTypeShape EntityType="Base.KiteHarness" Width="1.5" PointX="1.5" PointY="8" />
         <InheritanceConnector EntityType="Base.WindHarness" />
         <InheritanceConnector EntityType="Base.KiteHarness" />
         <AssociationConnector Association="Base.BoardRig" />
         <AssociationConnector Association="Base.SailRig" />
-        <EntityTypeShape EntityType="Base.Schedule" Width="1.5" PointX="13.25" PointY="2.75" />
-        <EntityTypeShape EntityType="Base.Day" Width="1.5" PointX="13.25" PointY="4.625" />
+        <EntityTypeShape EntityType="Base.Schedule" Width="1.5" PointX="11.625" PointY="2.5" />
+        <EntityTypeShape EntityType="Base.Day" Width="1.5" PointX="11.625" PointY="5.125" />
         <AssociationConnector Association="Base.ScheduleDay" />
-        <EntityTypeShape EntityType="Base.Hour" Width="1.5" PointX="13.25" PointY="7.125" />
+        <EntityTypeShape EntityType="Base.Hour" Width="1.5" PointX="11.625" PointY="7.625" />
         <AssociationConnector Association="Base.DayHour" />
-        <EntityTypeShape EntityType="Base.Rental" Width="1.5" PointX="11.125" PointY="1.25" />
+        <EntityTypeShape EntityType="Base.Rental" Width="1.5" PointX="7.25" PointY="11.75" />
         <AssociationConnector Association="Base.RentalRig" />
         <AssociationConnector Association="Base.HangarSail" />
-        <AssociationConnector Association="Base.HangarBoard" ManuallyRouted="true" >
-          <ConnectorPoint PointX="7.125" PointY="1.7612742513020834" />
-          <ConnectorPoint PointX="8.0416666666666679" PointY="1.7612742513020834" />
-          <ConnectorPoint PointX="8.0416666666666679" PointY="6.0781555989583325" />
-          <ConnectorPoint PointX="8.875" PointY="6.0781555989583325" />
+        <AssociationConnector Association="Base.HangarBoard" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Base.RentalHistory" Width="1.5" PointX="14.375" PointY="0.5" />
+        <EntityTypeShape EntityType="Base.RentalHistory" Width="1.5" PointX="7.25" PointY="14.5" />
         <AssociationConnector Association="Base.RentalHistoryRental" ></AssociationConnector>
+        <EntityTypeShape EntityType="Base.School" Width="1.5" PointX="9" PointY="0.5" />
+        <AssociationConnector Association="Base.SchoolHangar" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="Base.Trainer" Width="1.5" PointX="14" PointY="0.875" />
+        <AssociationConnector Association="Base.SchoolTrainer" />
+        <AssociationConnector Association="Base.TrainerSchedule" />
+        <EntityTypeShape EntityType="Base.Client" Width="1.5" PointX="15.375" PointY="5.25" />
+        <AssociationConnector Association="Base.ClientSchool" />
+        <AssociationConnector Association="Base.ClientTrainer" />
+        <AssociationConnector Association="Base.ClientHour" />
+        <AssociationConnector Association="Base.RentalHour" />
+        <AssociationConnector Association="Base.RentalClient" />
+        <AssociationConnector Association="Base.RentalEquipment" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.25" PointY="13.101445427354665" />
+          <ConnectorPoint PointX="0.22017043203207809" PointY="13.101445427354665" />
+          <ConnectorPoint PointX="0.22017043203207809" PointY="4.5014998151850714" />
+          <ConnectorPoint PointX="2.375" PointY="4.5014998151850714" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

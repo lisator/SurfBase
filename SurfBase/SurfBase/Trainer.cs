@@ -12,12 +12,12 @@ namespace SurfBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Hour
+    public partial class Trainer
     {
-        public int Id { get; set; }
+        public int Trainer_id { get; set; }
     
-        public virtual Day Day { get; set; }
+        public virtual School School { get; set; }
+        public virtual Schedule Schedule { get; set; }
         public virtual Client Client { get; set; }
-        public virtual Rental Rental { get; set; }
     }
 }

@@ -98,6 +98,9 @@
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="CheckValidity.cs" />
+    <Compile Include="Client.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="Day.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
@@ -132,7 +135,13 @@
     <Compile Include="Schedule.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
+    <Compile Include="School.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="SurfBaseLogic.cs" />
+    <Compile Include="Trainer.cs">
+      <DependentUpon>Base.tt</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Compile Include="Vest.cs">
       <DependentUpon>Base.tt</DependentUpon>

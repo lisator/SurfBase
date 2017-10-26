@@ -35,5 +35,8 @@ namespace SurfBase
         public virtual DbSet<Hour> Hours { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
         public virtual DbSet<RentalHistory> RentalHistory { get; set; }
+        public virtual DbSet<School> Schools { get; set; }
+        public virtual DbSet<Trainer> Trainers { get; set; }
+        public virtual DbSet<Client> Clients { get; set; }
     }
 }

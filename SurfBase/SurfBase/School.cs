@@ -12,18 +12,23 @@ namespace SurfBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Schedule
+    public partial class School
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Schedule()
+        public School()
         {
-            this.Days = new HashSet<Day>();
+            this.Hangars = new HashSet<Hangar>();
+            this.Trainers = new HashSet<Trainer>();
+            this.Clients = new HashSet<Client>();
         }
     
-        public int Schedule_id { get; set; }
+        public int School_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Day> Days { get; set; }
-        public virtual Trainer Trainer { get; set; }
+        public virtual ICollection<Hangar> Hangars { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Trainer> Trainers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Client> Clients { get; set; }
     }
 }

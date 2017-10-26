@@ -17,13 +17,16 @@ namespace SurfBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Rental()
         {
-            this.Rigs = new HashSet<Rig>();
+            this.Equipments = new HashSet<Equipment>();
         }
     
         public int Id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rig> Rigs { get; set; }
+        public virtual Rig Rig { get; set; }
         public virtual RentalHistory RentalHistory { get; set; }
+        public virtual Hour Hour { get; set; }
+        public virtual Client Client { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }
