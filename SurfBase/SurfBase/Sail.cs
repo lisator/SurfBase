@@ -20,7 +20,7 @@ namespace SurfBase
             this.Rigs = new HashSet<Rig>();
         }
     
-        public int Sail_id { get; set; }
+        public int Id { get; set; }
         public int Size { get; set; }
         public string Make { get; set; }
     

@@ -14,7 +14,7 @@ namespace SurfBase
     
     public partial class Rig
     {
-        public int Rig_id { get; set; }
+        public int Id { get; set; }
     
         public virtual Board Board { get; set; }
         public virtual Sail Sail { get; set; }

@@ -20,7 +20,7 @@ namespace SurfBase
             this.Rentals = new HashSet<Rental>();
         }
     
-        public int RentalHistory_id { get; set; }
+        public int Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }

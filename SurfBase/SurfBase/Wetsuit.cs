@@ -14,7 +14,7 @@ namespace SurfBase
     
     public partial class Wetsuit : Equipment
     {
-        public int Wetsuit_id { get; set; }
+        public int Id { get; set; }
         public string Size { get; set; }
         public Nullable<bool> Type { get; set; }
     }

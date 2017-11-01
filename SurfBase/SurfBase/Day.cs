@@ -20,7 +20,7 @@ namespace SurfBase
             this.Hours = new HashSet<Hour>();
         }
     
-        public int Day_id { get; set; }
+        public int Id { get; set; }
         public short Week_day { get; set; }
     
         public virtual Schedule Schedule { get; set; }

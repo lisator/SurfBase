@@ -17,7 +17,7 @@ namespace SurfBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Rental()
         {
-            this.Equipments = new HashSet<Equipment>();
+            this.Equipment = new HashSet<Equipment>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace SurfBase
         public virtual Hour Hour { get; set; }
         public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipment> Equipments { get; set; }
+        public virtual ICollection<Equipment> Equipment { get; set; }
     }
 }

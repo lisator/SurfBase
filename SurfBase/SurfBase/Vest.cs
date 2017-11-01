@@ -14,7 +14,7 @@ namespace SurfBase
     
     public partial class Vest : Equipment
     {
-        public int Vest_id { get; set; }
+        public int Id { get; set; }
         public string Size { get; set; }
         public Nullable<int> Buoyancy { get; set; }
     }

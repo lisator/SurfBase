@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/26/2017 14:38:22
+-- Date Created: 11/01/2017 22:20:17
 -- Generated from EDMX file: C:\Users\Lisek\Polibuda\Programming Technologies\SurfBase\SurfBase\SurfBase\Base.edmx
 -- --------------------------------------------------
 
@@ -59,8 +59,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ClientSchool_School]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ClientSchool] DROP CONSTRAINT [FK_ClientSchool_School];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ClientTrainer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Trainers] DROP CONSTRAINT [FK_ClientTrainer];
+IF OBJECT_ID(N'[dbo].[FK_ClientTrainer_Client]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ClientTrainer] DROP CONSTRAINT [FK_ClientTrainer_Client];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ClientTrainer_Trainer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ClientTrainer] DROP CONSTRAINT [FK_ClientTrainer_Trainer];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ClientHour]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Hours] DROP CONSTRAINT [FK_ClientHour];
@@ -71,8 +74,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_RentalClient]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Rentals] DROP CONSTRAINT [FK_RentalClient];
 GO
-IF OBJECT_ID(N'[dbo].[FK_RentalEquipment]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Equipments] DROP CONSTRAINT [FK_RentalEquipment];
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRental_Equipment]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRental] DROP CONSTRAINT [FK_EquipmentRental_Equipment];
+GO
+IF OBJECT_ID(N'[dbo].[FK_EquipmentRental_Rental]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[EquipmentRental] DROP CONSTRAINT [FK_EquipmentRental_Rental];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Wetsuit_inherits_Equipment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Equipments_Wetsuit] DROP CONSTRAINT [FK_Wetsuit_inherits_Equipment];
@@ -151,6 +157,12 @@ GO
 IF OBJECT_ID(N'[dbo].[ClientSchool]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ClientSchool];
 GO
+IF OBJECT_ID(N'[dbo].[ClientTrainer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ClientTrainer];
+GO
+IF OBJECT_ID(N'[dbo].[EquipmentRental]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EquipmentRental];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -158,103 +170,101 @@ GO
 
 -- Creating table 'Hangars'
 CREATE TABLE [dbo].[Hangars] (
-    [Hangar_id] int IDENTITY(1,1) NOT NULL,
-    [School_School_id] int  NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [School_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Rigs'
 CREATE TABLE [dbo].[Rigs] (
-    [Rig_id] int IDENTITY(1,1) NOT NULL,
-    [Board_Board_id] int  NOT NULL,
-    [Sail_Sail_id] int  NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Board_Id] int  NOT NULL,
+    [Sail_Id] int  NULL
 );
 GO
 
 -- Creating table 'Equipments'
 CREATE TABLE [dbo].[Equipments] (
-    [Equipment_id] int IDENTITY(1,1) NOT NULL,
-    [Hangar_Hangar_id] int  NOT NULL,
-    [Rental_Id] int  NOT NULL
+    [Eq_id] int IDENTITY(1,1) NOT NULL,
+    [Hangar_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Boards'
 CREATE TABLE [dbo].[Boards] (
-    [Board_id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Length] int  NULL,
     [Volume] int  NOT NULL,
     [Make] nvarchar(max)  NULL,
     [Type] bit  NOT NULL,
-    [Hangar_Hangar_id] int  NOT NULL
+    [Hangar_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Sails'
 CREATE TABLE [dbo].[Sails] (
-    [Sail_id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Size] int  NOT NULL,
     [Make] nvarchar(max)  NULL,
-    [Hangar_Hangar_id] int  NOT NULL
+    [Hangar_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Schedules'
 CREATE TABLE [dbo].[Schedules] (
-    [Schedule_id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL
 );
 GO
 
 -- Creating table 'Days'
 CREATE TABLE [dbo].[Days] (
-    [Day_id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Week_day] smallint  NOT NULL,
-    [Schedule_Schedule_id] int  NOT NULL
+    [Schedule_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Hours'
 CREATE TABLE [dbo].[Hours] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Day_Day_id] int  NOT NULL,
-    [Client_Client_id] int  NOT NULL
+    [Day_Id] int  NOT NULL,
+    [Client_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Rentals'
 CREATE TABLE [dbo].[Rentals] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Rig_Rig_id] int  NOT NULL,
-    [RentalHistory_RentalHistory_id] int  NOT NULL,
+    [Rig_Id] int  NOT NULL,
+    [RentalHistory_Id] int  NOT NULL,
     [Hour_Id] int  NOT NULL,
-    [Client_Client_id] int  NOT NULL
+    [Client_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'RentalHistory'
 CREATE TABLE [dbo].[RentalHistory] (
-    [RentalHistory_id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL
 );
 GO
 
 -- Creating table 'Schools'
 CREATE TABLE [dbo].[Schools] (
-    [School_id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL
 );
 GO
 
 -- Creating table 'Trainers'
 CREATE TABLE [dbo].[Trainers] (
-    [Trainer_id] int IDENTITY(1,1) NOT NULL,
-    [School_School_id] int  NOT NULL,
-    [Schedule_Schedule_id] int  NOT NULL,
-    [Client_Client_id] int  NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [School_Id] int  NOT NULL,
+    [Schedule_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Clients'
 CREATE TABLE [dbo].[Clients] (
-    [Client_id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Last_name] nvarchar(max)  NOT NULL,
     [Age] int  NOT NULL
@@ -263,46 +273,60 @@ GO
 
 -- Creating table 'Equipments_Wetsuit'
 CREATE TABLE [dbo].[Equipments_Wetsuit] (
-    [Wetsuit_id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Size] nvarchar(max)  NOT NULL,
     [Type] bit  NULL,
-    [Equipment_id] int  NOT NULL
+    [Eq_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Equipments_Harness'
 CREATE TABLE [dbo].[Equipments_Harness] (
-    [Harness_id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Size] nvarchar(max)  NULL,
-    [Equipment_id] int  NOT NULL
+    [Eq_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Equipments_Vest'
 CREATE TABLE [dbo].[Equipments_Vest] (
-    [Vest_id] int IDENTITY(1,1) NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Size] nvarchar(max)  NOT NULL,
     [Buoyancy] int  NULL,
-    [Equipment_id] int  NOT NULL
+    [Eq_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Equipments_WindHarness'
 CREATE TABLE [dbo].[Equipments_WindHarness] (
-    [Equipment_id] int  NOT NULL
+    [Eq_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Equipments_KiteHarness'
 CREATE TABLE [dbo].[Equipments_KiteHarness] (
-    [Equipment_id] int  NOT NULL
+    [Eq_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'ClientSchool'
 CREATE TABLE [dbo].[ClientSchool] (
-    [Clients_Client_id] int  NOT NULL,
-    [Schools_School_id] int  NOT NULL
+    [Clients_Id] int  NOT NULL,
+    [Schools_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'ClientTrainer'
+CREATE TABLE [dbo].[ClientTrainer] (
+    [Clients_Id] int  NOT NULL,
+    [Trainers_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'EquipmentRental'
+CREATE TABLE [dbo].[EquipmentRental] (
+    [Equipment_Eq_id] int  NOT NULL,
+    [Rentals_Id] int  NOT NULL
 );
 GO
 
@@ -310,46 +334,46 @@ GO
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
 
--- Creating primary key on [Hangar_id] in table 'Hangars'
+-- Creating primary key on [Id] in table 'Hangars'
 ALTER TABLE [dbo].[Hangars]
 ADD CONSTRAINT [PK_Hangars]
-    PRIMARY KEY CLUSTERED ([Hangar_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Rig_id] in table 'Rigs'
+-- Creating primary key on [Id] in table 'Rigs'
 ALTER TABLE [dbo].[Rigs]
 ADD CONSTRAINT [PK_Rigs]
-    PRIMARY KEY CLUSTERED ([Rig_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Equipment_id] in table 'Equipments'
+-- Creating primary key on [Eq_id] in table 'Equipments'
 ALTER TABLE [dbo].[Equipments]
 ADD CONSTRAINT [PK_Equipments]
-    PRIMARY KEY CLUSTERED ([Equipment_id] ASC);
+    PRIMARY KEY CLUSTERED ([Eq_id] ASC);
 GO
 
--- Creating primary key on [Board_id] in table 'Boards'
+-- Creating primary key on [Id] in table 'Boards'
 ALTER TABLE [dbo].[Boards]
 ADD CONSTRAINT [PK_Boards]
-    PRIMARY KEY CLUSTERED ([Board_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Sail_id] in table 'Sails'
+-- Creating primary key on [Id] in table 'Sails'
 ALTER TABLE [dbo].[Sails]
 ADD CONSTRAINT [PK_Sails]
-    PRIMARY KEY CLUSTERED ([Sail_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Schedule_id] in table 'Schedules'
+-- Creating primary key on [Id] in table 'Schedules'
 ALTER TABLE [dbo].[Schedules]
 ADD CONSTRAINT [PK_Schedules]
-    PRIMARY KEY CLUSTERED ([Schedule_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Day_id] in table 'Days'
+-- Creating primary key on [Id] in table 'Days'
 ALTER TABLE [dbo].[Days]
 ADD CONSTRAINT [PK_Days]
-    PRIMARY KEY CLUSTERED ([Day_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'Hours'
@@ -364,302 +388,323 @@ ADD CONSTRAINT [PK_Rentals]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [RentalHistory_id] in table 'RentalHistory'
+-- Creating primary key on [Id] in table 'RentalHistory'
 ALTER TABLE [dbo].[RentalHistory]
 ADD CONSTRAINT [PK_RentalHistory]
-    PRIMARY KEY CLUSTERED ([RentalHistory_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [School_id] in table 'Schools'
+-- Creating primary key on [Id] in table 'Schools'
 ALTER TABLE [dbo].[Schools]
 ADD CONSTRAINT [PK_Schools]
-    PRIMARY KEY CLUSTERED ([School_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Trainer_id] in table 'Trainers'
+-- Creating primary key on [Id] in table 'Trainers'
 ALTER TABLE [dbo].[Trainers]
 ADD CONSTRAINT [PK_Trainers]
-    PRIMARY KEY CLUSTERED ([Trainer_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Client_id] in table 'Clients'
+-- Creating primary key on [Id] in table 'Clients'
 ALTER TABLE [dbo].[Clients]
 ADD CONSTRAINT [PK_Clients]
-    PRIMARY KEY CLUSTERED ([Client_id] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Equipment_id] in table 'Equipments_Wetsuit'
+-- Creating primary key on [Eq_id] in table 'Equipments_Wetsuit'
 ALTER TABLE [dbo].[Equipments_Wetsuit]
 ADD CONSTRAINT [PK_Equipments_Wetsuit]
-    PRIMARY KEY CLUSTERED ([Equipment_id] ASC);
+    PRIMARY KEY CLUSTERED ([Eq_id] ASC);
 GO
 
--- Creating primary key on [Equipment_id] in table 'Equipments_Harness'
+-- Creating primary key on [Eq_id] in table 'Equipments_Harness'
 ALTER TABLE [dbo].[Equipments_Harness]
 ADD CONSTRAINT [PK_Equipments_Harness]
-    PRIMARY KEY CLUSTERED ([Equipment_id] ASC);
+    PRIMARY KEY CLUSTERED ([Eq_id] ASC);
 GO
 
--- Creating primary key on [Equipment_id] in table 'Equipments_Vest'
+-- Creating primary key on [Eq_id] in table 'Equipments_Vest'
 ALTER TABLE [dbo].[Equipments_Vest]
 ADD CONSTRAINT [PK_Equipments_Vest]
-    PRIMARY KEY CLUSTERED ([Equipment_id] ASC);
+    PRIMARY KEY CLUSTERED ([Eq_id] ASC);
 GO
 
--- Creating primary key on [Equipment_id] in table 'Equipments_WindHarness'
+-- Creating primary key on [Eq_id] in table 'Equipments_WindHarness'
 ALTER TABLE [dbo].[Equipments_WindHarness]
 ADD CONSTRAINT [PK_Equipments_WindHarness]
-    PRIMARY KEY CLUSTERED ([Equipment_id] ASC);
+    PRIMARY KEY CLUSTERED ([Eq_id] ASC);
 GO
 
--- Creating primary key on [Equipment_id] in table 'Equipments_KiteHarness'
+-- Creating primary key on [Eq_id] in table 'Equipments_KiteHarness'
 ALTER TABLE [dbo].[Equipments_KiteHarness]
 ADD CONSTRAINT [PK_Equipments_KiteHarness]
-    PRIMARY KEY CLUSTERED ([Equipment_id] ASC);
+    PRIMARY KEY CLUSTERED ([Eq_id] ASC);
 GO
 
--- Creating primary key on [Clients_Client_id], [Schools_School_id] in table 'ClientSchool'
+-- Creating primary key on [Clients_Id], [Schools_Id] in table 'ClientSchool'
 ALTER TABLE [dbo].[ClientSchool]
 ADD CONSTRAINT [PK_ClientSchool]
-    PRIMARY KEY CLUSTERED ([Clients_Client_id], [Schools_School_id] ASC);
+    PRIMARY KEY CLUSTERED ([Clients_Id], [Schools_Id] ASC);
+GO
+
+-- Creating primary key on [Clients_Id], [Trainers_Id] in table 'ClientTrainer'
+ALTER TABLE [dbo].[ClientTrainer]
+ADD CONSTRAINT [PK_ClientTrainer]
+    PRIMARY KEY CLUSTERED ([Clients_Id], [Trainers_Id] ASC);
+GO
+
+-- Creating primary key on [Equipment_Eq_id], [Rentals_Id] in table 'EquipmentRental'
+ALTER TABLE [dbo].[EquipmentRental]
+ADD CONSTRAINT [PK_EquipmentRental]
+    PRIMARY KEY CLUSTERED ([Equipment_Eq_id], [Rentals_Id] ASC);
 GO
 
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
 
--- Creating foreign key on [Hangar_Hangar_id] in table 'Equipments'
+-- Creating foreign key on [Hangar_Id] in table 'Equipments'
 ALTER TABLE [dbo].[Equipments]
 ADD CONSTRAINT [FK_EquipmentHangar]
-    FOREIGN KEY ([Hangar_Hangar_id])
+    FOREIGN KEY ([Hangar_Id])
     REFERENCES [dbo].[Hangars]
-        ([Hangar_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentHangar'
 CREATE INDEX [IX_FK_EquipmentHangar]
 ON [dbo].[Equipments]
-    ([Hangar_Hangar_id]);
+    ([Hangar_Id]);
 GO
 
--- Creating foreign key on [Board_Board_id] in table 'Rigs'
+-- Creating foreign key on [Board_Id] in table 'Rigs'
 ALTER TABLE [dbo].[Rigs]
 ADD CONSTRAINT [FK_BoardRig]
-    FOREIGN KEY ([Board_Board_id])
+    FOREIGN KEY ([Board_Id])
     REFERENCES [dbo].[Boards]
-        ([Board_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_BoardRig'
 CREATE INDEX [IX_FK_BoardRig]
 ON [dbo].[Rigs]
-    ([Board_Board_id]);
+    ([Board_Id]);
 GO
 
--- Creating foreign key on [Sail_Sail_id] in table 'Rigs'
+-- Creating foreign key on [Sail_Id] in table 'Rigs'
 ALTER TABLE [dbo].[Rigs]
 ADD CONSTRAINT [FK_SailRig]
-    FOREIGN KEY ([Sail_Sail_id])
+    FOREIGN KEY ([Sail_Id])
     REFERENCES [dbo].[Sails]
-        ([Sail_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SailRig'
 CREATE INDEX [IX_FK_SailRig]
 ON [dbo].[Rigs]
-    ([Sail_Sail_id]);
+    ([Sail_Id]);
 GO
 
--- Creating foreign key on [Schedule_Schedule_id] in table 'Days'
+-- Creating foreign key on [Schedule_Id] in table 'Days'
 ALTER TABLE [dbo].[Days]
 ADD CONSTRAINT [FK_ScheduleDay]
-    FOREIGN KEY ([Schedule_Schedule_id])
+    FOREIGN KEY ([Schedule_Id])
     REFERENCES [dbo].[Schedules]
-        ([Schedule_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ScheduleDay'
 CREATE INDEX [IX_FK_ScheduleDay]
 ON [dbo].[Days]
-    ([Schedule_Schedule_id]);
+    ([Schedule_Id]);
 GO
 
--- Creating foreign key on [Day_Day_id] in table 'Hours'
+-- Creating foreign key on [Day_Id] in table 'Hours'
 ALTER TABLE [dbo].[Hours]
 ADD CONSTRAINT [FK_DayHour]
-    FOREIGN KEY ([Day_Day_id])
+    FOREIGN KEY ([Day_Id])
     REFERENCES [dbo].[Days]
-        ([Day_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_DayHour'
 CREATE INDEX [IX_FK_DayHour]
 ON [dbo].[Hours]
-    ([Day_Day_id]);
+    ([Day_Id]);
 GO
 
--- Creating foreign key on [Rig_Rig_id] in table 'Rentals'
+-- Creating foreign key on [Rig_Id] in table 'Rentals'
 ALTER TABLE [dbo].[Rentals]
 ADD CONSTRAINT [FK_RentalRig]
-    FOREIGN KEY ([Rig_Rig_id])
+    FOREIGN KEY ([Rig_Id])
     REFERENCES [dbo].[Rigs]
-        ([Rig_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RentalRig'
 CREATE INDEX [IX_FK_RentalRig]
 ON [dbo].[Rentals]
-    ([Rig_Rig_id]);
+    ([Rig_Id]);
 GO
 
--- Creating foreign key on [Hangar_Hangar_id] in table 'Sails'
+-- Creating foreign key on [Hangar_Id] in table 'Sails'
 ALTER TABLE [dbo].[Sails]
 ADD CONSTRAINT [FK_HangarSail]
-    FOREIGN KEY ([Hangar_Hangar_id])
+    FOREIGN KEY ([Hangar_Id])
     REFERENCES [dbo].[Hangars]
-        ([Hangar_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_HangarSail'
 CREATE INDEX [IX_FK_HangarSail]
 ON [dbo].[Sails]
-    ([Hangar_Hangar_id]);
+    ([Hangar_Id]);
 GO
 
--- Creating foreign key on [Hangar_Hangar_id] in table 'Boards'
+-- Creating foreign key on [Hangar_Id] in table 'Boards'
 ALTER TABLE [dbo].[Boards]
 ADD CONSTRAINT [FK_HangarBoard]
-    FOREIGN KEY ([Hangar_Hangar_id])
+    FOREIGN KEY ([Hangar_Id])
     REFERENCES [dbo].[Hangars]
-        ([Hangar_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_HangarBoard'
 CREATE INDEX [IX_FK_HangarBoard]
 ON [dbo].[Boards]
-    ([Hangar_Hangar_id]);
+    ([Hangar_Id]);
 GO
 
--- Creating foreign key on [RentalHistory_RentalHistory_id] in table 'Rentals'
+-- Creating foreign key on [RentalHistory_Id] in table 'Rentals'
 ALTER TABLE [dbo].[Rentals]
 ADD CONSTRAINT [FK_RentalHistoryRental]
-    FOREIGN KEY ([RentalHistory_RentalHistory_id])
+    FOREIGN KEY ([RentalHistory_Id])
     REFERENCES [dbo].[RentalHistory]
-        ([RentalHistory_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RentalHistoryRental'
 CREATE INDEX [IX_FK_RentalHistoryRental]
 ON [dbo].[Rentals]
-    ([RentalHistory_RentalHistory_id]);
+    ([RentalHistory_Id]);
 GO
 
--- Creating foreign key on [School_School_id] in table 'Hangars'
+-- Creating foreign key on [School_Id] in table 'Hangars'
 ALTER TABLE [dbo].[Hangars]
 ADD CONSTRAINT [FK_SchoolHangar]
-    FOREIGN KEY ([School_School_id])
+    FOREIGN KEY ([School_Id])
     REFERENCES [dbo].[Schools]
-        ([School_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SchoolHangar'
 CREATE INDEX [IX_FK_SchoolHangar]
 ON [dbo].[Hangars]
-    ([School_School_id]);
+    ([School_Id]);
 GO
 
--- Creating foreign key on [School_School_id] in table 'Trainers'
+-- Creating foreign key on [School_Id] in table 'Trainers'
 ALTER TABLE [dbo].[Trainers]
 ADD CONSTRAINT [FK_SchoolTrainer]
-    FOREIGN KEY ([School_School_id])
+    FOREIGN KEY ([School_Id])
     REFERENCES [dbo].[Schools]
-        ([School_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SchoolTrainer'
 CREATE INDEX [IX_FK_SchoolTrainer]
 ON [dbo].[Trainers]
-    ([School_School_id]);
+    ([School_Id]);
 GO
 
--- Creating foreign key on [Schedule_Schedule_id] in table 'Trainers'
+-- Creating foreign key on [Schedule_Id] in table 'Trainers'
 ALTER TABLE [dbo].[Trainers]
 ADD CONSTRAINT [FK_TrainerSchedule]
-    FOREIGN KEY ([Schedule_Schedule_id])
+    FOREIGN KEY ([Schedule_Id])
     REFERENCES [dbo].[Schedules]
-        ([Schedule_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_TrainerSchedule'
 CREATE INDEX [IX_FK_TrainerSchedule]
 ON [dbo].[Trainers]
-    ([Schedule_Schedule_id]);
+    ([Schedule_Id]);
 GO
 
--- Creating foreign key on [Clients_Client_id] in table 'ClientSchool'
+-- Creating foreign key on [Clients_Id] in table 'ClientSchool'
 ALTER TABLE [dbo].[ClientSchool]
 ADD CONSTRAINT [FK_ClientSchool_Client]
-    FOREIGN KEY ([Clients_Client_id])
+    FOREIGN KEY ([Clients_Id])
     REFERENCES [dbo].[Clients]
-        ([Client_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Schools_School_id] in table 'ClientSchool'
+-- Creating foreign key on [Schools_Id] in table 'ClientSchool'
 ALTER TABLE [dbo].[ClientSchool]
 ADD CONSTRAINT [FK_ClientSchool_School]
-    FOREIGN KEY ([Schools_School_id])
+    FOREIGN KEY ([Schools_Id])
     REFERENCES [dbo].[Schools]
-        ([School_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ClientSchool_School'
 CREATE INDEX [IX_FK_ClientSchool_School]
 ON [dbo].[ClientSchool]
-    ([Schools_School_id]);
+    ([Schools_Id]);
 GO
 
--- Creating foreign key on [Client_Client_id] in table 'Trainers'
-ALTER TABLE [dbo].[Trainers]
-ADD CONSTRAINT [FK_ClientTrainer]
-    FOREIGN KEY ([Client_Client_id])
+-- Creating foreign key on [Clients_Id] in table 'ClientTrainer'
+ALTER TABLE [dbo].[ClientTrainer]
+ADD CONSTRAINT [FK_ClientTrainer_Client]
+    FOREIGN KEY ([Clients_Id])
     REFERENCES [dbo].[Clients]
-        ([Client_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_ClientTrainer'
-CREATE INDEX [IX_FK_ClientTrainer]
-ON [dbo].[Trainers]
-    ([Client_Client_id]);
+-- Creating foreign key on [Trainers_Id] in table 'ClientTrainer'
+ALTER TABLE [dbo].[ClientTrainer]
+ADD CONSTRAINT [FK_ClientTrainer_Trainer]
+    FOREIGN KEY ([Trainers_Id])
+    REFERENCES [dbo].[Trainers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Client_Client_id] in table 'Hours'
+-- Creating non-clustered index for FOREIGN KEY 'FK_ClientTrainer_Trainer'
+CREATE INDEX [IX_FK_ClientTrainer_Trainer]
+ON [dbo].[ClientTrainer]
+    ([Trainers_Id]);
+GO
+
+-- Creating foreign key on [Client_Id] in table 'Hours'
 ALTER TABLE [dbo].[Hours]
 ADD CONSTRAINT [FK_ClientHour]
-    FOREIGN KEY ([Client_Client_id])
+    FOREIGN KEY ([Client_Id])
     REFERENCES [dbo].[Clients]
-        ([Client_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ClientHour'
 CREATE INDEX [IX_FK_ClientHour]
 ON [dbo].[Hours]
-    ([Client_Client_id]);
+    ([Client_Id]);
 GO
 
 -- Creating foreign key on [Hour_Id] in table 'Rentals'
@@ -677,78 +722,87 @@ ON [dbo].[Rentals]
     ([Hour_Id]);
 GO
 
--- Creating foreign key on [Client_Client_id] in table 'Rentals'
+-- Creating foreign key on [Client_Id] in table 'Rentals'
 ALTER TABLE [dbo].[Rentals]
 ADD CONSTRAINT [FK_RentalClient]
-    FOREIGN KEY ([Client_Client_id])
+    FOREIGN KEY ([Client_Id])
     REFERENCES [dbo].[Clients]
-        ([Client_id])
+        ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_RentalClient'
 CREATE INDEX [IX_FK_RentalClient]
 ON [dbo].[Rentals]
-    ([Client_Client_id]);
+    ([Client_Id]);
 GO
 
--- Creating foreign key on [Rental_Id] in table 'Equipments'
-ALTER TABLE [dbo].[Equipments]
-ADD CONSTRAINT [FK_RentalEquipment]
-    FOREIGN KEY ([Rental_Id])
+-- Creating foreign key on [Equipment_Eq_id] in table 'EquipmentRental'
+ALTER TABLE [dbo].[EquipmentRental]
+ADD CONSTRAINT [FK_EquipmentRental_Equipment]
+    FOREIGN KEY ([Equipment_Eq_id])
+    REFERENCES [dbo].[Equipments]
+        ([Eq_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Rentals_Id] in table 'EquipmentRental'
+ALTER TABLE [dbo].[EquipmentRental]
+ADD CONSTRAINT [FK_EquipmentRental_Rental]
+    FOREIGN KEY ([Rentals_Id])
     REFERENCES [dbo].[Rentals]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_RentalEquipment'
-CREATE INDEX [IX_FK_RentalEquipment]
-ON [dbo].[Equipments]
-    ([Rental_Id]);
+-- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentRental_Rental'
+CREATE INDEX [IX_FK_EquipmentRental_Rental]
+ON [dbo].[EquipmentRental]
+    ([Rentals_Id]);
 GO
 
--- Creating foreign key on [Equipment_id] in table 'Equipments_Wetsuit'
+-- Creating foreign key on [Eq_id] in table 'Equipments_Wetsuit'
 ALTER TABLE [dbo].[Equipments_Wetsuit]
 ADD CONSTRAINT [FK_Wetsuit_inherits_Equipment]
-    FOREIGN KEY ([Equipment_id])
+    FOREIGN KEY ([Eq_id])
     REFERENCES [dbo].[Equipments]
-        ([Equipment_id])
+        ([Eq_id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Equipment_id] in table 'Equipments_Harness'
+-- Creating foreign key on [Eq_id] in table 'Equipments_Harness'
 ALTER TABLE [dbo].[Equipments_Harness]
 ADD CONSTRAINT [FK_Harness_inherits_Equipment]
-    FOREIGN KEY ([Equipment_id])
+    FOREIGN KEY ([Eq_id])
     REFERENCES [dbo].[Equipments]
-        ([Equipment_id])
+        ([Eq_id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Equipment_id] in table 'Equipments_Vest'
+-- Creating foreign key on [Eq_id] in table 'Equipments_Vest'
 ALTER TABLE [dbo].[Equipments_Vest]
 ADD CONSTRAINT [FK_Vest_inherits_Equipment]
-    FOREIGN KEY ([Equipment_id])
+    FOREIGN KEY ([Eq_id])
     REFERENCES [dbo].[Equipments]
-        ([Equipment_id])
+        ([Eq_id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Equipment_id] in table 'Equipments_WindHarness'
+-- Creating foreign key on [Eq_id] in table 'Equipments_WindHarness'
 ALTER TABLE [dbo].[Equipments_WindHarness]
 ADD CONSTRAINT [FK_WindHarness_inherits_Harness]
-    FOREIGN KEY ([Equipment_id])
+    FOREIGN KEY ([Eq_id])
     REFERENCES [dbo].[Equipments_Harness]
-        ([Equipment_id])
+        ([Eq_id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Equipment_id] in table 'Equipments_KiteHarness'
+-- Creating foreign key on [Eq_id] in table 'Equipments_KiteHarness'
 ALTER TABLE [dbo].[Equipments_KiteHarness]
 ADD CONSTRAINT [FK_KiteHarness_inherits_Harness]
-    FOREIGN KEY ([Equipment_id])
+    FOREIGN KEY ([Eq_id])
     REFERENCES [dbo].[Equipments_Harness]
-        ([Equipment_id])
+        ([Eq_id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 

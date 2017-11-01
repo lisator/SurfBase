@@ -22,7 +22,7 @@ namespace SurfBase
             this.Boards = new HashSet<Board>();
         }
     
-        public int Hangar_id { get; set; }
+        public int Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipment> Equipment { get; set; }

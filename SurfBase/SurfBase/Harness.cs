@@ -14,7 +14,7 @@ namespace SurfBase
     
     public partial class Harness : Equipment
     {
-        public int Harness_id { get; set; }
+        public int Id { get; set; }
         public string Size { get; set; }
     }
 }

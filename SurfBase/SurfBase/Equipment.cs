@@ -14,9 +14,16 @@ namespace SurfBase
     
     public partial class Equipment
     {
-        public int Equipment_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Equipment()
+        {
+            this.Rentals = new HashSet<Rental>();
+        }
+    
+        public int Eq_id { get; set; }
     
         public virtual Hangar Hangar { get; set; }
-        public virtual Rental Rental { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rental> Rentals { get; set; }
     }
 }

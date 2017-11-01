@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" ZoomLevel="63" >
+      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" ZoomLevel="69" >
         <EntityTypeShape EntityType="Base.Hangar" Width="1.5" PointX="6.75" PointY="2.75" />
         <EntityTypeShape EntityType="Base.Rig" Width="1.5" PointX="7.25" PointY="9.375" />
         <EntityTypeShape EntityType="Base.Sail" Width="1.5" PointX="6.25" PointY="5.875" />
@@ -47,11 +47,11 @@
         <AssociationConnector Association="Base.ClientHour" />
         <AssociationConnector Association="Base.RentalHour" />
         <AssociationConnector Association="Base.RentalClient" />
-        <AssociationConnector Association="Base.RentalEquipment" ManuallyRouted="true" >
-          <ConnectorPoint PointX="7.25" PointY="13.101445427354665" />
-          <ConnectorPoint PointX="0.22017043203207809" PointY="13.101445427354665" />
-          <ConnectorPoint PointX="0.22017043203207809" PointY="4.5014998151850714" />
-          <ConnectorPoint PointX="2.375" PointY="4.5014998151850714" />
+        <AssociationConnector Association="Base.EquipmentRental" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.375" PointY="4.6133351787301269" />
+          <ConnectorPoint PointX="0.29761900256640672" PointY="4.6133351787301269" />
+          <ConnectorPoint PointX="0.29761900256640672" PointY="12.820312261497891" />
+          <ConnectorPoint PointX="7.25" PointY="12.820312261497891" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
