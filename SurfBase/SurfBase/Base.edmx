@@ -11,7 +11,6 @@
     <EntitySet Name="Equipments" EntityType="Base.Store.Equipments" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Boards" EntityType="Base.Store.Boards" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Sails" EntityType="Base.Store.Sails" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Schedules" EntityType="Base.Store.Schedules" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Days" EntityType="Base.Store.Days" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Hours" EntityType="Base.Store.Hours" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Rentals" EntityType="Base.Store.Rentals" store:Type="Tables" Schema="dbo" />
@@ -22,8 +21,6 @@
     <EntitySet Name="Equipments_Wetsuit" EntityType="Base.Store.Equipments_Wetsuit" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Harness" EntityType="Base.Store.Equipments_Harness" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Equipments_Vest" EntityType="Base.Store.Equipments_Vest" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Equipments_WindHarness" EntityType="Base.Store.Equipments_WindHarness" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Equipments_KiteHarness" EntityType="Base.Store.Equipments_KiteHarness" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClientSchool" EntityType="Base.Store.ClientSchool" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ClientTrainer" EntityType="Base.Store.ClientTrainer" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EquipmentRental" EntityType="Base.Store.EquipmentRental" store:Type="Tables" Schema="dbo" />
@@ -38,10 +35,6 @@
     <AssociationSet Name="SailRig" Association="Base.Store.SailRig">
       <End Role="Sail" EntitySet="Sails" />
       <End Role="Rig" EntitySet="Rigs" />
-    </AssociationSet>
-    <AssociationSet Name="ScheduleDay" Association="Base.Store.ScheduleDay">
-      <End Role="Schedule" EntitySet="Schedules" />
-      <End Role="Day" EntitySet="Days" />
     </AssociationSet>
     <AssociationSet Name="DayHour" Association="Base.Store.DayHour">
       <End Role="Day" EntitySet="Days" />
@@ -70,10 +63,6 @@
     <AssociationSet Name="SchoolTrainer" Association="Base.Store.SchoolTrainer">
       <End Role="School" EntitySet="Schools" />
       <End Role="Trainer" EntitySet="Trainers" />
-    </AssociationSet>
-    <AssociationSet Name="TrainerSchedule" Association="Base.Store.TrainerSchedule">
-      <End Role="Trainer" EntitySet="Trainers" />
-      <End Role="Schedule" EntitySet="Schedules" />
     </AssociationSet>
     <AssociationSet Name="FK_ClientSchool_Client" Association="Base.Store.FK_ClientSchool_Client">
       <End Role="Client" EntitySet="Clients" />
@@ -111,6 +100,10 @@
       <End Role="Rental" EntitySet="Rentals" />
       <End Role="EquipmentRental" EntitySet="EquipmentRental" />
     </AssociationSet>
+    <AssociationSet Name="TrainerDay" Association="Base.Store.TrainerDay">
+      <End Role="Trainer" EntitySet="Trainers" />
+      <End Role="Day" EntitySet="Days" />
+    </AssociationSet>
     <AssociationSet Name="FK_Wetsuit_inherits_Equipment" Association="Base.Store.FK_Wetsuit_inherits_Equipment">
       <End Role="Equipment" EntitySet="Equipments" />
       <End Role="Wetsuit" EntitySet="Equipments_Wetsuit" />
@@ -122,14 +115,6 @@
     <AssociationSet Name="FK_Vest_inherits_Equipment" Association="Base.Store.FK_Vest_inherits_Equipment">
       <End Role="Equipment" EntitySet="Equipments" />
       <End Role="Vest" EntitySet="Equipments_Vest" />
-    </AssociationSet>
-    <AssociationSet Name="FK_WindHarness_inherits_Harness" Association="Base.Store.FK_WindHarness_inherits_Harness">
-      <End Role="Harness" EntitySet="Equipments_Harness" />
-      <End Role="WindHarness" EntitySet="Equipments_WindHarness" />
-    </AssociationSet>
-    <AssociationSet Name="FK_KiteHarness_inherits_Harness" Association="Base.Store.FK_KiteHarness_inherits_Harness">
-      <End Role="Harness" EntitySet="Equipments_Harness" />
-      <End Role="KiteHarness" EntitySet="Equipments_KiteHarness" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Hangars">
@@ -149,9 +134,9 @@
   </EntityType>
   <EntityType Name="Equipments">
     <Key>
-      <PropertyRef Name="Eq_id" />
+      <PropertyRef Name="Eq_Id" />
     </Key>
-    <Property Name="Eq_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Eq_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Hangar_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Boards">
@@ -174,19 +159,13 @@
     <Property Name="Make" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Hangar_Id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Schedules">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-  </EntityType>
   <EntityType Name="Days">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Week_day" Type="smallint" Nullable="false" />
-    <Property Name="Schedule_Id" Type="int" Nullable="false" />
+    <Property Name="Trainer_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Hours">
     <Key>
@@ -194,7 +173,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Day_Id" Type="int" Nullable="false" />
-    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Rentals">
     <Key>
@@ -223,8 +202,10 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Last_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nickname" Type="nvarchar(max)" Nullable="true" />
     <Property Name="School_Id" Type="int" Nullable="false" />
-    <Property Name="Schedule_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Clients">
     <Key>
@@ -232,46 +213,35 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Last_name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Last_Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Age" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Equipments_Wetsuit">
     <Key>
-      <PropertyRef Name="Eq_id" />
+      <PropertyRef Name="Eq_Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Type" Type="bit" Nullable="true" />
-    <Property Name="Eq_id" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Eq_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Equipments_Harness">
     <Key>
-      <PropertyRef Name="Eq_id" />
+      <PropertyRef Name="Eq_Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Size" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="Eq_id" Type="int" Nullable="false" />
+    <Property Name="Size" Type="nchar" Nullable="true" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Eq_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Equipments_Vest">
     <Key>
-      <PropertyRef Name="Eq_id" />
+      <PropertyRef Name="Eq_Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Buoyancy" Type="int" Nullable="true" />
-    <Property Name="Eq_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Equipments_WindHarness">
-    <Key>
-      <PropertyRef Name="Eq_id" />
-    </Key>
-    <Property Name="Eq_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Equipments_KiteHarness">
-    <Key>
-      <PropertyRef Name="Eq_id" />
-    </Key>
-    <Property Name="Eq_id" Type="int" Nullable="false" />
+    <Property Name="Eq_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ClientSchool">
     <Key>
@@ -291,10 +261,10 @@
   </EntityType>
   <EntityType Name="EquipmentRental">
     <Key>
-      <PropertyRef Name="Equipment_Eq_id" />
+      <PropertyRef Name="Equipment_Eq_Id" />
       <PropertyRef Name="Rentals_Id" />
     </Key>
-    <Property Name="Equipment_Eq_id" Type="int" Nullable="false" />
+    <Property Name="Equipment_Eq_Id" Type="int" Nullable="false" />
     <Property Name="Rentals_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="EquipmentHangar">
@@ -330,18 +300,6 @@
       </Principal>
       <Dependent Role="Rig">
         <PropertyRef Name="Sail_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ScheduleDay">
-    <End Role="Schedule" Type="Base.Store.Schedules" Multiplicity="1" />
-    <End Role="Day" Type="Base.Store.Days" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Schedule">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Day">
-        <PropertyRef Name="Schedule_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -429,20 +387,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="TrainerSchedule">
-    <End Role="Trainer" Type="Base.Store.Trainers" Multiplicity="*" />
-    <End Role="Schedule" Type="Base.Store.Schedules" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Schedule">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Trainer">
-        <PropertyRef Name="Schedule_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ClientHour">
-    <End Role="Client" Type="Base.Store.Clients" Multiplicity="1" />
+    <End Role="Client" Type="Base.Store.Clients" Multiplicity="0..1" />
     <End Role="Hour" Type="Base.Store.Hours" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Client">
@@ -474,6 +420,18 @@
       </Principal>
       <Dependent Role="Rental">
         <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrainerDay">
+    <End Role="Trainer" Type="Base.Store.Trainers" Multiplicity="1" />
+    <End Role="Day" Type="Base.Store.Days" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Day">
+        <PropertyRef Name="Trainer_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -530,10 +488,10 @@
     <End Role="EquipmentRental" Type="Base.Store.EquipmentRental" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Equipment">
-        <PropertyRef Name="Eq_id" />
+        <PropertyRef Name="Eq_Id" />
       </Principal>
       <Dependent Role="EquipmentRental">
-        <PropertyRef Name="Equipment_Eq_id" />
+        <PropertyRef Name="Equipment_Eq_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -556,10 +514,10 @@
     <End Role="Wetsuit" Type="Base.Store.Equipments_Wetsuit" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Equipment">
-        <PropertyRef Name="Eq_id" />
+        <PropertyRef Name="Eq_Id" />
       </Principal>
       <Dependent Role="Wetsuit">
-        <PropertyRef Name="Eq_id" />
+        <PropertyRef Name="Eq_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -570,10 +528,10 @@
     <End Role="Harness" Type="Base.Store.Equipments_Harness" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Equipment">
-        <PropertyRef Name="Eq_id" />
+        <PropertyRef Name="Eq_Id" />
       </Principal>
       <Dependent Role="Harness">
-        <PropertyRef Name="Eq_id" />
+        <PropertyRef Name="Eq_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -584,38 +542,10 @@
     <End Role="Vest" Type="Base.Store.Equipments_Vest" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Equipment">
-        <PropertyRef Name="Eq_id" />
+        <PropertyRef Name="Eq_Id" />
       </Principal>
       <Dependent Role="Vest">
-        <PropertyRef Name="Eq_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_WindHarness_inherits_Harness">
-    <End Role="Harness" Type="Base.Store.Equipments_Harness" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="WindHarness" Type="Base.Store.Equipments_WindHarness" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Harness">
-        <PropertyRef Name="Eq_id" />
-      </Principal>
-      <Dependent Role="WindHarness">
-        <PropertyRef Name="Eq_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_KiteHarness_inherits_Harness">
-    <End Role="Harness" Type="Base.Store.Equipments_Harness" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="KiteHarness" Type="Base.Store.Equipments_KiteHarness" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Harness">
-        <PropertyRef Name="Eq_id" />
-      </Principal>
-      <Dependent Role="KiteHarness">
-        <PropertyRef Name="Eq_id" />
+        <PropertyRef Name="Eq_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -641,12 +571,7 @@
             <End Role="Sail" EntitySet="Sails" />
             <End Role="Rig" EntitySet="Rigs" />
           </AssociationSet>
-          <EntitySet Name="Schedules" EntityType="Base.Schedule" />
           <EntitySet Name="Days" EntityType="Base.Day" />
-          <AssociationSet Name="ScheduleDay" Association="Base.ScheduleDay">
-            <End Role="Schedule" EntitySet="Schedules" />
-            <End Role="Day" EntitySet="Days" />
-          </AssociationSet>
           <EntitySet Name="Hours" EntityType="Base.Hour" />
           <AssociationSet Name="DayHour" Association="Base.DayHour">
             <End Role="Day" EntitySet="Days" />
@@ -680,10 +605,6 @@
             <End Role="School" EntitySet="Schools" />
             <End Role="Trainer" EntitySet="Trainers" />
           </AssociationSet>
-          <AssociationSet Name="TrainerSchedule" Association="Base.TrainerSchedule">
-            <End Role="Trainer" EntitySet="Trainers" />
-            <End Role="Schedule" EntitySet="Schedules" />
-          </AssociationSet>
           <EntitySet Name="Clients" EntityType="Base.Client" />
           <AssociationSet Name="ClientSchool" Association="Base.ClientSchool">
             <End Role="Client" EntitySet="Clients" />
@@ -709,7 +630,11 @@
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="Rental" EntitySet="Rentals" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="TrainerDay" Association="Base.TrainerDay">
+            <End Role="Trainer" EntitySet="Trainers" />
+            <End Role="Day" EntitySet="Days" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Hangar">
           <Key>
             <PropertyRef Name="Id" />
@@ -719,6 +644,7 @@
           <NavigationProperty Name="Sails" Relationship="Base.HangarSail" FromRole="Hangar" ToRole="Sail" />
           <NavigationProperty Name="Boards" Relationship="Base.HangarBoard" FromRole="Hangar" ToRole="Board" />
           <NavigationProperty Name="School" Relationship="Base.SchoolHangar" FromRole="Hangar" ToRole="School" />
+          <Property Name="Name" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="Rig">
           <Key>
@@ -754,19 +680,20 @@
         <EntityType Name="Wetsuit" BaseType="Base.Equipment">
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="Size" Type="String" Nullable="false" />
-          <Property Name="Type" Type="Boolean" Nullable="true" />
+          <Property Name="Type" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="Equipment">
           <Key>
-            <PropertyRef Name="Eq_id" />
+            <PropertyRef Name="Eq_Id" />
           </Key>
-          <Property Name="Eq_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Eq_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Hangar" Relationship="Base.EquipmentHangar" FromRole="Equipment" ToRole="Hangar" />
           <NavigationProperty Name="Rentals" Relationship="Base.EquipmentRental" FromRole="Equipment" ToRole="Rental" />
         </EntityType>
         <EntityType Name="Harness" BaseType="Base.Equipment">
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="Size" Type="String" Nullable="true" />
+          <Property Name="Size" Type="String" Nullable="true" FixedLength="true" />
+          <Property Name="Type" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" ConcurrencyMode="None" />
         </EntityType>
         <EntityType Name="Vest" BaseType="Base.Equipment">
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
@@ -777,10 +704,6 @@
           <End Type="Base.Equipment" Role="Equipment" Multiplicity="*" />
           <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
         </Association>
-        <EntityType Name="WindHarness" BaseType="Base.Harness">
-        </EntityType>
-        <EntityType Name="KiteHarness" BaseType="Base.Harness">
-        </EntityType>
         <Association Name="BoardRig">
           <End Type="Base.Board" Role="Board" Multiplicity="1" />
           <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
@@ -789,27 +712,15 @@
           <End Type="Base.Sail" Role="Sail" Multiplicity="0..1" />
           <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
         </Association>
-        <EntityType Name="Schedule">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Days" Relationship="Base.ScheduleDay" FromRole="Schedule" ToRole="Day" />
-          <NavigationProperty Name="Trainer" Relationship="Base.TrainerSchedule" FromRole="Schedule" ToRole="Trainer" />
-        </EntityType>
         <EntityType Name="Day">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Week_day" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="Schedule" Relationship="Base.ScheduleDay" FromRole="Day" ToRole="Schedule" />
           <NavigationProperty Name="Hours" Relationship="Base.DayHour" FromRole="Day" ToRole="Hour" />
+          <NavigationProperty Name="Trainer" Relationship="Base.TrainerDay" FromRole="Day" ToRole="Trainer" />
         </EntityType>
-        <Association Name="ScheduleDay">
-          <End Type="Base.Schedule" Role="Schedule" Multiplicity="1" />
-          <End Type="Base.Day" Role="Day" Multiplicity="*" />
-        </Association>
         <EntityType Name="Hour">
           <Key>
             <PropertyRef Name="Id" />
@@ -865,6 +776,7 @@
           <NavigationProperty Name="Hangars" Relationship="Base.SchoolHangar" FromRole="School" ToRole="Hangar" />
           <NavigationProperty Name="Trainers" Relationship="Base.SchoolTrainer" FromRole="School" ToRole="Trainer" />
           <NavigationProperty Name="Clients" Relationship="Base.ClientSchool" FromRole="School" ToRole="Client" />
+          <Property Name="Name" Type="String" Nullable="true" />
         </EntityType>
         <Association Name="SchoolHangar">
           <End Type="Base.School" Role="School" Multiplicity="1" />
@@ -876,16 +788,15 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="School" Relationship="Base.SchoolTrainer" FromRole="Trainer" ToRole="School" />
-          <NavigationProperty Name="Schedule" Relationship="Base.TrainerSchedule" FromRole="Trainer" ToRole="Schedule" />
           <NavigationProperty Name="Clients" Relationship="Base.ClientTrainer" FromRole="Trainer" ToRole="Client" />
+          <NavigationProperty Name="Days" Relationship="Base.TrainerDay" FromRole="Trainer" ToRole="Day" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Last_Name" Type="String" Nullable="true" />
+          <Property Name="Nickname" Type="String" Nullable="true" />
         </EntityType>
         <Association Name="SchoolTrainer">
           <End Type="Base.School" Role="School" Multiplicity="1" />
           <End Type="Base.Trainer" Role="Trainer" Multiplicity="*" />
-        </Association>
-        <Association Name="TrainerSchedule">
-          <End Type="Base.Trainer" Role="Trainer" Multiplicity="1" />
-          <End Type="Base.Schedule" Role="Schedule" Multiplicity="1" />
         </Association>
         <EntityType Name="Client">
           <Key>
@@ -893,7 +804,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Last_name" Type="String" Nullable="false" />
+          <Property Name="Last_Name" Type="String" Nullable="false" />
           <Property Name="Age" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Schools" Relationship="Base.ClientSchool" FromRole="Client" ToRole="School" />
           <NavigationProperty Name="Trainers" Relationship="Base.ClientTrainer" FromRole="Client" ToRole="Trainer" />
@@ -909,7 +820,7 @@
           <End Type="Base.Trainer" Role="Trainer" Multiplicity="*" />
         </Association>
         <Association Name="ClientHour">
-          <End Type="Base.Client" Role="Client" Multiplicity="1" />
+          <End Type="Base.Client" Role="Client" Multiplicity="0..1" />
           <End Type="Base.Hour" Role="Hour" Multiplicity="*" />
         </Association>
         <Association Name="RentalHour">
@@ -923,6 +834,10 @@
         <Association Name="EquipmentRental">
           <End Type="Base.Equipment" Role="Equipment" Multiplicity="*" />
           <End Type="Base.Rental" Role="Rental" Multiplicity="*" />
+        </Association>
+        <Association Name="TrainerDay">
+          <End Type="Base.Trainer" Role="Trainer" Multiplicity="1" />
+          <End Type="Base.Day" Role="Day" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -947,12 +862,12 @@
     <EntitySetMapping Name="Equipments">
       <EntityTypeMapping TypeName="IsTypeOf(Base.Equipment)">
         <MappingFragment StoreEntitySet="Equipments">
-          <ScalarProperty Name="Eq_id" ColumnName="Eq_id" />
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Base.Wetsuit)">
         <MappingFragment StoreEntitySet="Equipments_Wetsuit">
-          <ScalarProperty Name="Eq_id" ColumnName="Eq_id" />
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -960,27 +875,18 @@
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Base.Harness)">
         <MappingFragment StoreEntitySet="Equipments_Harness">
-          <ScalarProperty Name="Eq_id" ColumnName="Eq_id" />
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Base.Vest)">
         <MappingFragment StoreEntitySet="Equipments_Vest">
-          <ScalarProperty Name="Eq_id" ColumnName="Eq_id" />
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="Buoyancy" ColumnName="Buoyancy" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(Base.WindHarness)">
-        <MappingFragment StoreEntitySet="Equipments_WindHarness">
-          <ScalarProperty Name="Eq_id" ColumnName="Eq_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(Base.KiteHarness)">
-        <MappingFragment StoreEntitySet="Equipments_KiteHarness">
-          <ScalarProperty Name="Eq_id" ColumnName="Eq_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1001,13 +907,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Size" ColumnName="Size" />
           <ScalarProperty Name="Make" ColumnName="Make" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Schedules">
-      <EntityTypeMapping TypeName="IsTypeOf(Base.Schedule)">
-        <MappingFragment StoreEntitySet="Schedules">
-          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1051,6 +950,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(Base.Trainer)">
         <MappingFragment StoreEntitySet="Trainers">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1059,7 +961,7 @@
         <MappingFragment StoreEntitySet="Clients">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
           <ScalarProperty Name="Age" ColumnName="Age" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -1069,7 +971,7 @@
         <ScalarProperty Name="Id" ColumnName="Hangar_Id" />
       </EndProperty>
       <EndProperty Name="Equipment">
-        <ScalarProperty Name="Eq_id" ColumnName="Eq_id" />
+        <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="BoardRig" TypeName="Base.BoardRig" StoreEntitySet="Rigs">
@@ -1088,14 +990,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Sail_Id" IsNull="false" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="ScheduleDay" TypeName="Base.ScheduleDay" StoreEntitySet="Days">
-      <EndProperty Name="Schedule">
-        <ScalarProperty Name="Id" ColumnName="Schedule_Id" />
-      </EndProperty>
-      <EndProperty Name="Day">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="DayHour" TypeName="Base.DayHour" StoreEntitySet="Hours">
       <EndProperty Name="Day">
@@ -1153,14 +1047,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="TrainerSchedule" TypeName="Base.TrainerSchedule" StoreEntitySet="Trainers">
-      <EndProperty Name="Schedule">
-        <ScalarProperty Name="Id" ColumnName="Schedule_Id" />
-      </EndProperty>
-      <EndProperty Name="Trainer">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="ClientSchool" TypeName="Base.ClientSchool" StoreEntitySet="ClientSchool">
       <EndProperty Name="Client">
         <ScalarProperty Name="Id" ColumnName="Clients_Id" />
@@ -1184,6 +1070,7 @@
       <EndProperty Name="Hour">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+      <Condition ColumnName="Client_Id" IsNull="false" />
     </AssociationSetMapping>
     <AssociationSetMapping Name="RentalHour" TypeName="Base.RentalHour" StoreEntitySet="Rentals">
       <EndProperty Name="Hour">
@@ -1203,10 +1090,18 @@
     </AssociationSetMapping>
     <AssociationSetMapping Name="EquipmentRental" TypeName="Base.EquipmentRental" StoreEntitySet="EquipmentRental">
       <EndProperty Name="Equipment">
-        <ScalarProperty Name="Eq_id" ColumnName="Equipment_Eq_id" />
+        <ScalarProperty Name="Eq_Id" ColumnName="Equipment_Eq_Id" />
       </EndProperty>
       <EndProperty Name="Rental">
         <ScalarProperty Name="Id" ColumnName="Rentals_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrainerDay" TypeName="Base.TrainerDay" StoreEntitySet="Days">
+      <EndProperty Name="Trainer">
+        <ScalarProperty Name="Id" ColumnName="Trainer_Id" />
+      </EndProperty>
+      <EndProperty Name="Day">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

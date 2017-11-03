@@ -94,6 +94,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Base.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Base1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Board.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
@@ -117,9 +122,6 @@
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="IAdminInterface.cs" />
-    <Compile Include="KiteHarness.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
     <Compile Include="Rental.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
@@ -130,9 +132,6 @@
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="Sail.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Schedule.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="School.cs">
@@ -147,9 +146,6 @@
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Compile Include="Wetsuit.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="WindHarness.cs">
       <DependentUpon>Base.tt</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -185,7 +181,7 @@
     </EmbeddedResource>
     <EntityDeploy Include="Base.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Base.Designer.cs</LastGenOutput>
+      <LastGenOutput>Base1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Base.edmx.diagram">
       <DependentUpon>Base.edmx</DependentUpon>
@@ -216,6 +212,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Adding user and role.sql">
+      <Link>SQL Querries\Adding user and role.sql</Link>
+    </Content>
+    <Content Include="..\Insertion.sql">
+      <Link>SQL Querries\Insertion.sql</Link>
+    </Content>
     <Content Include="Base.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Base.Context.cs</LastGenOutput>

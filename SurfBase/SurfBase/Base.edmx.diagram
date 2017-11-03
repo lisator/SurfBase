@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" ZoomLevel="69" >
+      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" ZoomLevel="74" >
         <EntityTypeShape EntityType="Base.Hangar" Width="1.5" PointX="6.75" PointY="2.75" />
         <EntityTypeShape EntityType="Base.Rig" Width="1.5" PointX="7.25" PointY="9.375" />
         <EntityTypeShape EntityType="Base.Sail" Width="1.5" PointX="6.25" PointY="5.875" />
@@ -17,15 +17,9 @@
         <InheritanceConnector EntityType="Base.Harness" />
         <InheritanceConnector EntityType="Base.Vest" />
         <AssociationConnector Association="Base.EquipmentHangar" />
-        <EntityTypeShape EntityType="Base.WindHarness" Width="1.5" PointX="3.25" PointY="8" />
-        <EntityTypeShape EntityType="Base.KiteHarness" Width="1.5" PointX="1.5" PointY="8" />
-        <InheritanceConnector EntityType="Base.WindHarness" />
-        <InheritanceConnector EntityType="Base.KiteHarness" />
         <AssociationConnector Association="Base.BoardRig" />
         <AssociationConnector Association="Base.SailRig" />
-        <EntityTypeShape EntityType="Base.Schedule" Width="1.5" PointX="11.625" PointY="2.5" />
         <EntityTypeShape EntityType="Base.Day" Width="1.5" PointX="11.625" PointY="5.125" />
-        <AssociationConnector Association="Base.ScheduleDay" />
         <EntityTypeShape EntityType="Base.Hour" Width="1.5" PointX="11.625" PointY="7.625" />
         <AssociationConnector Association="Base.DayHour" />
         <EntityTypeShape EntityType="Base.Rental" Width="1.5" PointX="7.25" PointY="11.75" />
@@ -40,7 +34,6 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="Base.Trainer" Width="1.5" PointX="14" PointY="0.875" />
         <AssociationConnector Association="Base.SchoolTrainer" />
-        <AssociationConnector Association="Base.TrainerSchedule" />
         <EntityTypeShape EntityType="Base.Client" Width="1.5" PointX="15.375" PointY="5.25" />
         <AssociationConnector Association="Base.ClientSchool" />
         <AssociationConnector Association="Base.ClientTrainer" />
@@ -48,10 +41,15 @@
         <AssociationConnector Association="Base.RentalHour" />
         <AssociationConnector Association="Base.RentalClient" />
         <AssociationConnector Association="Base.EquipmentRental" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.375" PointY="4.6133351787301269" />
-          <ConnectorPoint PointX="0.29761900256640672" PointY="4.6133351787301269" />
-          <ConnectorPoint PointX="0.29761900256640672" PointY="12.820312261497891" />
-          <ConnectorPoint PointX="7.25" PointY="12.820312261497891" />
+          <ConnectorPoint PointX="2.375" PointY="4.512318505203889" />
+          <ConnectorPoint PointX="0.23930187926461866" PointY="4.512318505203889" />
+          <ConnectorPoint PointX="0.23930187926461866" PointY="13.021099040325767" />
+          <ConnectorPoint PointX="7.25" PointY="13.021099040325767" />
+        </AssociationConnector>
+        <AssociationConnector Association="Base.TrainerDay" ManuallyRouted="true" >
+          <ConnectorPoint PointX="14" PointY="2.831407205249044" />
+          <ConnectorPoint PointX="12.377643353292609" PointY="2.831407205249044" />
+          <ConnectorPoint PointX="12.377643353292609" PointY="5.125" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

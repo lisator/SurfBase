@@ -23,8 +23,8 @@ namespace SurfBase
         public int Id { get; set; }
         public short Week_day { get; set; }
     
-        public virtual Schedule Schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hour> Hours { get; set; }
+        public virtual Trainer Trainer { get; set; }
     }
 }

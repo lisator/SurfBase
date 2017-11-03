@@ -20,7 +20,7 @@ namespace SurfBase
             this.Rentals = new HashSet<Rental>();
         }
     
-        public int Eq_id { get; set; }
+        public int Eq_Id { get; set; }
     
         public virtual Hangar Hangar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

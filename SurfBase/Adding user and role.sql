@@ -1,0 +1,5 @@
+﻿CREATE LOGIN [User] WITH PASSWORD = 'Surfbase00'
+
+CREATE USER [User] FROM LOGIN [User]
+
+ALTER ROLE db_datareader ADD MEMBER [User]

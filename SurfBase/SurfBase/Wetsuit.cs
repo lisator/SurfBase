@@ -16,6 +16,6 @@ namespace SurfBase
     {
         public int Id { get; set; }
         public string Size { get; set; }
-        public Nullable<bool> Type { get; set; }
+        public string Type { get; set; }
     }
 }

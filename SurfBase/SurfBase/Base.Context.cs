@@ -30,7 +30,6 @@ namespace SurfBase
         public virtual DbSet<Equipment> Equipments { get; set; }
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<Sail> Sails { get; set; }
-        public virtual DbSet<Schedule> Schedules { get; set; }
         public virtual DbSet<Day> Days { get; set; }
         public virtual DbSet<Hour> Hours { get; set; }
         public virtual DbSet<Rental> Rentals { get; set; }
