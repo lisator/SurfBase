@@ -19,6 +19,7 @@ namespace SurfBase
         {
             this.Clients = new HashSet<Client>();
             this.Days = new HashSet<Day>();
+            this.RentalHistories = new HashSet<RentalHistory>();
         }
     
         public int Id { get; set; }
@@ -31,5 +32,7 @@ namespace SurfBase
         public virtual ICollection<Client> Clients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Day> Days { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RentalHistory> RentalHistories { get; set; }
     }
 }
