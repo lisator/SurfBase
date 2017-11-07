@@ -14,10 +14,18 @@ namespace SurfBase
     
     public partial class Rig
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Rig()
+        {
+            this.RentalHistories = new HashSet<RentalHistory>();
+        }
+    
         public int Id { get; set; }
     
         public virtual Board Board { get; set; }
         public virtual Sail Sail { get; set; }
         public virtual Rental Rental { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RentalHistory> RentalHistories { get; set; }
     }
 }

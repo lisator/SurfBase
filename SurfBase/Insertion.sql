@@ -1,4 +1,11 @@
-﻿--Inserting to the table with only identity column (when identity insert is off)
+﻿--C# for using database:
+--https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-code-examples#sqlclient
+--https://docs.microsoft.com/en-us/azure/sql-database/sql-database-design-first-database-csharp#cs_1_connect
+
+
+
+
+--Inserting to the table with only identity column (when identity insert is off)
 INSERT INTO Schools DEFAULT VALUES
 
 --Decrementing identity:

@@ -21,7 +21,7 @@ namespace SurfBase
         }
     
         public int Id { get; set; }
-        public short Week_day { get; set; }
+        public System.DateTime Week_day { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hour> Hours { get; set; }

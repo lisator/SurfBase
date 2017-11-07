@@ -52,10 +52,6 @@
       <End Role="Hangar" EntitySet="Hangars" />
       <End Role="Board" EntitySet="Boards" />
     </AssociationSet>
-    <AssociationSet Name="RentalHistoryRental" Association="Base.Store.RentalHistoryRental">
-      <End Role="RentalHistory" EntitySet="RentalHistory" />
-      <End Role="Rental" EntitySet="Rentals" />
-    </AssociationSet>
     <AssociationSet Name="SchoolHangar" Association="Base.Store.SchoolHangar">
       <End Role="School" EntitySet="Schools" />
       <End Role="Hangar" EntitySet="Hangars" />
@@ -104,6 +100,26 @@
       <End Role="Trainer" EntitySet="Trainers" />
       <End Role="Day" EntitySet="Days" />
     </AssociationSet>
+    <AssociationSet Name="RigRentalHistory" Association="Base.Store.RigRentalHistory">
+      <End Role="Rig" EntitySet="Rigs" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="HourRentalHistory" Association="Base.Store.HourRentalHistory">
+      <End Role="Hour" EntitySet="Hours" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="ClientRentalHistory" Association="Base.Store.ClientRentalHistory">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="EquipmentRentalHistory" Association="Base.Store.EquipmentRentalHistory">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
+    <AssociationSet Name="TrainerRentalHistory" Association="Base.Store.TrainerRentalHistory">
+      <End Role="Trainer" EntitySet="Trainers" />
+      <End Role="RentalHistory" EntitySet="RentalHistory" />
+    </AssociationSet>
     <AssociationSet Name="FK_Wetsuit_inherits_Equipment" Association="Base.Store.FK_Wetsuit_inherits_Equipment">
       <End Role="Equipment" EntitySet="Equipments" />
       <End Role="Wetsuit" EntitySet="Equipments_Wetsuit" />
@@ -122,6 +138,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
     <Property Name="School_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Rigs">
@@ -164,7 +181,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Week_day" Type="smallint" Nullable="false" />
+    <Property Name="Week_day" Type="datetime" Nullable="false" />
     <Property Name="Trainer_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Hours">
@@ -181,7 +198,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Rig_Id" Type="int" Nullable="false" />
-    <Property Name="RentalHistory_Id" Type="int" Nullable="false" />
     <Property Name="Hour_Id" Type="int" Nullable="false" />
     <Property Name="Client_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -190,20 +206,26 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rig_Id" Type="int" Nullable="false" />
+    <Property Name="Hour_Id" Type="int" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="Equipment_Eq_Id" Type="int" Nullable="false" />
+    <Property Name="Trainer_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Schools">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="Trainers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Last_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Last_Name" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Nickname" Type="nvarchar(max)" Nullable="true" />
     <Property Name="School_Id" Type="int" Nullable="false" />
   </EntityType>
@@ -351,18 +373,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="RentalHistoryRental">
-    <End Role="RentalHistory" Type="Base.Store.RentalHistory" Multiplicity="1" />
-    <End Role="Rental" Type="Base.Store.Rentals" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="RentalHistory">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Rental">
-        <PropertyRef Name="RentalHistory_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="SchoolHangar">
     <End Role="School" Type="Base.Store.Schools" Multiplicity="1" />
     <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="*" />
@@ -431,6 +441,66 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Day">
+        <PropertyRef Name="Trainer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RigRentalHistory">
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Base.Store.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rig">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="Rig_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HourRentalHistory">
+    <End Role="Hour" Type="Base.Store.Hours" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Base.Store.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="Hour_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientRentalHistory">
+    <End Role="Client" Type="Base.Store.Clients" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Base.Store.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EquipmentRentalHistory">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Base.Store.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Eq_Id" />
+      </Principal>
+      <Dependent Role="RentalHistory">
+        <PropertyRef Name="Equipment_Eq_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrainerRentalHistory">
+    <End Role="Trainer" Type="Base.Store.Trainers" Multiplicity="1" />
+    <End Role="RentalHistory" Type="Base.Store.RentalHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RentalHistory">
         <PropertyRef Name="Trainer_Id" />
       </Dependent>
     </ReferentialConstraint>
@@ -591,10 +661,6 @@
             <End Role="Board" EntitySet="Boards" />
           </AssociationSet>
           <EntitySet Name="RentalHistory" EntityType="Base.RentalHistory" />
-          <AssociationSet Name="RentalHistoryRental" Association="Base.RentalHistoryRental">
-            <End Role="RentalHistory" EntitySet="RentalHistory" />
-            <End Role="Rental" EntitySet="Rentals" />
-          </AssociationSet>
           <EntitySet Name="Schools" EntityType="Base.School" />
           <AssociationSet Name="SchoolHangar" Association="Base.SchoolHangar">
             <End Role="School" EntitySet="Schools" />
@@ -634,6 +700,26 @@
             <End Role="Trainer" EntitySet="Trainers" />
             <End Role="Day" EntitySet="Days" />
           </AssociationSet>
+          <AssociationSet Name="RigRentalHistory" Association="Base.RigRentalHistory">
+            <End Role="Rig" EntitySet="Rigs" />
+            <End Role="RentalHistory" EntitySet="RentalHistory" />
+          </AssociationSet>
+          <AssociationSet Name="HourRentalHistory" Association="Base.HourRentalHistory">
+            <End Role="Hour" EntitySet="Hours" />
+            <End Role="RentalHistory" EntitySet="RentalHistory" />
+          </AssociationSet>
+          <AssociationSet Name="ClientRentalHistory" Association="Base.ClientRentalHistory">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="RentalHistory" EntitySet="RentalHistory" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentRentalHistory" Association="Base.EquipmentRentalHistory">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="RentalHistory" EntitySet="RentalHistory" />
+          </AssociationSet>
+          <AssociationSet Name="TrainerRentalHistory" Association="Base.TrainerRentalHistory">
+            <End Role="Trainer" EntitySet="Trainers" />
+            <End Role="RentalHistory" EntitySet="RentalHistory" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Hangar">
           <Key>
@@ -654,6 +740,7 @@
           <NavigationProperty Name="Board" Relationship="Base.BoardRig" FromRole="Rig" ToRole="Board" />
           <NavigationProperty Name="Sail" Relationship="Base.SailRig" FromRole="Rig" ToRole="Sail" />
           <NavigationProperty Name="Rental" Relationship="Base.RentalRig" FromRole="Rig" ToRole="Rental" />
+          <NavigationProperty Name="RentalHistories" Relationship="Base.RigRentalHistory" FromRole="Rig" ToRole="RentalHistory" />
         </EntityType>
         <EntityType Name="Sail">
           <Key>
@@ -689,6 +776,7 @@
           <Property Name="Eq_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Hangar" Relationship="Base.EquipmentHangar" FromRole="Equipment" ToRole="Hangar" />
           <NavigationProperty Name="Rentals" Relationship="Base.EquipmentRental" FromRole="Equipment" ToRole="Rental" />
+          <NavigationProperty Name="RentalHistories" Relationship="Base.EquipmentRentalHistory" FromRole="Equipment" ToRole="RentalHistory" />
         </EntityType>
         <EntityType Name="Harness" BaseType="Base.Equipment">
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
@@ -717,7 +805,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Week_day" Type="Int16" Nullable="false" />
+          <Property Name="Week_day" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Hours" Relationship="Base.DayHour" FromRole="Day" ToRole="Hour" />
           <NavigationProperty Name="Trainer" Relationship="Base.TrainerDay" FromRole="Day" ToRole="Trainer" />
         </EntityType>
@@ -729,6 +817,7 @@
           <NavigationProperty Name="Day" Relationship="Base.DayHour" FromRole="Hour" ToRole="Day" />
           <NavigationProperty Name="Client" Relationship="Base.ClientHour" FromRole="Hour" ToRole="Client" />
           <NavigationProperty Name="Rental" Relationship="Base.RentalHour" FromRole="Hour" ToRole="Rental" />
+          <NavigationProperty Name="RentalHistories" Relationship="Base.HourRentalHistory" FromRole="Hour" ToRole="RentalHistory" />
         </EntityType>
         <Association Name="DayHour">
           <End Type="Base.Day" Role="Day" Multiplicity="1" />
@@ -740,7 +829,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Rig" Relationship="Base.RentalRig" FromRole="Rental" ToRole="Rig" />
-          <NavigationProperty Name="RentalHistory" Relationship="Base.RentalHistoryRental" FromRole="Rental" ToRole="RentalHistory" />
           <NavigationProperty Name="Hour" Relationship="Base.RentalHour" FromRole="Rental" ToRole="Hour" />
           <NavigationProperty Name="Client" Relationship="Base.RentalClient" FromRole="Rental" ToRole="Client" />
           <NavigationProperty Name="Equipment" Relationship="Base.EquipmentRental" FromRole="Rental" ToRole="Equipment" />
@@ -762,12 +850,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Rentals" Relationship="Base.RentalHistoryRental" FromRole="RentalHistory" ToRole="Rental" />
+          <NavigationProperty Name="Rig" Relationship="Base.RigRentalHistory" FromRole="RentalHistory" ToRole="Rig" />
+          <NavigationProperty Name="Hour" Relationship="Base.HourRentalHistory" FromRole="RentalHistory" ToRole="Hour" />
+          <NavigationProperty Name="Client" Relationship="Base.ClientRentalHistory" FromRole="RentalHistory" ToRole="Client" />
+          <NavigationProperty Name="Equipment" Relationship="Base.EquipmentRentalHistory" FromRole="RentalHistory" ToRole="Equipment" />
+          <NavigationProperty Name="Trainer" Relationship="Base.TrainerRentalHistory" FromRole="RentalHistory" ToRole="Trainer" />
         </EntityType>
-        <Association Name="RentalHistoryRental">
-          <End Type="Base.RentalHistory" Role="RentalHistory" Multiplicity="1" />
-          <End Type="Base.Rental" Role="Rental" Multiplicity="*" />
-        </Association>
         <EntityType Name="School">
           <Key>
             <PropertyRef Name="Id" />
@@ -793,6 +881,7 @@
           <Property Name="Name" Type="String" Nullable="true" />
           <Property Name="Last_Name" Type="String" Nullable="true" />
           <Property Name="Nickname" Type="String" Nullable="true" />
+          <NavigationProperty Name="RentalHistories" Relationship="Base.TrainerRentalHistory" FromRole="Trainer" ToRole="RentalHistory" />
         </EntityType>
         <Association Name="SchoolTrainer">
           <End Type="Base.School" Role="School" Multiplicity="1" />
@@ -810,6 +899,7 @@
           <NavigationProperty Name="Trainers" Relationship="Base.ClientTrainer" FromRole="Client" ToRole="Trainer" />
           <NavigationProperty Name="Hours" Relationship="Base.ClientHour" FromRole="Client" ToRole="Hour" />
           <NavigationProperty Name="Rental" Relationship="Base.RentalClient" FromRole="Client" ToRole="Rental" />
+          <NavigationProperty Name="RentalHistories" Relationship="Base.ClientRentalHistory" FromRole="Client" ToRole="RentalHistory" />
         </EntityType>
         <Association Name="ClientSchool">
           <End Type="Base.Client" Role="Client" Multiplicity="*" />
@@ -839,6 +929,26 @@
           <End Type="Base.Trainer" Role="Trainer" Multiplicity="1" />
           <End Type="Base.Day" Role="Day" Multiplicity="*" />
         </Association>
+        <Association Name="RigRentalHistory">
+          <End Type="Base.Rig" Role="Rig" Multiplicity="1" />
+          <End Type="Base.RentalHistory" Role="RentalHistory" Multiplicity="*" />
+        </Association>
+        <Association Name="HourRentalHistory">
+          <End Type="Base.Hour" Role="Hour" Multiplicity="1" />
+          <End Type="Base.RentalHistory" Role="RentalHistory" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientRentalHistory">
+          <End Type="Base.Client" Role="Client" Multiplicity="1" />
+          <End Type="Base.RentalHistory" Role="RentalHistory" Multiplicity="*" />
+        </Association>
+        <Association Name="EquipmentRentalHistory">
+          <End Type="Base.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="Base.RentalHistory" Role="RentalHistory" Multiplicity="*" />
+        </Association>
+        <Association Name="TrainerRentalHistory">
+          <End Type="Base.Trainer" Role="Trainer" Multiplicity="1" />
+          <End Type="Base.RentalHistory" Role="RentalHistory" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -849,6 +959,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Base.Hangar)">
         <MappingFragment StoreEntitySet="Hangars">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -943,6 +1054,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Base.School)">
         <MappingFragment StoreEntitySet="Schools">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1023,14 +1135,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="RentalHistoryRental" TypeName="Base.RentalHistoryRental" StoreEntitySet="Rentals">
-      <EndProperty Name="RentalHistory">
-        <ScalarProperty Name="Id" ColumnName="RentalHistory_Id" />
-      </EndProperty>
-      <EndProperty Name="Rental">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="SchoolHangar" TypeName="Base.SchoolHangar" StoreEntitySet="Hangars">
       <EndProperty Name="School">
         <ScalarProperty Name="Id" ColumnName="School_Id" />
@@ -1101,6 +1205,46 @@
         <ScalarProperty Name="Id" ColumnName="Trainer_Id" />
       </EndProperty>
       <EndProperty Name="Day">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RigRentalHistory" TypeName="Base.RigRentalHistory" StoreEntitySet="RentalHistory">
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Id" ColumnName="Rig_Id" />
+      </EndProperty>
+      <EndProperty Name="RentalHistory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HourRentalHistory" TypeName="Base.HourRentalHistory" StoreEntitySet="RentalHistory">
+      <EndProperty Name="Hour">
+        <ScalarProperty Name="Id" ColumnName="Hour_Id" />
+      </EndProperty>
+      <EndProperty Name="RentalHistory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientRentalHistory" TypeName="Base.ClientRentalHistory" StoreEntitySet="RentalHistory">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="RentalHistory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EquipmentRentalHistory" TypeName="Base.EquipmentRentalHistory" StoreEntitySet="RentalHistory">
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Eq_Id" ColumnName="Equipment_Eq_Id" />
+      </EndProperty>
+      <EndProperty Name="RentalHistory">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrainerRentalHistory" TypeName="Base.TrainerRentalHistory" StoreEntitySet="RentalHistory">
+      <EndProperty Name="Trainer">
+        <ScalarProperty Name="Id" ColumnName="Trainer_Id" />
+      </EndProperty>
+      <EndProperty Name="RentalHistory">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

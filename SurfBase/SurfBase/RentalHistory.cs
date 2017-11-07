@@ -14,15 +14,12 @@ namespace SurfBase
     
     public partial class RentalHistory
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RentalHistory()
-        {
-            this.Rentals = new HashSet<Rental>();
-        }
-    
         public int Id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rental> Rentals { get; set; }
+        public virtual Rig Rig { get; set; }
+        public virtual Hour Hour { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Equipment Equipment { get; set; }
+        public virtual Trainer Trainer { get; set; }
     }
 }
