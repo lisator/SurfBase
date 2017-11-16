@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/16/2017 16:20:47
--- Generated from EDMX file: L:\Lisek\Polibuda\Programming Technologies\SurfBase\SurfBase\SurfBase\Base.edmx
+-- Date Created: 11/02/2017 21:50:46
+-- Generated from EDMX file: C:\Users\Lisek\Polibuda\Programming Technologies\SurfBase\SurfBase\SurfBase\Base.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -37,6 +37,9 @@ IF OBJECT_ID(N'[dbo].[FK_HangarSail]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_HangarBoard]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Boards] DROP CONSTRAINT [FK_HangarBoard];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RentalHistoryRental]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Rentals] DROP CONSTRAINT [FK_RentalHistoryRental];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SchoolHangar]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Hangars] DROP CONSTRAINT [FK_SchoolHangar];
@@ -112,6 +115,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Rentals]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Rentals];
 GO
+IF OBJECT_ID(N'[dbo].[RentalHistory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RentalHistory];
+GO
 IF OBJECT_ID(N'[dbo].[Schools]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Schools];
 GO
@@ -147,14 +153,13 @@ GO
 -- Creating table 'Hangars'
 CREATE TABLE [dbo].[Hangars] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NULL,
     [School_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Rigs'
 CREATE TABLE [dbo].[Rigs] (
-    [Id] int  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Board_Id] int  NOT NULL,
     [Sail_Id] int  NULL
 );
@@ -173,7 +178,7 @@ CREATE TABLE [dbo].[Boards] (
     [Length] int  NULL,
     [Volume] int  NOT NULL,
     [Make] nvarchar(max)  NULL,
-    [Type] nvarchar(max)  NOT NULL,
+    [Type] bit  NOT NULL,
     [Hangar_Id] int  NOT NULL
 );
 GO
@@ -189,8 +194,8 @@ GO
 
 -- Creating table 'Days'
 CREATE TABLE [dbo].[Days] (
-    [Id] int  NOT NULL,
-    [Week_day] datetime  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Week_day] smallint  NOT NULL,
     [Trainer_Id] int  NOT NULL
 );
 GO
@@ -207,23 +212,29 @@ GO
 CREATE TABLE [dbo].[Rentals] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Rig_Id] int  NOT NULL,
+    [RentalHistory_Id] int  NOT NULL,
     [Hour_Id] int  NOT NULL,
     [Client_Id] int  NOT NULL
 );
 GO
 
+-- Creating table 'RentalHistory'
+CREATE TABLE [dbo].[RentalHistory] (
+    [Id] int IDENTITY(1,1) NOT NULL
+);
+GO
+
 -- Creating table 'Schools'
 CREATE TABLE [dbo].[Schools] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NULL
+    [Id] int IDENTITY(1,1) NOT NULL
 );
 GO
 
 -- Creating table 'Trainers'
 CREATE TABLE [dbo].[Trainers] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NULL,
-    [Last_Name] nvarchar(max)  NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Last_Name] nvarchar(max)  NOT NULL,
     [Nickname] nvarchar(max)  NULL,
     [School_Id] int  NOT NULL
 );
@@ -234,9 +245,7 @@ CREATE TABLE [dbo].[Clients] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Last_Name] nvarchar(max)  NOT NULL,
-    [Age] int  NOT NULL,
-    [Last_Board_Id] int  NULL,
-    [Last_Sail_Id] int  NULL
+    [Age] int  NOT NULL
 );
 GO
 
@@ -337,6 +346,12 @@ GO
 -- Creating primary key on [Id] in table 'Rentals'
 ALTER TABLE [dbo].[Rentals]
 ADD CONSTRAINT [PK_Rentals]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'RentalHistory'
+ALTER TABLE [dbo].[RentalHistory]
+ADD CONSTRAINT [PK_RentalHistory]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -501,6 +516,21 @@ GO
 CREATE INDEX [IX_FK_HangarBoard]
 ON [dbo].[Boards]
     ([Hangar_Id]);
+GO
+
+-- Creating foreign key on [RentalHistory_Id] in table 'Rentals'
+ALTER TABLE [dbo].[Rentals]
+ADD CONSTRAINT [FK_RentalHistoryRental]
+    FOREIGN KEY ([RentalHistory_Id])
+    REFERENCES [dbo].[RentalHistory]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RentalHistoryRental'
+CREATE INDEX [IX_FK_RentalHistoryRental]
+ON [dbo].[Rentals]
+    ([RentalHistory_Id]);
 GO
 
 -- Creating foreign key on [School_Id] in table 'Hangars'
