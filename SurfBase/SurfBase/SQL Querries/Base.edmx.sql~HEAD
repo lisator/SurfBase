@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/07/2017 22:37:47
--- Generated from EDMX file: C:\Users\Lisek\Polibuda\Programming Technologies\SurfBase\SurfBase\SurfBase\Base.edmx
+-- Date Created: 11/16/2017 16:20:47
+-- Generated from EDMX file: L:\Lisek\Polibuda\Programming Technologies\SurfBase\SurfBase\SurfBase\Base.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -74,15 +74,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TrainerDay]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Days] DROP CONSTRAINT [FK_TrainerDay];
 GO
-IF OBJECT_ID(N'[dbo].[FK_RigRentalHistory]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RentalHistory] DROP CONSTRAINT [FK_RigRentalHistory];
-GO
-IF OBJECT_ID(N'[dbo].[FK_HourRentalHistory]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RentalHistory] DROP CONSTRAINT [FK_HourRentalHistory];
-GO
-IF OBJECT_ID(N'[dbo].[FK_ClientRentalHistory]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RentalHistory] DROP CONSTRAINT [FK_ClientRentalHistory];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Wetsuit_inherits_Equipment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Equipments_Wetsuit] DROP CONSTRAINT [FK_Wetsuit_inherits_Equipment];
 GO
@@ -120,9 +111,6 @@ IF OBJECT_ID(N'[dbo].[Hours]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Rentals]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Rentals];
-GO
-IF OBJECT_ID(N'[dbo].[RentalHistory]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RentalHistory];
 GO
 IF OBJECT_ID(N'[dbo].[Schools]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Schools];
@@ -166,7 +154,7 @@ GO
 
 -- Creating table 'Rigs'
 CREATE TABLE [dbo].[Rigs] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] int  NOT NULL,
     [Board_Id] int  NOT NULL,
     [Sail_Id] int  NULL
 );
@@ -185,7 +173,7 @@ CREATE TABLE [dbo].[Boards] (
     [Length] int  NULL,
     [Volume] int  NOT NULL,
     [Make] nvarchar(max)  NULL,
-    [Type] bit  NOT NULL,
+    [Type] nvarchar(max)  NOT NULL,
     [Hangar_Id] int  NOT NULL
 );
 GO
@@ -201,7 +189,7 @@ GO
 
 -- Creating table 'Days'
 CREATE TABLE [dbo].[Days] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] int  NOT NULL,
     [Week_day] datetime  NOT NULL,
     [Trainer_Id] int  NOT NULL
 );
@@ -221,17 +209,6 @@ CREATE TABLE [dbo].[Rentals] (
     [Rig_Id] int  NOT NULL,
     [Hour_Id] int  NOT NULL,
     [Client_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'RentalHistory'
-CREATE TABLE [dbo].[RentalHistory] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Rig_Id] int  NOT NULL,
-    [Hour_Id] int  NOT NULL,
-    [Client_Id] int  NOT NULL,
-    [Equipment_Eq_Id] int  NOT NULL,
-    [Trainer_Id] int  NOT NULL
 );
 GO
 
@@ -257,7 +234,9 @@ CREATE TABLE [dbo].[Clients] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Last_Name] nvarchar(max)  NOT NULL,
-    [Age] int  NOT NULL
+    [Age] int  NOT NULL,
+    [Last_Board_Id] int  NULL,
+    [Last_Sail_Id] int  NULL
 );
 GO
 
@@ -358,12 +337,6 @@ GO
 -- Creating primary key on [Id] in table 'Rentals'
 ALTER TABLE [dbo].[Rentals]
 ADD CONSTRAINT [PK_Rentals]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'RentalHistory'
-ALTER TABLE [dbo].[RentalHistory]
-ADD CONSTRAINT [PK_RentalHistory]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -689,81 +662,6 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_TrainerDay'
 CREATE INDEX [IX_FK_TrainerDay]
 ON [dbo].[Days]
-    ([Trainer_Id]);
-GO
-
--- Creating foreign key on [Rig_Id] in table 'RentalHistory'
-ALTER TABLE [dbo].[RentalHistory]
-ADD CONSTRAINT [FK_RigRentalHistory]
-    FOREIGN KEY ([Rig_Id])
-    REFERENCES [dbo].[Rigs]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RigRentalHistory'
-CREATE INDEX [IX_FK_RigRentalHistory]
-ON [dbo].[RentalHistory]
-    ([Rig_Id]);
-GO
-
--- Creating foreign key on [Hour_Id] in table 'RentalHistory'
-ALTER TABLE [dbo].[RentalHistory]
-ADD CONSTRAINT [FK_HourRentalHistory]
-    FOREIGN KEY ([Hour_Id])
-    REFERENCES [dbo].[Hours]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HourRentalHistory'
-CREATE INDEX [IX_FK_HourRentalHistory]
-ON [dbo].[RentalHistory]
-    ([Hour_Id]);
-GO
-
--- Creating foreign key on [Client_Id] in table 'RentalHistory'
-ALTER TABLE [dbo].[RentalHistory]
-ADD CONSTRAINT [FK_ClientRentalHistory]
-    FOREIGN KEY ([Client_Id])
-    REFERENCES [dbo].[Clients]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_ClientRentalHistory'
-CREATE INDEX [IX_FK_ClientRentalHistory]
-ON [dbo].[RentalHistory]
-    ([Client_Id]);
-GO
-
--- Creating foreign key on [Equipment_Eq_Id] in table 'RentalHistory'
-ALTER TABLE [dbo].[RentalHistory]
-ADD CONSTRAINT [FK_EquipmentRentalHistory]
-    FOREIGN KEY ([Equipment_Eq_Id])
-    REFERENCES [dbo].[Equipments]
-        ([Eq_Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_EquipmentRentalHistory'
-CREATE INDEX [IX_FK_EquipmentRentalHistory]
-ON [dbo].[RentalHistory]
-    ([Equipment_Eq_Id]);
-GO
-
--- Creating foreign key on [Trainer_Id] in table 'RentalHistory'
-ALTER TABLE [dbo].[RentalHistory]
-ADD CONSTRAINT [FK_TrainerRentalHistory]
-    FOREIGN KEY ([Trainer_Id])
-    REFERENCES [dbo].[Trainers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TrainerRentalHistory'
-CREATE INDEX [IX_FK_TrainerRentalHistory]
-ON [dbo].[RentalHistory]
     ([Trainer_Id]);
 GO
 

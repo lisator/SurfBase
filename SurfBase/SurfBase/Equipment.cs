@@ -18,7 +18,6 @@ namespace SurfBase
         public Equipment()
         {
             this.Rentals = new HashSet<Rental>();
-            this.RentalHistories = new HashSet<RentalHistory>();
         }
     
         public int Eq_Id { get; set; }
@@ -26,7 +25,5 @@ namespace SurfBase
         public virtual Hangar Hangar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rental> Rentals { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RentalHistory> RentalHistories { get; set; }
     }
 }

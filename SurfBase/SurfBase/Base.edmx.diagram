@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" ZoomLevel="62" >
+      <Diagram DiagramId="0bff47da3fe34642865c73fffdf6b76f" Name="Diagram1" ZoomLevel="60" >
         <EntityTypeShape EntityType="Base.Hangar" Width="1.5" PointX="6.75" PointY="2.75" />
         <EntityTypeShape EntityType="Base.Rig" Width="1.5" PointX="7.25" PointY="9.375" />
         <EntityTypeShape EntityType="Base.Sail" Width="1.5" PointX="6.25" PointY="5.875" />
@@ -13,7 +13,12 @@
         <EntityTypeShape EntityType="Base.Equipment" Width="1.5" PointX="2.375" PointY="3.75" />
         <EntityTypeShape EntityType="Base.Harness" Width="1.5" PointX="2.375" PointY="6.125" />
         <EntityTypeShape EntityType="Base.Vest" Width="1.5" PointX="0.5" PointY="6.125" />
-        <InheritanceConnector EntityType="Base.Wetsuit" />
+        <InheritanceConnector EntityType="Base.Wetsuit" ManuallyRouted="true" >
+          <ConnectorPoint PointX="3.1139034870644711" PointY="5.34568359375" />
+          <ConnectorPoint PointX="3.1139034870644711" PointY="5.75" />
+          <ConnectorPoint PointX="5" PointY="5.75" />
+          <ConnectorPoint PointX="5" PointY="6.125" />
+        </InheritanceConnector>
         <InheritanceConnector EntityType="Base.Harness" />
         <InheritanceConnector EntityType="Base.Vest" />
         <AssociationConnector Association="Base.EquipmentHangar" />
@@ -27,50 +32,32 @@
         <AssociationConnector Association="Base.HangarSail" />
         <AssociationConnector Association="Base.HangarBoard" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Base.RentalHistory" Width="1.5" PointX="11.625" PointY="13.75" />
         <EntityTypeShape EntityType="Base.School" Width="1.5" PointX="9" PointY="0.5" />
         <AssociationConnector Association="Base.SchoolHangar" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="Base.Trainer" Width="1.5" PointX="14" PointY="0.875" />
         <AssociationConnector Association="Base.SchoolTrainer" />
-        <EntityTypeShape EntityType="Base.Client" Width="1.5" PointX="15.375" PointY="5.25" />
+        <EntityTypeShape EntityType="Base.Client" Width="1.5" PointX="16.25" PointY="5.25" />
         <AssociationConnector Association="Base.ClientSchool" />
         <AssociationConnector Association="Base.ClientTrainer" />
         <AssociationConnector Association="Base.ClientHour" />
         <AssociationConnector Association="Base.RentalHour" />
-        <AssociationConnector Association="Base.RentalClient" ManuallyRouted="true" >
-          <ConnectorPoint PointX="8.75" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="9.0416666666666661" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="9.2083333333333339" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="12.729166666666666" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="12.895833333333334" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="14.213539166666665" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="14.380205833333333" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="15.635414166666665" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="15.802080833333333" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="16.125" PointY="13.150801322415513" />
-          <ConnectorPoint PointX="16.125" PointY="7.9994921875" />
+        <AssociationConnector Association="Base.RentalClient" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="Base.EquipmentRental" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.375" PointY="4.6344502903072975" />
-          <ConnectorPoint PointX="0.2076613069914135" PointY="4.6344502903072975" />
-          <ConnectorPoint PointX="0.2076613069914135" PointY="12.729590389009061" />
-          <ConnectorPoint PointX="3.9166666666666665" PointY="12.729590389009061" />
-          <ConnectorPoint PointX="4.083333333333333" PointY="12.729590389009061" />
-          <ConnectorPoint PointX="7.25" PointY="12.729590389009061" />
+          <ConnectorPoint PointX="2.375" PointY="4.43443369642435" />
+          <ConnectorPoint PointX="0.26139377998628" PointY="12.345349261207304" />
+          <ConnectorPoint PointX="0.26139377998628" PointY="11.45" />
+          <ConnectorPoint PointX="0.41727621783332919" PointY="11.45" />
+          <ConnectorPoint PointX="0.58394288449999587" PointY="11.45" />
+          <ConnectorPoint PointX="7.593748" PointY="11.45" />
+          <ConnectorPoint PointX="7.593748" PointY="11.75" />
         </AssociationConnector>
         <AssociationConnector Association="Base.TrainerDay" ManuallyRouted="true" >
           <ConnectorPoint PointX="14.65625" PointY="3.4321907552083331" />
           <ConnectorPoint PointX="14.65625" PointY="5.15625" />
-          <ConnectorPoint PointX="14.380205833333333" PointY="5.1562499999999991" />
-          <ConnectorPoint PointX="14.213539166666665" PointY="5.15625" />
           <ConnectorPoint PointX="13.125" PointY="5.15625" />
         </AssociationConnector>
-        <AssociationConnector Association="Base.RigRentalHistory" />
-        <AssociationConnector Association="Base.HourRentalHistory" />
-        <AssociationConnector Association="Base.ClientRentalHistory" />
-        <AssociationConnector Association="Base.EquipmentRentalHistory" />
-        <AssociationConnector Association="Base.TrainerRentalHistory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
