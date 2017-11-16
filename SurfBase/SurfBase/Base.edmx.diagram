@@ -32,7 +32,7 @@
         <AssociationConnector Association="Base.HangarSail" />
         <AssociationConnector Association="Base.HangarBoard" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="Base.School" Width="1.5" PointX="9" PointY="0.5" />
+        <EntityTypeShape EntityType="Base.School" Width="1.5" PointX="9.125" PointY="0.5" />
         <AssociationConnector Association="Base.SchoolHangar" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="Base.Trainer" Width="1.5" PointX="14" PointY="0.875" />
