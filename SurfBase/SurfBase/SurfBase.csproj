@@ -79,75 +79,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Admin.cs" />
-    <Compile Include="Base.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Base.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Base.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Base.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Base.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Base1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Base.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Board.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
     <Compile Include="CheckValidity.cs" />
-    <Compile Include="Client.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Day.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Equipment.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Hangar.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Harness.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Hour.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
     <Compile Include="IAdminInterface.cs" />
-    <Compile Include="Rental.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RentalHistory.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Rig.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sail.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="School.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
     <Compile Include="SurfBaseLogic.cs" />
-    <Compile Include="Trainer.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
     <Compile Include="User.cs" />
-    <Compile Include="Vest.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Wetsuit.cs">
-      <DependentUpon>Base.tt</DependentUpon>
-    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -179,13 +114,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Base.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Base1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Base.edmx.diagram">
-      <DependentUpon>Base.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -218,17 +146,7 @@
     <Content Include="..\Insertion.sql">
       <Link>SQL Querries\Insertion.sql</Link>
     </Content>
-    <Content Include="Base.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Base.Context.cs</LastGenOutput>
-      <DependentUpon>Base.edmx</DependentUpon>
-    </Content>
-    <Content Include="Base.edmx.sql" />
-    <Content Include="Base.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Base.cs</LastGenOutput>
-      <DependentUpon>Base.edmx</DependentUpon>
-    </Content>
+    <Content Include="SQL Querries\Base.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
