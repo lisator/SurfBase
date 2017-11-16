@@ -14,18 +14,10 @@ namespace SurfBase
     
     public partial class Hour
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Hour()
-        {
-            this.RentalHistories = new HashSet<RentalHistory>();
-        }
-    
         public int Id { get; set; }
     
         public virtual Day Day { get; set; }
         public virtual Client Client { get; set; }
         public virtual Rental Rental { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RentalHistory> RentalHistories { get; set; }
     }
 }

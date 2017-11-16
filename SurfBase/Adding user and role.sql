@@ -3,3 +3,9 @@
 CREATE USER [User] FROM LOGIN [User]
 
 ALTER ROLE db_datareader ADD MEMBER [User]
+
+CREATE LOGIN [Doma] WITH PASSWORD = 'Surfbase00'
+
+CREATE USER [Doma] FROM LOGIN [Doma]
+
+ALTER ROLE db_owner ADD MEMBER [Doma]

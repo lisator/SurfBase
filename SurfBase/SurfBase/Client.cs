@@ -20,13 +20,14 @@ namespace SurfBase
             this.Schools = new HashSet<School>();
             this.Trainers = new HashSet<Trainer>();
             this.Hours = new HashSet<Hour>();
-            this.RentalHistories = new HashSet<RentalHistory>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Last_Name { get; set; }
         public int Age { get; set; }
+        public Nullable<int> Last_Board_Id { get; set; }
+        public Nullable<int> Last_Sail_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<School> Schools { get; set; }
@@ -35,7 +36,5 @@ namespace SurfBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hour> Hours { get; set; }
         public virtual Rental Rental { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RentalHistory> RentalHistories { get; set; }
     }
 }

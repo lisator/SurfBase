@@ -60,16 +60,6 @@
     </TypeIdentifier>
     <Lollipop Orientation="Bottom" Position="0.1" />
   </Class>
-  <Class Name="SurfBase.Schedule">
-    <Position X="8.75" Y="4.75" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAACAAAAAQAAAAAAAAAA=</HashCode>
-      <FileName>Schedule.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Days" />
-    </ShowAsCollectionAssociation>
-  </Class>
   <Class Name="SurfBase.Board">
     <Position X="11.75" Y="4" Width="2.25" />
     <TypeIdentifier>
@@ -166,8 +156,8 @@
     <Position X="23.25" Y="2" Width="1.5" />
     <InheritanceLine Type="SurfBase.Equipment" ManuallyRouted="true" FixedFromPoint="true">
       <Path>
-        <Point X="21" Y="4.897" />
-        <Point X="22.286" Y="4.897" />
+        <Point X="21" Y="4.816" />
+        <Point X="22.286" Y="4.816" />
         <Point X="22.286" Y="2.809" />
         <Point X="23.25" Y="2.809" />
       </Path>
@@ -181,8 +171,8 @@
     <Position X="23.25" Y="6.25" Width="1.5" />
     <InheritanceLine Type="SurfBase.Equipment" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="21" Y="4.897" />
-        <Point X="22.365" Y="4.897" />
+        <Point X="21" Y="4.816" />
+        <Point X="22.365" Y="4.816" />
         <Point X="22.365" Y="7.062" />
         <Point X="23.25" Y="7.062" />
       </Path>
@@ -190,28 +180,6 @@
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>Wetsuit.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurfBase.WindHarness">
-    <Position X="25.75" Y="4.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>WindHarness.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="SurfBase.KiteHarness">
-    <Position X="25.75" Y="3" Width="1.5" />
-    <InheritanceLine Type="SurfBase.Harness" FixedFromPoint="true">
-      <Path>
-        <Point X="24.75" Y="4.625" />
-        <Point X="25.125" Y="4.625" />
-        <Point X="25.125" Y="3.499" />
-        <Point X="25.75" Y="3.499" />
-      </Path>
-    </InheritanceLine>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>KiteHarness.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Hour">
@@ -227,22 +195,12 @@
   <Class Name="SurfBase.Rental">
     <Position X="13.25" Y="9.25" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAIAAQAAAAAAIIAAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAACAAAAAAAAAAAAAAAIAAQAAAAAAAIAAAAAAAAAAAQ=</HashCode>
       <FileName>Rental.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Rig" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="SurfBase.RentalHistory">
-    <Position X="13.25" Y="12.75" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>RentalHistory.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="Rentals" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="SurfBase.School">
     <Position X="8.25" Y="1.75" Width="2.25" />
@@ -263,10 +221,10 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Client">
-    <Position X="5.5" Y="5.5" Width="2.25" />
+    <Position X="5.5" Y="6.75" Width="2.25" />
     <AssociationLine Name="Schools" Type="SurfBase.School" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="7.281" Y="5.5" />
+        <Point X="7.281" Y="6.75" />
         <Point X="7.281" Y="3.554" />
         <Point X="8.25" Y="3.554" />
       </Path>
@@ -276,18 +234,11 @@
     </AssociationLine>
     <AssociationLine Name="Trainers" Type="SurfBase.Trainer">
       <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.074" Y="0.036" />
+        <Position X="0.036" Y="0.074" />
       </MemberNameLabel>
     </AssociationLine>
-    <AssociationLine Name="Hours" Type="SurfBase.Hour" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="6.625" Y="7.824" />
-        <Point X="6.625" Y="11.188" />
-        <Point X="9" Y="11.188" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAQAAAAAEAAEAQCAAAAAAAAAABAAQAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAQBAAAAEAAEAQCAAAAAAAAAABAAQAIAAA=</HashCode>
       <FileName>Client.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>

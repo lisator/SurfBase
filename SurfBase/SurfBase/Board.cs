@@ -24,7 +24,7 @@ namespace SurfBase
         public Nullable<int> Length { get; set; }
         public int Volume { get; set; }
         public string Make { get; set; }
-        public bool Type { get; set; }
+        public string Type { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rig> Rigs { get; set; }
