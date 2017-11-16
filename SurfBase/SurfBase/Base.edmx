@@ -1,0 +1,1084 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Base.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BaseStoreContainer">
+    <EntitySet Name="Hangars" EntityType="Base.Store.Hangars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rigs" EntityType="Base.Store.Rigs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments" EntityType="Base.Store.Equipments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Boards" EntityType="Base.Store.Boards" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Sails" EntityType="Base.Store.Sails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Days" EntityType="Base.Store.Days" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Hours" EntityType="Base.Store.Hours" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Rentals" EntityType="Base.Store.Rentals" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Schools" EntityType="Base.Store.Schools" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Trainers" EntityType="Base.Store.Trainers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clients" EntityType="Base.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_Wetsuit" EntityType="Base.Store.Equipments_Wetsuit" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_Harness" EntityType="Base.Store.Equipments_Harness" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Equipments_Vest" EntityType="Base.Store.Equipments_Vest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientSchool" EntityType="Base.Store.ClientSchool" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ClientTrainer" EntityType="Base.Store.ClientTrainer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EquipmentRental" EntityType="Base.Store.EquipmentRental" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="EquipmentHangar" Association="Base.Store.EquipmentHangar">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Hangar" EntitySet="Hangars" />
+    </AssociationSet>
+    <AssociationSet Name="BoardRig" Association="Base.Store.BoardRig">
+      <End Role="Board" EntitySet="Boards" />
+      <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="SailRig" Association="Base.Store.SailRig">
+      <End Role="Sail" EntitySet="Sails" />
+      <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="DayHour" Association="Base.Store.DayHour">
+      <End Role="Day" EntitySet="Days" />
+      <End Role="Hour" EntitySet="Hours" />
+    </AssociationSet>
+    <AssociationSet Name="RentalRig" Association="Base.Store.RentalRig">
+      <End Role="Rental" EntitySet="Rentals" />
+      <End Role="Rig" EntitySet="Rigs" />
+    </AssociationSet>
+    <AssociationSet Name="HangarSail" Association="Base.Store.HangarSail">
+      <End Role="Hangar" EntitySet="Hangars" />
+      <End Role="Sail" EntitySet="Sails" />
+    </AssociationSet>
+    <AssociationSet Name="HangarBoard" Association="Base.Store.HangarBoard">
+      <End Role="Hangar" EntitySet="Hangars" />
+      <End Role="Board" EntitySet="Boards" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolHangar" Association="Base.Store.SchoolHangar">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Hangar" EntitySet="Hangars" />
+    </AssociationSet>
+    <AssociationSet Name="SchoolTrainer" Association="Base.Store.SchoolTrainer">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="Trainer" EntitySet="Trainers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientSchool_Client" Association="Base.Store.FK_ClientSchool_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="ClientSchool" EntitySet="ClientSchool" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientSchool_School" Association="Base.Store.FK_ClientSchool_School">
+      <End Role="School" EntitySet="Schools" />
+      <End Role="ClientSchool" EntitySet="ClientSchool" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientTrainer_Client" Association="Base.Store.FK_ClientTrainer_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="ClientTrainer" EntitySet="ClientTrainer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientTrainer_Trainer" Association="Base.Store.FK_ClientTrainer_Trainer">
+      <End Role="Trainer" EntitySet="Trainers" />
+      <End Role="ClientTrainer" EntitySet="ClientTrainer" />
+    </AssociationSet>
+    <AssociationSet Name="ClientHour" Association="Base.Store.ClientHour">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Hour" EntitySet="Hours" />
+    </AssociationSet>
+    <AssociationSet Name="RentalHour" Association="Base.Store.RentalHour">
+      <End Role="Rental" EntitySet="Rentals" />
+      <End Role="Hour" EntitySet="Hours" />
+    </AssociationSet>
+    <AssociationSet Name="RentalClient" Association="Base.Store.RentalClient">
+      <End Role="Rental" EntitySet="Rentals" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EquipmentRental_Equipment" Association="Base.Store.FK_EquipmentRental_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="EquipmentRental" EntitySet="EquipmentRental" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EquipmentRental_Rental" Association="Base.Store.FK_EquipmentRental_Rental">
+      <End Role="Rental" EntitySet="Rentals" />
+      <End Role="EquipmentRental" EntitySet="EquipmentRental" />
+    </AssociationSet>
+    <AssociationSet Name="TrainerDay" Association="Base.Store.TrainerDay">
+      <End Role="Trainer" EntitySet="Trainers" />
+      <End Role="Day" EntitySet="Days" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Wetsuit_inherits_Equipment" Association="Base.Store.FK_Wetsuit_inherits_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Wetsuit" EntitySet="Equipments_Wetsuit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Harness_inherits_Equipment" Association="Base.Store.FK_Harness_inherits_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Harness" EntitySet="Equipments_Harness" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vest_inherits_Equipment" Association="Base.Store.FK_Vest_inherits_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Vest" EntitySet="Equipments_Vest" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Hangars">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="School_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rigs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Board_Id" Type="int" Nullable="false" />
+    <Property Name="Sail_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Equipments">
+    <Key>
+      <PropertyRef Name="Eq_Id" />
+    </Key>
+    <Property Name="Eq_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Hangar_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Boards">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Length" Type="int" Nullable="true" />
+    <Property Name="Volume" Type="int" Nullable="false" />
+    <Property Name="Make" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hangar_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="int" Nullable="false" />
+    <Property Name="Make" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Hangar_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Days">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="Week_day" Type="datetime" Nullable="false" />
+    <Property Name="Trainer_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hours">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Day_Id" Type="int" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Rentals">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rig_Id" Type="int" Nullable="false" />
+    <Property Name="Hour_Id" Type="int" Nullable="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Schools">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Trainers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Last_Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Nickname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="School_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Last_Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Last_Board_Id" Type="int" StoreGeneratedPattern="Computed" Nullable="true" />
+    <Property Name="Last_Sail_Id" Type="int" StoreGeneratedPattern="Computed" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Equipments_Wetsuit">
+    <Key>
+      <PropertyRef Name="Eq_Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Eq_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipments_Harness">
+    <Key>
+      <PropertyRef Name="Eq_Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="nchar" Nullable="true" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Eq_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipments_Vest">
+    <Key>
+      <PropertyRef Name="Eq_Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Size" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Buoyancy" Type="int" Nullable="true" />
+    <Property Name="Eq_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientSchool">
+    <Key>
+      <PropertyRef Name="Clients_Id" />
+      <PropertyRef Name="Schools_Id" />
+    </Key>
+    <Property Name="Clients_Id" Type="int" Nullable="false" />
+    <Property Name="Schools_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClientTrainer">
+    <Key>
+      <PropertyRef Name="Clients_Id" />
+      <PropertyRef Name="Trainers_Id" />
+    </Key>
+    <Property Name="Clients_Id" Type="int" Nullable="false" />
+    <Property Name="Trainers_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EquipmentRental">
+    <Key>
+      <PropertyRef Name="Equipment_Eq_Id" />
+      <PropertyRef Name="Rentals_Id" />
+    </Key>
+    <Property Name="Equipment_Eq_Id" Type="int" Nullable="false" />
+    <Property Name="Rentals_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="EquipmentHangar">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="*" />
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Hangar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Equipment">
+        <PropertyRef Name="Hangar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BoardRig">
+    <End Role="Board" Type="Base.Store.Boards" Multiplicity="1" />
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Board">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rig">
+        <PropertyRef Name="Board_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SailRig">
+    <End Role="Sail" Type="Base.Store.Sails" Multiplicity="0..1" />
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rig">
+        <PropertyRef Name="Sail_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DayHour">
+    <End Role="Day" Type="Base.Store.Days" Multiplicity="1" />
+    <End Role="Hour" Type="Base.Store.Hours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Day">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hour">
+        <PropertyRef Name="Day_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RentalRig">
+    <End Role="Rental" Type="Base.Store.Rentals" Multiplicity="*" />
+    <End Role="Rig" Type="Base.Store.Rigs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Rig">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="Rig_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HangarSail">
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
+    <End Role="Sail" Type="Base.Store.Sails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hangar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sail">
+        <PropertyRef Name="Hangar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HangarBoard">
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="1" />
+    <End Role="Board" Type="Base.Store.Boards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hangar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Board">
+        <PropertyRef Name="Hangar_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolHangar">
+    <End Role="School" Type="Base.Store.Schools" Multiplicity="1" />
+    <End Role="Hangar" Type="Base.Store.Hangars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hangar">
+        <PropertyRef Name="School_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SchoolTrainer">
+    <End Role="School" Type="Base.Store.Schools" Multiplicity="1" />
+    <End Role="Trainer" Type="Base.Store.Trainers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Trainer">
+        <PropertyRef Name="School_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ClientHour">
+    <End Role="Client" Type="Base.Store.Clients" Multiplicity="0..1" />
+    <End Role="Hour" Type="Base.Store.Hours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Hour">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RentalHour">
+    <End Role="Rental" Type="Base.Store.Rentals" Multiplicity="*" />
+    <End Role="Hour" Type="Base.Store.Hours" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Hour">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="Hour_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RentalClient">
+    <End Role="Rental" Type="Base.Store.Rentals" Multiplicity="*" />
+    <End Role="Client" Type="Base.Store.Clients" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TrainerDay">
+    <End Role="Trainer" Type="Base.Store.Trainers" Multiplicity="1" />
+    <End Role="Day" Type="Base.Store.Days" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Day">
+        <PropertyRef Name="Trainer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientSchool_Client">
+    <End Role="Client" Type="Base.Store.Clients" Multiplicity="1" />
+    <End Role="ClientSchool" Type="Base.Store.ClientSchool" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientSchool">
+        <PropertyRef Name="Clients_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientSchool_School">
+    <End Role="ClientSchool" Type="Base.Store.ClientSchool" Multiplicity="*" />
+    <End Role="School" Type="Base.Store.Schools" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientSchool">
+        <PropertyRef Name="Schools_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientTrainer_Client">
+    <End Role="Client" Type="Base.Store.Clients" Multiplicity="1" />
+    <End Role="ClientTrainer" Type="Base.Store.ClientTrainer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientTrainer">
+        <PropertyRef Name="Clients_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientTrainer_Trainer">
+    <End Role="ClientTrainer" Type="Base.Store.ClientTrainer" Multiplicity="*" />
+    <End Role="Trainer" Type="Base.Store.Trainers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Trainer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ClientTrainer">
+        <PropertyRef Name="Trainers_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EquipmentRental_Equipment">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1" />
+    <End Role="EquipmentRental" Type="Base.Store.EquipmentRental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Eq_Id" />
+      </Principal>
+      <Dependent Role="EquipmentRental">
+        <PropertyRef Name="Equipment_Eq_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EquipmentRental_Rental">
+    <End Role="EquipmentRental" Type="Base.Store.EquipmentRental" Multiplicity="*" />
+    <End Role="Rental" Type="Base.Store.Rentals" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Rental">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EquipmentRental">
+        <PropertyRef Name="Rentals_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Wetsuit_inherits_Equipment">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Wetsuit" Type="Base.Store.Equipments_Wetsuit" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Eq_Id" />
+      </Principal>
+      <Dependent Role="Wetsuit">
+        <PropertyRef Name="Eq_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Harness_inherits_Equipment">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Harness" Type="Base.Store.Equipments_Harness" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Eq_Id" />
+      </Principal>
+      <Dependent Role="Harness">
+        <PropertyRef Name="Eq_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vest_inherits_Equipment">
+    <End Role="Equipment" Type="Base.Store.Equipments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Vest" Type="Base.Store.Equipments_Vest" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="Eq_Id" />
+      </Principal>
+      <Dependent Role="Vest">
+        <PropertyRef Name="Eq_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Base" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="BaseContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Hangars" EntityType="Base.Hangar" />
+          <EntitySet Name="Rigs" EntityType="Base.Rig" />
+          <EntitySet Name="Equipments" EntityType="Base.Equipment" />
+          <AssociationSet Name="EquipmentHangar" Association="Base.EquipmentHangar">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="Hangar" EntitySet="Hangars" />
+          </AssociationSet>
+          <EntitySet Name="Boards" EntityType="Base.Board" />
+          <EntitySet Name="Sails" EntityType="Base.Sail" />
+          <AssociationSet Name="BoardRig" Association="Base.BoardRig">
+            <End Role="Board" EntitySet="Boards" />
+            <End Role="Rig" EntitySet="Rigs" />
+          </AssociationSet>
+          <AssociationSet Name="SailRig" Association="Base.SailRig">
+            <End Role="Sail" EntitySet="Sails" />
+            <End Role="Rig" EntitySet="Rigs" />
+          </AssociationSet>
+          <EntitySet Name="Days" EntityType="Base.Day" />
+          <EntitySet Name="Hours" EntityType="Base.Hour" />
+          <AssociationSet Name="DayHour" Association="Base.DayHour">
+            <End Role="Day" EntitySet="Days" />
+            <End Role="Hour" EntitySet="Hours" />
+          </AssociationSet>
+          <EntitySet Name="Rentals" EntityType="Base.Rental" />
+          <AssociationSet Name="RentalRig" Association="Base.RentalRig">
+            <End Role="Rental" EntitySet="Rentals" />
+            <End Role="Rig" EntitySet="Rigs" />
+          </AssociationSet>
+          <AssociationSet Name="HangarSail" Association="Base.HangarSail">
+            <End Role="Hangar" EntitySet="Hangars" />
+            <End Role="Sail" EntitySet="Sails" />
+          </AssociationSet>
+          <AssociationSet Name="HangarBoard" Association="Base.HangarBoard">
+            <End Role="Hangar" EntitySet="Hangars" />
+            <End Role="Board" EntitySet="Boards" />
+          </AssociationSet>
+          <EntitySet Name="Schools" EntityType="Base.School" />
+          <AssociationSet Name="SchoolHangar" Association="Base.SchoolHangar">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Hangar" EntitySet="Hangars" />
+          </AssociationSet>
+          <EntitySet Name="Trainers" EntityType="Base.Trainer" />
+          <AssociationSet Name="SchoolTrainer" Association="Base.SchoolTrainer">
+            <End Role="School" EntitySet="Schools" />
+            <End Role="Trainer" EntitySet="Trainers" />
+          </AssociationSet>
+          <EntitySet Name="Clients" EntityType="Base.Client" />
+          <AssociationSet Name="ClientSchool" Association="Base.ClientSchool">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="School" EntitySet="Schools" />
+          </AssociationSet>
+          <AssociationSet Name="ClientTrainer" Association="Base.ClientTrainer">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Trainer" EntitySet="Trainers" />
+          </AssociationSet>
+          <AssociationSet Name="ClientHour" Association="Base.ClientHour">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Hour" EntitySet="Hours" />
+          </AssociationSet>
+          <AssociationSet Name="RentalHour" Association="Base.RentalHour">
+            <End Role="Rental" EntitySet="Rentals" />
+            <End Role="Hour" EntitySet="Hours" />
+          </AssociationSet>
+          <AssociationSet Name="RentalClient" Association="Base.RentalClient">
+            <End Role="Rental" EntitySet="Rentals" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentRental" Association="Base.EquipmentRental">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="Rental" EntitySet="Rentals" />
+          </AssociationSet>
+          <AssociationSet Name="TrainerDay" Association="Base.TrainerDay">
+            <End Role="Trainer" EntitySet="Trainers" />
+            <End Role="Day" EntitySet="Days" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Hangar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Equipment" Relationship="Base.EquipmentHangar" FromRole="Hangar" ToRole="Equipment" />
+          <NavigationProperty Name="Sails" Relationship="Base.HangarSail" FromRole="Hangar" ToRole="Sail" />
+          <NavigationProperty Name="Boards" Relationship="Base.HangarBoard" FromRole="Hangar" ToRole="Board" />
+          <NavigationProperty Name="School" Relationship="Base.SchoolHangar" FromRole="Hangar" ToRole="School" />
+          <Property Name="Name" Type="String" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Rig">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Board" Relationship="Base.BoardRig" FromRole="Rig" ToRole="Board" />
+          <NavigationProperty Name="Sail" Relationship="Base.SailRig" FromRole="Rig" ToRole="Sail" />
+          <NavigationProperty Name="Rental" Relationship="Base.RentalRig" FromRole="Rig" ToRole="Rental" />
+        </EntityType>
+        <EntityType Name="Sail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rigs" Relationship="Base.SailRig" FromRole="Sail" ToRole="Rig" />
+          <Property Name="Make" Type="String" Nullable="true" />
+          <NavigationProperty Name="Hangar" Relationship="Base.HangarSail" FromRole="Sail" ToRole="Hangar" />
+        </EntityType>
+        <EntityType Name="Board">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Length" Type="Int32" Nullable="true" />
+          <Property Name="Volume" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Rigs" Relationship="Base.BoardRig" FromRole="Board" ToRole="Rig" />
+          <Property Name="Make" Type="String" Nullable="true" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <NavigationProperty Name="Hangar" Relationship="Base.HangarBoard" FromRole="Board" ToRole="Hangar" />
+        </EntityType>
+        <EntityType Name="Wetsuit" BaseType="Base.Equipment">
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="Eq_Id" />
+          </Key>
+          <Property Name="Eq_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Hangar" Relationship="Base.EquipmentHangar" FromRole="Equipment" ToRole="Hangar" />
+          <NavigationProperty Name="Rentals" Relationship="Base.EquipmentRental" FromRole="Equipment" ToRole="Rental" />
+        </EntityType>
+        <EntityType Name="Harness" BaseType="Base.Equipment">
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="String" Nullable="true" FixedLength="true" />
+          <Property Name="Type" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" ConcurrencyMode="None" />
+        </EntityType>
+        <EntityType Name="Vest" BaseType="Base.Equipment">
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Size" Type="String" Nullable="false" />
+          <Property Name="Buoyancy" Type="Int32" Nullable="true" />
+        </EntityType>
+        <Association Name="EquipmentHangar">
+          <End Type="Base.Equipment" Role="Equipment" Multiplicity="*" />
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
+        </Association>
+        <Association Name="BoardRig">
+          <End Type="Base.Board" Role="Board" Multiplicity="1" />
+          <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
+        </Association>
+        <Association Name="SailRig">
+          <End Type="Base.Sail" Role="Sail" Multiplicity="0..1" />
+          <End Type="Base.Rig" Role="Rig" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Day">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Week_day" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Hours" Relationship="Base.DayHour" FromRole="Day" ToRole="Hour" />
+          <NavigationProperty Name="Trainer" Relationship="Base.TrainerDay" FromRole="Day" ToRole="Trainer" />
+        </EntityType>
+        <EntityType Name="Hour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Day" Relationship="Base.DayHour" FromRole="Hour" ToRole="Day" />
+          <NavigationProperty Name="Client" Relationship="Base.ClientHour" FromRole="Hour" ToRole="Client" />
+          <NavigationProperty Name="Rental" Relationship="Base.RentalHour" FromRole="Hour" ToRole="Rental" />
+        </EntityType>
+        <Association Name="DayHour">
+          <End Type="Base.Day" Role="Day" Multiplicity="1" />
+          <End Type="Base.Hour" Role="Hour" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Rental">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Rig" Relationship="Base.RentalRig" FromRole="Rental" ToRole="Rig" />
+          <NavigationProperty Name="Hour" Relationship="Base.RentalHour" FromRole="Rental" ToRole="Hour" />
+          <NavigationProperty Name="Client" Relationship="Base.RentalClient" FromRole="Rental" ToRole="Client" />
+          <NavigationProperty Name="Equipment" Relationship="Base.EquipmentRental" FromRole="Rental" ToRole="Equipment" />
+        </EntityType>
+        <Association Name="RentalRig">
+          <End Type="Base.Rental" Role="Rental" Multiplicity="1" />
+          <End Type="Base.Rig" Role="Rig" Multiplicity="1" />
+        </Association>
+        <Association Name="HangarSail">
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
+          <End Type="Base.Sail" Role="Sail" Multiplicity="*" />
+        </Association>
+        <Association Name="HangarBoard">
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="1" />
+          <End Type="Base.Board" Role="Board" Multiplicity="*" />
+        </Association>
+        <EntityType Name="School">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Hangars" Relationship="Base.SchoolHangar" FromRole="School" ToRole="Hangar" />
+          <NavigationProperty Name="Trainers" Relationship="Base.SchoolTrainer" FromRole="School" ToRole="Trainer" />
+          <NavigationProperty Name="Clients" Relationship="Base.ClientSchool" FromRole="School" ToRole="Client" />
+          <Property Name="Name" Type="String" Nullable="true" />
+        </EntityType>
+        <Association Name="SchoolHangar">
+          <End Type="Base.School" Role="School" Multiplicity="1" />
+          <End Type="Base.Hangar" Role="Hangar" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Trainer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="School" Relationship="Base.SchoolTrainer" FromRole="Trainer" ToRole="School" />
+          <NavigationProperty Name="Clients" Relationship="Base.ClientTrainer" FromRole="Trainer" ToRole="Client" />
+          <NavigationProperty Name="Days" Relationship="Base.TrainerDay" FromRole="Trainer" ToRole="Day" />
+          <Property Name="Name" Type="String" Nullable="true" />
+          <Property Name="Last_Name" Type="String" Nullable="true" />
+          <Property Name="Nickname" Type="String" Nullable="true" />
+        </EntityType>
+        <Association Name="SchoolTrainer">
+          <End Type="Base.School" Role="School" Multiplicity="1" />
+          <End Type="Base.Trainer" Role="Trainer" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Last_Name" Type="String" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Schools" Relationship="Base.ClientSchool" FromRole="Client" ToRole="School" />
+          <NavigationProperty Name="Trainers" Relationship="Base.ClientTrainer" FromRole="Client" ToRole="Trainer" />
+          <NavigationProperty Name="Hours" Relationship="Base.ClientHour" FromRole="Client" ToRole="Hour" />
+          <NavigationProperty Name="Rental" Relationship="Base.RentalClient" FromRole="Client" ToRole="Rental" />
+          <Property Name="Last_Board_Id" Type="Int32" Nullable="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Last_Sail_Id" Type="Int32" Nullable="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="ClientSchool">
+          <End Type="Base.Client" Role="Client" Multiplicity="*" />
+          <End Type="Base.School" Role="School" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientTrainer">
+          <End Type="Base.Client" Role="Client" Multiplicity="*" />
+          <End Type="Base.Trainer" Role="Trainer" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientHour">
+          <End Type="Base.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="Base.Hour" Role="Hour" Multiplicity="*" />
+        </Association>
+        <Association Name="RentalHour">
+          <End Type="Base.Rental" Role="Rental" Multiplicity="1" />
+          <End Type="Base.Hour" Role="Hour" Multiplicity="1" />
+        </Association>
+        <Association Name="RentalClient">
+          <End Type="Base.Rental" Role="Rental" Multiplicity="1" />
+          <End Type="Base.Client" Role="Client" Multiplicity="1" />
+        </Association>
+        <Association Name="EquipmentRental">
+          <End Type="Base.Equipment" Role="Equipment" Multiplicity="*" />
+          <End Type="Base.Rental" Role="Rental" Multiplicity="*" />
+        </Association>
+        <Association Name="TrainerDay">
+          <End Type="Base.Trainer" Role="Trainer" Multiplicity="1" />
+          <End Type="Base.Day" Role="Day" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BaseStoreContainer" CdmEntityContainer="BaseContainer">
+    <EntitySetMapping Name="Hangars">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Hangar)">
+        <MappingFragment StoreEntitySet="Hangars">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rigs">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Rig)">
+        <MappingFragment StoreEntitySet="Rigs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipments">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Equipment)">
+        <MappingFragment StoreEntitySet="Equipments">
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Wetsuit)">
+        <MappingFragment StoreEntitySet="Equipments_Wetsuit">
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Harness)">
+        <MappingFragment StoreEntitySet="Equipments_Harness">
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Vest)">
+        <MappingFragment StoreEntitySet="Equipments_Vest">
+          <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Buoyancy" ColumnName="Buoyancy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Boards">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Board)">
+        <MappingFragment StoreEntitySet="Boards">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Length" ColumnName="Length" />
+          <ScalarProperty Name="Volume" ColumnName="Volume" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sails">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Sail)">
+        <MappingFragment StoreEntitySet="Sails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Days">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Day)">
+        <MappingFragment StoreEntitySet="Days">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Week_day" ColumnName="Week_day" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hours">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Hour)">
+        <MappingFragment StoreEntitySet="Hours">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rentals">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Rental)">
+        <MappingFragment StoreEntitySet="Rentals">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schools">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.School)">
+        <MappingFragment StoreEntitySet="Schools">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Trainers">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Trainer)">
+        <MappingFragment StoreEntitySet="Trainers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(Base.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Last_Board_Id" ColumnName="Last_Board_Id" />
+          <ScalarProperty Name="Last_Sail_Id" ColumnName="Last_Sail_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EquipmentHangar" TypeName="Base.EquipmentHangar" StoreEntitySet="Equipments">
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Id" ColumnName="Hangar_Id" />
+      </EndProperty>
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Eq_Id" ColumnName="Eq_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="BoardRig" TypeName="Base.BoardRig" StoreEntitySet="Rigs">
+      <EndProperty Name="Board">
+        <ScalarProperty Name="Id" ColumnName="Board_Id" />
+      </EndProperty>
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SailRig" TypeName="Base.SailRig" StoreEntitySet="Rigs">
+      <EndProperty Name="Sail">
+        <ScalarProperty Name="Id" ColumnName="Sail_Id" />
+      </EndProperty>
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Sail_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DayHour" TypeName="Base.DayHour" StoreEntitySet="Hours">
+      <EndProperty Name="Day">
+        <ScalarProperty Name="Id" ColumnName="Day_Id" />
+      </EndProperty>
+      <EndProperty Name="Hour">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RentalRig" TypeName="Base.RentalRig" StoreEntitySet="Rentals">
+      <EndProperty Name="Rig">
+        <ScalarProperty Name="Id" ColumnName="Rig_Id" />
+      </EndProperty>
+      <EndProperty Name="Rental">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HangarSail" TypeName="Base.HangarSail" StoreEntitySet="Sails">
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Id" ColumnName="Hangar_Id" />
+      </EndProperty>
+      <EndProperty Name="Sail">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="HangarBoard" TypeName="Base.HangarBoard" StoreEntitySet="Boards">
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Id" ColumnName="Hangar_Id" />
+      </EndProperty>
+      <EndProperty Name="Board">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SchoolHangar" TypeName="Base.SchoolHangar" StoreEntitySet="Hangars">
+      <EndProperty Name="School">
+        <ScalarProperty Name="Id" ColumnName="School_Id" />
+      </EndProperty>
+      <EndProperty Name="Hangar">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SchoolTrainer" TypeName="Base.SchoolTrainer" StoreEntitySet="Trainers">
+      <EndProperty Name="School">
+        <ScalarProperty Name="Id" ColumnName="School_Id" />
+      </EndProperty>
+      <EndProperty Name="Trainer">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientSchool" TypeName="Base.ClientSchool" StoreEntitySet="ClientSchool">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Clients_Id" />
+      </EndProperty>
+      <EndProperty Name="School">
+        <ScalarProperty Name="Id" ColumnName="Schools_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientTrainer" TypeName="Base.ClientTrainer" StoreEntitySet="ClientTrainer">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Clients_Id" />
+      </EndProperty>
+      <EndProperty Name="Trainer">
+        <ScalarProperty Name="Id" ColumnName="Trainers_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ClientHour" TypeName="Base.ClientHour" StoreEntitySet="Hours">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Hour">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Client_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RentalHour" TypeName="Base.RentalHour" StoreEntitySet="Rentals">
+      <EndProperty Name="Hour">
+        <ScalarProperty Name="Id" ColumnName="Hour_Id" />
+      </EndProperty>
+      <EndProperty Name="Rental">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="RentalClient" TypeName="Base.RentalClient" StoreEntitySet="Rentals">
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="Rental">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EquipmentRental" TypeName="Base.EquipmentRental" StoreEntitySet="EquipmentRental">
+      <EndProperty Name="Equipment">
+        <ScalarProperty Name="Eq_Id" ColumnName="Equipment_Eq_Id" />
+      </EndProperty>
+      <EndProperty Name="Rental">
+        <ScalarProperty Name="Id" ColumnName="Rentals_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TrainerDay" TypeName="Base.TrainerDay" StoreEntitySet="Days">
+      <EndProperty Name="Trainer">
+        <ScalarProperty Name="Id" ColumnName="Trainer_Id" />
+      </EndProperty>
+      <EndProperty Name="Day">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
