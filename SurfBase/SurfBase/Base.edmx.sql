@@ -181,7 +181,7 @@ GO
 -- Creating table 'Sails'
 CREATE TABLE [dbo].[Sails] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Size] int  NOT NULL,
+    [Size] float  NOT NULL,
     [Make] nvarchar(max)  NULL,
     [Hangar_Id] int  NOT NULL
 );
@@ -190,7 +190,7 @@ GO
 -- Creating table 'Days'
 CREATE TABLE [dbo].[Days] (
     [Id] int  NOT NULL,
-    [Week_day] datetime  NOT NULL,
+    [Week_day] int  NOT NULL,
     [Trainer_Id] int  NOT NULL
 );
 GO
@@ -252,7 +252,7 @@ GO
 -- Creating table 'Equipments_Harness'
 CREATE TABLE [dbo].[Equipments_Harness] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Size] nchar(4000)  NULL,
+    [Size] nvarchar(4000)  NULL,
     [Type] nvarchar(max)  NOT NULL,
     [Eq_Id] int  NOT NULL
 );

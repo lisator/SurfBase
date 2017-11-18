@@ -14,5 +14,6 @@ namespace SurfBase
             {
             }
         }
+        MainWindow MainWindow { get; set; }
     }
 }

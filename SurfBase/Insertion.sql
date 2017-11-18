@@ -31,9 +31,15 @@ insert into Equipments values
 (scope_identity())--last identity used in a scope
 -----------------------------
 
+--Multiple tables constraints
+--https://stackoverflow.com/questions/2588072/how-do-i-create-a-multiple-table-check-constraint
+
 
 --On delete actions:
 --https://www.techonthenet.com/sql_server/foreign_keys/foreign_delete.php
+
+--Getting table from SQL server:
+--https://stackoverflow.com/questions/6073382/read-sql-table-into-c-sharp-datatable
 
 
 

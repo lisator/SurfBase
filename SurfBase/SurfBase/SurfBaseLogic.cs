@@ -14,13 +14,5 @@ namespace SurfBase
         }
 
         public System.Collections.Generic.ICollection<SurfBase.User> User { get; set; }
-
-        public School School
-        {
-            get => default(School);
-            set
-            {
-            }
-        }
     }
 }

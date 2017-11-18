@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SurfBase
 {
-    public interface IAdminInterface
+    public class UpdateSQL
     {
     }
 }
