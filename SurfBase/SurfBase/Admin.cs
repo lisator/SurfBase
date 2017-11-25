@@ -5,8 +5,13 @@ using System.Text;
 
 namespace SurfBase
 {
-    public class Admin : User, IAdminInterface, ISQLInterface
+    public class Admin : User, ISQLGetLInterface, ISQLManageInterface, ISQLUpdateInterface
     {
+        public Admin()
+        {
+            throw new System.NotImplementedException();
+        }
+
         internal CheckValidity CheckValidity
         {
             get => default(CheckValidity);

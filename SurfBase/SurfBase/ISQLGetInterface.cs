@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace SurfBase
 {
-    public interface ISQLInterface
+    public interface ISQLGetLInterface
     {
         SqlDataAdapter GetSchools();
     }

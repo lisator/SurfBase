@@ -1,36 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Comment CommentText="Rental is also used for lessons (rig is rented for the lesson)">
-    <Position X="4.093" Y="2.9" Height="0.844" Width="1.7" />
+    <Position X="0.5" Y="1.325" Height="0.844" Width="1.7" />
   </Comment>
   <Comment CommentText="&quot;Null Trainer&quot; will have rentals assigned">
-    <Position X="4.082" Y="2.105" Height="0.75" Width="1.7" />
+    <Position X="0.511" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
   <Class Name="SurfBase.SurfBaseLogic">
-    <Position X="2.5" Y="0.5" Width="2.25" />
+    <Position X="3.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SurfBaseLogic.cs</FileName>
     </TypeIdentifier>
-    <ShowAsCollectionAssociation>
-      <Property Name="User" />
-    </ShowAsCollectionAssociation>
+    <ShowAsAssociation>
+      <Property Name="ActiveUser" />
+    </ShowAsAssociation>
   </Class>
   <Class Name="SurfBase.User">
-    <Position X="2.75" Y="5" Width="1.5" />
+    <Position X="2.75" Y="2.75" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>QCAAAAAAAAAAAgAAAAAAAAQAAAAAAAAAACAAAAAAAAA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Admin">
-    <Position X="1.5" Y="7.25" Width="2.25" />
+    <Position X="1.75" Y="5.5" Width="2.25" />
     <InheritanceLine Type="SurfBase.User" ManuallyRouted="true" FixedToPoint="true">
       <Path>
-        <Point X="3.5" Y="6.295" />
-        <Point X="3.5" Y="7.126" />
-        <Point X="2.75" Y="7.126" />
-        <Point X="2.75" Y="7.25" />
+        <Point X="4.375" Y="4.623" />
+        <Point X="4.375" Y="5.125" />
+        <Point X="3" Y="5.125" />
+        <Point X="3" Y="5.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -43,14 +43,14 @@
     <Lollipop Orientation="Left" Position="0.295" />
   </Class>
   <Class Name="SurfBase.CheckValidity">
-    <Position X="3" Y="9.5" Width="1.5" />
+    <Position X="3.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CheckValidity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Employee">
-    <Position X="4" Y="7.25" Width="1.5" />
+    <Position X="5" Y="5.5" Width="1.5" />
     <AssociationLine Name="CheckValidity" Type="SurfBase.CheckValidity">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-1.166" Y="0.082" />
@@ -65,18 +65,25 @@
     </ShowAsAssociation>
     <Lollipop Orientation="Right" Position="0.309" />
   </Class>
-  <Interface Name="SurfBase.IAdminInterface">
-    <Position X="6" Y="0.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IAdminInterface.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="SurfBase.ISQLInterface">
-    <Position X="8.5" Y="0.5" Width="1.5" />
+  <Interface Name="SurfBase.ISQLGetLInterface">
+    <Position X="9.5" Y="0.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>ISQLInterface.cs</FileName>
+      <FileName>ISQLGetInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurfBase.ISQLUpdateInterface">
+    <Position X="9.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ISQLUpdateInterface.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SurfBase.ISQLManageInterface">
+    <Position X="9.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>ISQLManageInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

@@ -7,12 +7,11 @@ namespace SurfBase
 {
     public class SurfBaseLogic
     {
-
         public SurfBaseLogic()
         {
             throw new System.NotImplementedException();
         }
 
-        public System.Collections.Generic.ICollection<SurfBase.User> User { get; set; }
+        private User ActiveUser { get; set; }
     }
 }

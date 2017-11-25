@@ -7,8 +7,13 @@ using System.Data.SqlClient;
 
 namespace SurfBase
 {
-    public class Employee : User, ISQLInterface
+    public class Employee : User, ISQLGetLInterface, ISQLUpdateInterface
     {
+        public Employee()
+        {
+            throw new System.NotImplementedException();
+        }
+
         internal CheckValidity CheckValidity
         {
             get => default(CheckValidity);

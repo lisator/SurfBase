@@ -7,5 +7,9 @@ namespace SurfBase
 {
     internal class CheckValidity
     {
+        public CheckValidity()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
