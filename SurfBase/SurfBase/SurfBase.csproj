@@ -208,16 +208,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Adding user and role.sql">
-      <Link>SQL Querries\Adding user and role.sql</Link>
-    </Content>
-    <Content Include="..\Insertion.sql">
-      <Link>SQL Querries\Insertion.sql</Link>
-    </Content>
-    <Content Include="..\Population.sql">
-      <Link>SQL Querries\Population.sql</Link>
-    </Content>
     <Content Include="Base.edmx.sql" />
+    <Content Include="SQL Querries\Adding user and role.sql" />
+    <Content Include="SQL Querries\Insertion.sql" />
+    <Content Include="SQL Querries\Population.sql" />
+    <Resource Include="Database Diagram.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
