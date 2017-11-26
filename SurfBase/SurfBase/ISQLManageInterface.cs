@@ -9,5 +9,8 @@ namespace SurfBase
     public interface ISQLManageInterface
     {
         void AddSchool();
+        void AddBoard();
+        void AddSail();
+        void AddRig();
     }
 }
