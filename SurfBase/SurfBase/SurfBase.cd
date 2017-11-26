@@ -68,21 +68,21 @@
   <Interface Name="SurfBase.ISQLGetLInterface">
     <Position X="9.5" Y="0.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AACAAAEAgAAAAAEAAAIAIAAAAAAAAAAAAAABAAAAABA=</HashCode>
       <FileName>ISQLGetInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLUpdateInterface">
-    <Position X="9.5" Y="3.25" Width="1.75" />
+    <Position X="10" Y="4.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIAAAIAAAAAAAAAAAAIAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>ISQLUpdateInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLManageInterface">
-    <Position X="9.5" Y="2" Width="1.75" />
+    <Position X="12.25" Y="2.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <HashCode>IAAAAAQAAAAAAAAAAAAAAAAAAAAAAAACAAAABAAAAAA=</HashCode>
       <FileName>ISQLManageInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>

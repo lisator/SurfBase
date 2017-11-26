@@ -8,5 +8,8 @@ namespace SurfBase
     public interface ISQLUpdateInterface
     {
         void AssignLesson();
+        void AssignBoard();
+        void AssignSail();
+        void AssignRig();
     }
 }
