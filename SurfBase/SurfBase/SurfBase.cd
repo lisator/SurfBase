@@ -6,6 +6,9 @@
   <Comment CommentText="&quot;Null Trainer&quot; will have rentals assigned">
     <Position X="0.511" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
+  <Comment CommentText="All assign methods will check first whether the operation is possible.&#xD;&#xA;Events will be used.">
+    <Position X="10.735" Y="3.746" Height="0.75" Width="1.7" />
+  </Comment>
   <Class Name="SurfBase.SurfBaseLogic">
     <Position X="3.25" Y="0.5" Width="2.25" />
     <TypeIdentifier>
@@ -66,23 +69,23 @@
     <Lollipop Orientation="Right" Position="0.309" />
   </Class>
   <Interface Name="SurfBase.ISQLGetLInterface">
-    <Position X="9.5" Y="0.75" Width="2.25" />
+    <Position X="8" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AACAAAEAgAAAAAEAAAIAIAAAAAAAAAAAAAABAAAAABA=</HashCode>
+      <HashCode>AICAAAEAgAAAAAEAAAIAIAAAAAAAAAAAAAABAAAAABA=</HashCode>
       <FileName>ISQLGetInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLUpdateInterface">
-    <Position X="10" Y="4.5" Width="1.75" />
+    <Position X="10.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAIAAAAAAAAAAAAIAAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>BAAAAAAAAIAAAIAAAAAAAAAQAAIAgAgAAAAAAAAAKEA=</HashCode>
       <FileName>ISQLUpdateInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLManageInterface">
-    <Position X="12.25" Y="2.5" Width="1.75" />
+    <Position X="13" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>IAAAAAQAAAAAAAAAAAAAAAAAAAAAAAACAAAABAAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAAAAAAAAACAAEAAAACAAIAACAAADBAAAAhA=</HashCode>
       <FileName>ISQLManageInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>

@@ -9,14 +9,16 @@ namespace SurfBase
 {
     public interface ISQLGetLInterface
     {
+        event EventHandler EmptyTable;
+
         SqlDataAdapter GetSchools();
-        void GetLastBoard();
-        void GetLastSail();
-        void GetLastRig();
-        void GetLastLesson();
-        void GetBoards();
-        void GetSails();
-        void GetRigs();
-        void GetLessons();
+        SqlDataAdapter GetLastBoard();
+        SqlDataAdapter GetLastSail();
+        SqlDataAdapter GetLastRig();
+        SqlDataAdapter GetLastLesson();
+        SqlDataAdapter GetBoards();
+        SqlDataAdapter GetSails();
+        SqlDataAdapter GetRigs();
+        SqlDataAdapter GetLessons();
     }
 }

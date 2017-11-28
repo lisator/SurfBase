@@ -7,9 +7,16 @@ namespace SurfBase
 { 
     public interface ISQLUpdateInterface
     {
+        event EventHandler NotAvailable;
+
         void AssignLesson();
         void AssignBoard();
         void AssignSail();
         void AssignRig();
+        void CancelLesson();
+        void AssignRental();
+        void AssignWetsuit();
+        void AssignAssignHarness();
+        void AssignVest();
     }
 }
