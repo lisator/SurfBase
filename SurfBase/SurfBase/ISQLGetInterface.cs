@@ -20,5 +20,6 @@ namespace SurfBase
         SqlDataAdapter GetSails();
         SqlDataAdapter GetRigs();
         SqlDataAdapter GetLessons();
+        void GetHangars();
     }
 }

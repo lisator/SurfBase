@@ -10,15 +10,17 @@ namespace SurfBase
     {
         event EventHandler NoSuchTuple;
 
-        void AddSchool();
-        void AddBoard();
-        void AddSail();
-        void AddTrainer();
-        void AddClient();
-        void AddEquipment();
-        void DeleteBoard();
-        void DeleteTrainer();
-        void DeleteSail();
-        void DeleteClient();
+        void AddSchool(string name);
+        void AddBoard(int length, int volume, string make, string type, int hangar_id);
+        void AddSail(double size, string make, int hangar_id);
+        void AddTrainer(string nickname, int school_id, string name = null, string last_name = null);
+        void AddClient(string name, string last_name, int age);
+        void AddVest(string size, int buoyancy, int hangar_id);
+        void AddHarness(string size, string type, int hangar_id);
+        void AddWetsuit(string size, string type, int hangar_id);
+        void DeleteBoard(int board_id);
+        void DeleteTrainer(int trainer_id);
+        void DeleteSail(int sail_id);
+        void DeleteClient(int client_id);
     }
 }

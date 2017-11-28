@@ -7,7 +7,10 @@
     <Position X="0.511" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
   <Comment CommentText="All assign methods will check first whether the operation is possible.&#xD;&#xA;Events will be used.">
-    <Position X="10.735" Y="3.746" Height="0.75" Width="1.7" />
+    <Position X="9.735" Y="3.746" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Admin and Employee use WPF as GUI.">
+    <Position X="3.235" Y="9.501" Height="0.386" Width="2.447" />
   </Comment>
   <Class Name="SurfBase.SurfBaseLogic">
     <Position X="3.25" Y="0.5" Width="2.25" />
@@ -27,15 +30,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Admin">
-    <Position X="1.75" Y="5.5" Width="2.25" />
-    <InheritanceLine Type="SurfBase.User" ManuallyRouted="true" FixedToPoint="true">
-      <Path>
-        <Point X="4.375" Y="4.623" />
-        <Point X="4.375" Y="5.125" />
-        <Point X="3" Y="5.125" />
-        <Point X="3" Y="5.5" />
-      </Path>
-    </InheritanceLine>
+    <Position X="1.75" Y="6.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Admin.cs</FileName>
@@ -46,14 +41,22 @@
     <Lollipop Orientation="Left" Position="0.295" />
   </Class>
   <Class Name="SurfBase.CheckValidity">
-    <Position X="3.75" Y="7.25" Width="1.5" />
+    <Position X="3.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CheckValidity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Employee">
-    <Position X="5" Y="5.5" Width="1.5" />
+    <Position X="5" Y="6.25" Width="1.5" />
+    <InheritanceLine Type="SurfBase.User" FixedFromPoint="true">
+      <Path>
+        <Point X="4.375" Y="4.623" />
+        <Point X="4.375" Y="5.875" />
+        <Point X="5.75" Y="5.875" />
+        <Point X="5.75" Y="6.25" />
+      </Path>
+    </InheritanceLine>
     <AssociationLine Name="CheckValidity" Type="SurfBase.CheckValidity">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-1.166" Y="0.082" />
@@ -69,23 +72,23 @@
     <Lollipop Orientation="Right" Position="0.309" />
   </Class>
   <Interface Name="SurfBase.ISQLGetLInterface">
-    <Position X="8" Y="0.5" Width="2.25" />
+    <Position X="7" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AICAAAEAgAAAAAEAAAIAIAAAAAAAAAAAAAABAAAAABA=</HashCode>
+      <HashCode>AICAAAEAgEAAAAEAAAIAIAAAAAAAAAAAAAABAAAAABA=</HashCode>
       <FileName>ISQLGetInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLUpdateInterface">
-    <Position X="10.5" Y="0.5" Width="2.25" />
+    <Position X="9.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>BAAAAAAAAIAAAIAAAAAAAAAQAAIAgAgAAAAAAAAAKEA=</HashCode>
+      <HashCode>BAAAAAAAAIAAAIAAAAAAgAAQAAIAgAgAAAAAAAAACEA=</HashCode>
       <FileName>ISQLUpdateInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLManageInterface">
-    <Position X="13" Y="0.5" Width="2.25" />
+    <Position X="12" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>IAAAAAAAAAAAAAAAACAAEAAAACAAIAACAAADBAAAAhA=</HashCode>
+      <HashCode>IAAABAAAQAAAAAAAACAAEAAAACAAAAACAACDBAAAAhA=</HashCode>
       <FileName>ISQLManageInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>

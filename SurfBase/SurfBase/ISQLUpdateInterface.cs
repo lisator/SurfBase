@@ -16,7 +16,7 @@ namespace SurfBase
         void CancelLesson();
         void AssignRental();
         void AssignWetsuit();
-        void AssignAssignHarness();
+        void AssignHarness();
         void AssignVest();
     }
 }

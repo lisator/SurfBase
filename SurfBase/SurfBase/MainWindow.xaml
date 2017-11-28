@@ -6,5 +6,10 @@
         xmlns:local="clr-namespace:SurfBase"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="359*"/>
+            <ColumnDefinition Width="158*"/>
+        </Grid.ColumnDefinitions>
+    </Grid>
 </Window>
