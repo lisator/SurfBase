@@ -12,14 +12,14 @@ namespace SurfBase
         event EventHandler EmptyTable;
 
         SqlDataAdapter GetSchools();
-        SqlDataAdapter GetLastBoard();
-        SqlDataAdapter GetLastSail();
-        SqlDataAdapter GetLastRig();
-        SqlDataAdapter GetLastLesson();
+        SqlDataAdapter GetLastBoard(int client_id);
+        SqlDataAdapter GetLastSail(int client_id);
+        SqlDataAdapter GetLastRig(int client_id); // will this be used?
+        SqlDataAdapter GetLastLesson(int client_id);
         SqlDataAdapter GetBoards();
         SqlDataAdapter GetSails();
-        SqlDataAdapter GetRigs();
-        SqlDataAdapter GetLessons();
+        SqlDataAdapter GetLessons(int day_id); // should look for lessons for every trainer except null trainer (id 1)
+        SqlDataAdapter GetLessonsForTrainer(int trainer_id, int day_id); // gives lessons only for a specifi trainer in a current day
         SqlDataAdapter GetHangars();
         int GetIdBoard();
         int GetIdSail();

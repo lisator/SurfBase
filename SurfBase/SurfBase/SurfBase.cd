@@ -6,8 +6,8 @@
   <Comment CommentText="&quot;Null Trainer&quot; will have rentals assigned">
     <Position X="0.511" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
-  <Comment CommentText="All assign methods will check first whether the operation is possible.&#xD;&#xA;Events will be used.">
-    <Position X="9.735" Y="3.746" Height="0.887" Width="3.545" />
+  <Comment CommentText="All assign methods will check first whether the operation is possible.&#xD;&#xA;Events will be used for managing problems related with SQL.">
+    <Position X="11.494" Y="3.746" Height="0.887" Width="3.545" />
   </Comment>
   <Comment CommentText="Admin and Employee use WPF as GUI.">
     <Position X="6.8" Y="6.163" Height="0.291" Width="2.447" />
@@ -43,7 +43,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>JICCBAEQyEJAAIEACCIAsgAQACIAgAgDAACDBIQAKhA=</HashCode>
+      <HashCode>JICCBAEQyEJAAIAACCIAsgAQACIAgAgDAACDBIQAKhI=</HashCode>
       <FileName>Admin.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -59,13 +59,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Employee">
-    <Position X="8.75" Y="6.5" Width="3.5" />
+    <Position X="8" Y="6.5" Width="4.25" />
     <InheritanceLine Type="SurfBase.User" FixedFromPoint="true">
       <Path>
         <Point X="4.75" Y="5.267" />
         <Point X="4.75" Y="6.125" />
-        <Point X="10.5" Y="6.125" />
-        <Point X="10.5" Y="6.5" />
+        <Point X="10.125" Y="6.125" />
+        <Point X="10.125" Y="6.5" />
       </Path>
     </InheritanceLine>
     <AssociationLine Name="CheckValidity" Type="SurfBase.CheckValidity">
@@ -74,7 +74,7 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>BICCAAEQiEJAAIEACAIAogAQAAIAgAgBAAABAIQAKBA=</HashCode>
+      <HashCode>BICCAAEQiEJAAIAACAIAogAQAAIAgAgBAAABAIQAKBI=</HashCode>
       <FileName>Employee.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -83,21 +83,21 @@
     <Lollipop Orientation="Right" Position="0.309" />
   </Class>
   <Interface Name="SurfBase.ISQLGetLInterface">
-    <Position X="7" Y="0.5" Width="2.5" />
+    <Position X="7" Y="0.5" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AICCAAEQiEBAAAEACAIAIgAAAAAAAAAAAAABAIQAIBA=</HashCode>
+      <HashCode>AICCAAEQiEBAAAAACAIAIgAAAAAAAAAAAAABAIQAIBI=</HashCode>
       <FileName>ISQLGetInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLUpdateInterface">
-    <Position X="9.75" Y="0.5" Width="3.5" />
+    <Position X="11.5" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAIAAIAAAAAAgAAQAAIAgAgAAAAAAAAACAA=</HashCode>
       <FileName>ISQLUpdateInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLManageInterface">
-    <Position X="13.5" Y="0.5" Width="6" />
+    <Position X="15.25" Y="0.5" Width="6" />
     <TypeIdentifier>
       <HashCode>IAAABAAAQAAAAAAAACAAEAAAACAAAAACAACDBAAAAhA=</HashCode>
       <FileName>ISQLManageInterface.cs</FileName>

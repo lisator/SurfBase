@@ -131,32 +131,32 @@ namespace SurfBase
             throw new NotImplementedException();
         }
 
-        public SqlDataAdapter GetLastBoard()
+        public SqlDataAdapter GetLastBoard(int client_id)
         {
             throw new NotImplementedException();
         }
 
-        public SqlDataAdapter GetLastLesson()
+        public SqlDataAdapter GetLastLesson(int client_id)
         {
             throw new NotImplementedException();
         }
 
-        public SqlDataAdapter GetLastRig()
+        public SqlDataAdapter GetLastRig(int client_id)
         {
             throw new NotImplementedException();
         }
 
-        public SqlDataAdapter GetLastSail()
+        public SqlDataAdapter GetLastSail(int client_id)
         {
             throw new NotImplementedException();
         }
 
-        public SqlDataAdapter GetLessons()
+        public SqlDataAdapter GetLessons(int day_id)
         {
             throw new NotImplementedException();
         }
 
-        public SqlDataAdapter GetRigs()
+        public SqlDataAdapter GetLessonsForTrainer(int trainer_id, int day_id)
         {
             throw new NotImplementedException();
         }
