@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Comment CommentText="Rental is also used for lessons (rig is rented for the lesson)">
     <Position X="0.5" Y="1.325" Height="0.844" Width="1.7" />
   </Comment>
@@ -7,16 +7,19 @@
     <Position X="0.511" Y="0.5" Height="0.75" Width="1.7" />
   </Comment>
   <Comment CommentText="All assign methods will check first whether the operation is possible.&#xD;&#xA;Events will be used.">
-    <Position X="9.735" Y="3.746" Height="0.75" Width="1.7" />
+    <Position X="9.735" Y="3.746" Height="0.887" Width="3.545" />
   </Comment>
   <Comment CommentText="Admin and Employee use WPF as GUI.">
-    <Position X="3.322" Y="5.936" Height="0.291" Width="2.447" />
+    <Position X="6.8" Y="6.163" Height="0.291" Width="2.447" />
   </Comment>
   <Comment CommentText="School is selected at the beginning, and later current_school is used in querries.&#xD;&#xA;Hangar can be schanged at any moment and is also used in querries.">
     <Position X="0.791" Y="3.313" Height="1.466" Width="1.7" />
   </Comment>
+  <Comment CommentText="CheckValidity will be used for checking user's input from GUI.&#xD;&#xA;(GUI is not ready yet, methods will be added on the go).">
+    <Position X="15.452" Y="8.407" Height="1.425" Width="1.72" />
+  </Comment>
   <Class Name="SurfBase.SurfBaseLogic">
-    <Position X="3.25" Y="0.5" Width="2.25" />
+    <Position X="2.75" Y="0.5" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>SurfBaseLogic.cs</FileName>
@@ -26,14 +29,14 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="SurfBase.User">
-    <Position X="2.75" Y="2.75" Width="3.25" />
+    <Position X="2.75" Y="2.75" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAAAAggBAAAQAAAAAAAABAAAAAEAAAAAAAAAEAAAAA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Admin">
-    <Position X="1.75" Y="6.25" Width="2.5" />
+    <Position X="1.75" Y="6.5" Width="6" />
     <AssociationLine Name="CheckValidity" Type="SurfBase.CheckValidity">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="-1.165" Y="0.078" />
@@ -49,20 +52,20 @@
     <Lollipop Orientation="Left" Position="0.295" />
   </Class>
   <Class Name="SurfBase.CheckValidity">
-    <Position X="9.25" Y="8.75" Width="1.5" />
+    <Position X="13.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CheckValidity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SurfBase.Employee">
-    <Position X="5" Y="6.25" Width="2.5" />
+    <Position X="8.75" Y="6.5" Width="3.5" />
     <InheritanceLine Type="SurfBase.User" FixedFromPoint="true">
       <Path>
-        <Point X="4.375" Y="5.267" />
-        <Point X="4.375" Y="5.875" />
-        <Point X="6.25" Y="5.875" />
-        <Point X="6.25" Y="6.25" />
+        <Point X="4.75" Y="5.267" />
+        <Point X="4.75" Y="6.125" />
+        <Point X="10.5" Y="6.125" />
+        <Point X="10.5" Y="6.5" />
       </Path>
     </InheritanceLine>
     <AssociationLine Name="CheckValidity" Type="SurfBase.CheckValidity">
@@ -80,21 +83,21 @@
     <Lollipop Orientation="Right" Position="0.309" />
   </Class>
   <Interface Name="SurfBase.ISQLGetLInterface">
-    <Position X="7" Y="0.5" Width="2.25" />
+    <Position X="7" Y="0.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AICCAAEQiEBAAAEACAIAIgAAAAAAAAAAAAABAIQAIBA=</HashCode>
       <FileName>ISQLGetInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLUpdateInterface">
-    <Position X="9.5" Y="0.5" Width="2.25" />
+    <Position X="9.75" Y="0.5" Width="3.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAIAAIAAAAAAgAAQAAIAgAgAAAAAAAAACAA=</HashCode>
       <FileName>ISQLUpdateInterface.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="SurfBase.ISQLManageInterface">
-    <Position X="12" Y="0.5" Width="2.25" />
+    <Position X="13.5" Y="0.5" Width="6" />
     <TypeIdentifier>
       <HashCode>IAAABAAAQAAAAAAAACAAEAAAACAAAAACAACDBAAAAhA=</HashCode>
       <FileName>ISQLManageInterface.cs</FileName>
