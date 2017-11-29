@@ -20,6 +20,17 @@ namespace SurfBase
         SqlDataAdapter GetSails();
         SqlDataAdapter GetRigs();
         SqlDataAdapter GetLessons();
-        void GetHangars();
+        SqlDataAdapter GetHangars();
+        int GetIdBoard();
+        int GetIdSail();
+        int GetIdRig();
+        int GetIdClient();
+        int GetIdTrainer();
+        int GetIdLesson();
+        int GetIdEquipment();
+        int GetIdSchool();
+        int GetIdHangar();
+        int GetIdRental();
+
     }
 }

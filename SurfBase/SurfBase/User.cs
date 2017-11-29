@@ -8,7 +8,10 @@ namespace SurfBase
 {
     public abstract class User
     {
-        public int User_id
+        private int current_school;
+        private int current_hangar;
+
+        public int user_id
         {
             get => default(int);
             set
@@ -16,7 +19,7 @@ namespace SurfBase
             }
         }
 
-        private string Name
+        private string name
         {
             get => default(string);
             set
@@ -24,7 +27,7 @@ namespace SurfBase
             }
         }
 
-        private string Passoword
+        private string passoword
         {
             get => default(string);
             set
@@ -33,7 +36,7 @@ namespace SurfBase
         }
 
         /// <value>lisure</value>
-        private string DataSource
+        private string data_source
         {
             get => default(string);
             set
@@ -41,7 +44,7 @@ namespace SurfBase
             }
         }
 
-        public SqlConnectionStringBuilder ConnectionString
+        public SqlConnectionStringBuilder connection_string
         {
             get => default(SqlConnectionStringBuilder);
             set
