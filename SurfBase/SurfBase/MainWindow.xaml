@@ -5,11 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SurfBase"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="359*"/>
-            <ColumnDefinition Width="158*"/>
-        </Grid.ColumnDefinitions>
+        Title="SurfBase Manager" Height="600" Width="800" UseLayoutRounding="False" WindowStartupLocation="CenterScreen" Visibility="Visible" MinWidth="800" MinHeight="600" Grid.IsSharedSizeScope="True" ResizeMode="NoResize">
+  <Window.Background>
+    <ImageBrush ImageSource="Images/Windsurfing.jpg"/>
+  </Window.Background>
+
+  <Grid HorizontalAlignment="Center" Margin="10,5" Width="792">
+    <TextBlock HorizontalAlignment="Right" VerticalAlignment="Top" Text="SurfBase Manager" FontSize="72" Foreground="Black" Margin="0,15,10,0" Height="97" FontWeight="Bold" FontFamily="Rage Italic" Width="512">
+      <TextBlock.Effect>
+        <DropShadowEffect ShadowDepth="1"/>
+      </TextBlock.Effect>
+    </TextBlock>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="220,0,0,0">
+      <StackPanel>
+        <TextBlock Text="Login:" FontSize="18" Margin="4,0,0,0"/>
+        <TextBox x:Name="loginBox" Width="200" Margin="0,2,0,0" Padding="0,2" Grid.IsSharedSizeScope="True">
+          <TextBox.Effect>
+            <DropShadowEffect/>
+          </TextBox.Effect>
+        </TextBox>
+        <TextBlock Text="Password:" FontSize="18" Margin="4,3,0,0"/>
+        <PasswordBox x:Name="passwordBox" PasswordChar="*" Width="200" Margin="0,2,0,0" Padding="0,2">
+          <PasswordBox.Effect>
+            <DropShadowEffect/>
+          </PasswordBox.Effect>
+        </PasswordBox>
+      </StackPanel>
     </Grid>
+    <TextBlock x:Name="version" HorizontalAlignment="Left" Padding="2" Height="23" TextWrapping="Wrap" Text="version 0.1" VerticalAlignment="Top" Width="74" Foreground="Black" Margin="19,3,0,0"/>
+    <Button x:Name="loginButton" Content="Log in" HorizontalAlignment="Left" Height="30" Margin="522,344,0,0" VerticalAlignment="Top" Width="86" Click="Button_Click" Background="White" BorderBrush="{x:Null}" Opacity="0.75"/>
+  </Grid>
 </Window>

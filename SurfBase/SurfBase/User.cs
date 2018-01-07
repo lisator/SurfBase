@@ -11,20 +11,16 @@ namespace SurfBase
         private int current_school;
         private int current_hangar;
 
-        public int user_id
-        {
-            get => default(int);
-            set
-            {
-            }
-        }
-
-        private string name
+        private string login
         {
             get => default(string);
             set
             {
             }
+        }
+        public void SetLogin(string login)
+        {
+            this.login = login;
         }
 
         private string passoword
@@ -34,22 +30,15 @@ namespace SurfBase
             {
             }
         }
+        public void SetPassword(string pass)
+        {
+            this.passoword = pass;
+
+        }
 
         /// <value>lisure</value>
-        private string data_source
-        {
-            get => default(string);
-            set
-            {
-            }
-        }
 
-        public SqlConnectionStringBuilder connection_string
-        {
-            get => default(SqlConnectionStringBuilder);
-            set
-            {
-            }
-        }
+        public SqlConnectionStringBuilder connection_string { get; set; }
+
     }
 }

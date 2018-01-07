@@ -10,30 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SurfBase
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ManagerWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ManagerWindow : Window
     {
         SurfBaseLogic logic = null;
-        public MainWindow()
+        public ManagerWindow(SurfBaseLogic logic, string login, string password)
         {
             InitializeComponent();
-            logic = new SurfBaseLogic();
-        }
+            this.logic = logic;
+            logic.ActiveUser = new Employee(login, password);
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var login = this.loginBox.Text;
-            var password = this.passwordBox.Password;
-            ManagerWindow main = new ManagerWindow(logic, login, password);
-            main.Show();
-            this.Close();
+
+
         }
     }
 }

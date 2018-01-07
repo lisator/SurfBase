@@ -31,7 +31,7 @@
   <Class Name="SurfBase.User">
     <Position X="2.75" Y="2.75" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAAAAggBAAAQAAAAAAAABAAAAAEAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAQAABAAAQAAAAAAAABAAAAAAAAAAAAAAgEAAEAA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -62,7 +62,7 @@
     <Position X="8" Y="6.5" Width="4.25" />
     <InheritanceLine Type="SurfBase.User" FixedFromPoint="true">
       <Path>
-        <Point X="4.75" Y="5.267" />
+        <Point X="4.75" Y="5.526" />
         <Point X="4.75" Y="6.125" />
         <Point X="10.125" Y="6.125" />
         <Point X="10.125" Y="6.5" />

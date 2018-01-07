@@ -9,9 +9,14 @@ namespace SurfBase
 {
     public class Employee : User, ISQLGetLInterface, ISQLUpdateInterface
     {
-        public Employee()
+        public Employee(string login, string password)
         {
-            throw new System.NotImplementedException();
+            this.connection_string = new SqlConnectionStringBuilder();
+            this.connection_string.UserID = login;
+            this.connection_string.Password = password;
+            this.connection_string.DataSource = "lisure.database.windows.net";
+            this.connection_string.InitialCatalog = "SurfBase";
+
         }
 
         internal CheckValidity CheckValidity

@@ -9,9 +9,10 @@ namespace SurfBase
     {
         public SurfBaseLogic()
         {
-            throw new System.NotImplementedException();
+
         }
 
-        private User ActiveUser { get; set; }
+        public User ActiveUser { get; set; }
+
     }
 }
