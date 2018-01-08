@@ -141,6 +141,11 @@
     <Compile Include="Schools.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="SurfBaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SurfBaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SurfBaseLogic.cs" />
     <Compile Include="Trainers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -195,6 +200,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="SurfBase.cd" />
+    <None Include="SurfBaseDataSet.xsc">
+      <DependentUpon>SurfBaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SurfBaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SurfBaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SurfBaseDataSet.xss">
+      <DependentUpon>SurfBaseDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

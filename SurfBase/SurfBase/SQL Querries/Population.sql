@@ -657,6 +657,71 @@ VALUES ----------------------------trainer 3
 	4
 	)
 
+
+INSERT INTO dbo.Days
+(
+    Id,
+    Week_day,
+    Trainer_Id
+)
+VALUES ----------------------------trainer 3
+(   07011,         -- Id - int
+    7, -- Week_day -- int
+    1         -- Trainer_Id - int
+    ),
+(	07021,
+	1,-- Week_day -- int
+	1
+	),
+(   07031,         -- Id - int
+    2, -- Week_day -- int
+    1          -- Trainer_Id - int
+    ),
+(	07041,
+	3,
+	1
+	),
+(   07051,         -- Id - int
+    4, -- Week_day -- int
+    1         -- Trainer_Id - int
+    ),
+(	07061,
+	5,
+	1
+	),
+(   07071,         -- Id - int
+    6, -- Week_day -- int
+    1          -- Trainer_Id - int
+    ),
+(	07081,
+	7,
+	1
+	),
+(   07091,         -- Id - int
+    1, -- Week_day -- int
+    1          -- Trainer_Id - int
+    ),
+(	07101,
+	2,
+	1
+	),
+(   07111,         -- Id - int
+    3, -- Week_day -- int
+    1          -- Trainer_Id - int
+    ),
+(	07121,
+	4,
+	1
+	),
+(   07131,         -- Id - int
+    5, -- Week_day -- int
+    1          -- Trainer_Id - int
+    ),
+(	07141,
+	6,
+	1
+	)
+
 INSERT INTO dbo.Equipments
 (
     Hangar_Id
@@ -1200,3 +1265,24 @@ BEGIN
 END
 SELECT * FROM dbo.ClientSchool
 
+DECLARE @count INT = 0
+DECLARE @i INT = 7144
+WHILE @count < 10
+BEGIN
+	SET @count = @count + 1
+	INSERT INTO dbo.Hours
+	(
+		Day_Id
+	)
+	VALUES
+	(   @i -- Day_Id - int
+		)
+END
+
+--TRUNCATE TABLE dbo.Hours
+
+SELECT * FROM dbo.Hours
+SELECT * FROM dbo.Days
+
+
+SELECT dbo.Hours.Day_Id, dbo.Hours.Client_Id FROM Hours, Days WHERE dbo.Hours.Day_Id=dbo.Days.Id AND dbo.Hours.Day_Id = 7011
