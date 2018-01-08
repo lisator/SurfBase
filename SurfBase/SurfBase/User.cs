@@ -8,8 +8,8 @@ namespace SurfBase
 {
     public abstract class User
     {
-        private int current_school;
-        private int current_hangar;
+        public int current_school;
+        public int current_hangar;
 
         private string login
         {

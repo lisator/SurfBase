@@ -42,17 +42,8 @@
                 <DropShadowEffect ShadowDepth="1"/>
             </TextBlock.Effect>
         </TextBlock>
-        <DataGrid x:Name="Schedule" HorizontalAlignment="Left" Height="501" Margin="676,219,0,0" VerticalAlignment="Top" Width="234" IsSynchronizedWithCurrentItem="False" GridLinesVisibility="Horizontal" HeadersVisibility="None" FontSize="20"/>
-        <Grid x:Name="grid1" DataContext="{StaticResource clientsViewSource}" HorizontalAlignment="Left" Margin="910,187,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-        </Grid>
-        <Grid HorizontalAlignment="Left" Height="652" Margin="844,192,0,0" VerticalAlignment="Top" Width="702">
+        <DataGrid x:Name="Schedule" HorizontalAlignment="Left" Height="186" Margin="676,219,0,0" VerticalAlignment="Top" Width="234" IsSynchronizedWithCurrentItem="False" GridLinesVisibility="Horizontal" HeadersVisibility="None" FontSize="20" Visibility="Hidden"/>
+        <Grid HorizontalAlignment="Left" Height="652" Margin="844,192,0,0" VerticalAlignment="Top" Width="702" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -102,7 +93,7 @@
                 <Label Content="Current School:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Foreground="White"/>
                 <TextBox x:Name="nameTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
             </Grid>
-            <Grid x:Name="grid4" DataContext="{StaticResource hangarsViewSource}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+            <Grid x:Name="grid1" DataContext="{StaticResource hangarsViewSource}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="35" Width="226">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" MinWidth="97"/>
                     <ColumnDefinition Width="Auto" MinWidth="129"/>
@@ -110,8 +101,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="Current Hangar:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="94" Foreground="White"/>
-                <TextBox x:Name="nameTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" Text="{Binding Id, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
+                <Label Content="Current Hangar:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,8" Grid.Row="0" VerticalAlignment="Center" Foreground="White" Height="26" Width="23"/>
+                <ComboBox x:Name="idComboBox" Grid.Column="1" DisplayMemberPath="Id" HorizontalAlignment="Left" Height="22" ItemsSource="{Binding}" Margin="3,6,0,10" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="idComboBox_SelectionChanged">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
             </Grid>
             <Grid x:Name="grid4_Copy" DataContext="{StaticResource hangarsViewSource}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
@@ -125,6 +122,23 @@
                 <TextBox x:Name="userBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
             </Grid>
         </ToolBarPanel>
+        <Grid HorizontalAlignment="Left" Height="625" Margin="330,219,0,0" VerticalAlignment="Top" Width="1188">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="175*"/>
+                <ColumnDefinition Width="1013*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="trainersDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource trainersViewSource}}" Margin="0,10,0,60" RowDetailsVisibilityMode="Collapsed" Background="White" BorderBrush="White" Foreground="#FFB41414" FontSize="36" HeadersVisibility="None" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserResizeColumns="False" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="Black" VerticalGridLinesBrush="{x:Null}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" IsEnabled="False" Focusable="False" IsHitTestVisible="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn x:Name="nicknameColumn" Header="Nickname" Width="SizeToHeader">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding Nickname}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 
     </Grid>
 </Window>

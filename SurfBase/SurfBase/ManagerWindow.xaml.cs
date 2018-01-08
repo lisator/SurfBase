@@ -135,5 +135,14 @@ namespace SurfBase
         {
 
         }
+
+        private bool idComboBoxFlag = false;
+        private void idComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (idComboBoxFlag)
+                logic.ActiveUser.current_hangar = Int32.Parse((string)this.idComboBox.Text);
+            else idComboBoxFlag = true;
+        }
+        
     }
 }
