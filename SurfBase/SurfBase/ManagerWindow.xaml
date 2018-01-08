@@ -29,6 +29,8 @@
             <Setter Property="Height" Value="26"/>
             <Setter Property="Width" Value="120"/>
         </Style>
+        <CollectionViewSource x:Key="schoolsViewSource" Source="{Binding Schools, Source={StaticResource surfBaseDataSet}}"/>
+        <CollectionViewSource x:Key="hangarsViewSource" Source="{Binding Hangars, Source={StaticResource surfBaseDataSet}}"/>
     </Window.Resources>
     <Window.Background>
         <ImageBrush ImageSource="Images/Windsurfing.jpg" Opacity="0.3"/>
@@ -40,7 +42,7 @@
                 <DropShadowEffect ShadowDepth="1"/>
             </TextBlock.Effect>
         </TextBlock>
-        <DataGrid x:Name="Schedule" HorizontalAlignment="Left" Height="465" Margin="158,158,0,0" VerticalAlignment="Top" Width="120" IsSynchronizedWithCurrentItem="False" GridLinesVisibility="Horizontal" HeadersVisibility="None" FontSize="20" Grid.Column="1"/>
+        <DataGrid x:Name="Schedule" HorizontalAlignment="Left" Height="501" Margin="676,219,0,0" VerticalAlignment="Top" Width="234" IsSynchronizedWithCurrentItem="False" GridLinesVisibility="Horizontal" HeadersVisibility="None" FontSize="20"/>
         <Grid x:Name="grid1" DataContext="{StaticResource clientsViewSource}" HorizontalAlignment="Left" Margin="910,187,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -50,9 +52,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="598" Margin="424,235,0,0" VerticalAlignment="Top" Width="1056">
+        <Grid HorizontalAlignment="Left" Height="652" Margin="844,192,0,0" VerticalAlignment="Top" Width="702">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
 
@@ -80,7 +81,7 @@
                 <Label Content="School Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
                 <TextBox x:Name="school_IdTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding School_Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
-            <DataGrid x:Name="rentalsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource trainersDaysHoursRentalsViewSource}}" Margin="10,142,10,256" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="rentalsDataGrid_SelectionChanged_1">
+            <DataGrid x:Name="rentalsDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource trainersDaysHoursRentalsViewSource}}" Margin="142,142,10,256" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="rentalsDataGrid_SelectionChanged_1">
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id, Mode=TwoWay}" Header="Id" IsReadOnly="True" Width="SizeToHeader"/>
                     <DataGridTextColumn x:Name="rig_IdColumn" Binding="{Binding Rig_Id}" Header="Rig Id" Width="SizeToHeader"/>
@@ -89,6 +90,41 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        <ToolBarPanel HorizontalAlignment="Left" Height="595" Margin="10,125,0,0" VerticalAlignment="Top" Width="228">
+            <Grid x:Name="grid3" DataContext="{StaticResource schoolsViewSource}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Current School:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Foreground="White"/>
+                <TextBox x:Name="nameTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
+            </Grid>
+            <Grid x:Name="grid4" DataContext="{StaticResource hangarsViewSource}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="97"/>
+                    <ColumnDefinition Width="Auto" MinWidth="129"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="Current Hangar:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="94" Foreground="White"/>
+                <TextBox x:Name="nameTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" Text="{Binding Id, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
+            </Grid>
+            <Grid x:Name="grid4_Copy" DataContext="{StaticResource hangarsViewSource}" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="97"/>
+                    <ColumnDefinition Width="Auto" MinWidth="129"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Content="User:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="94" Foreground="White"/>
+                <TextBox x:Name="userBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" VerticalAlignment="Center" Width="120" IsEnabled="False"/>
+            </Grid>
+        </ToolBarPanel>
 
     </Grid>
 </Window>

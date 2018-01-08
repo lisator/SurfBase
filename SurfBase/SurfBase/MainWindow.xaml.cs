@@ -31,8 +31,13 @@ namespace SurfBase
         {
             var login = this.loginBox.Text;
             var password = this.passwordBox.Password;
+
             ManagerWindow main = new ManagerWindow(logic, login, password);
-            main.Show();
+            if (main.IsActive)
+            {
+                main.Show();
+            }
+
             this.Close();
         }
     }

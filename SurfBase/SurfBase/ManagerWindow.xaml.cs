@@ -28,6 +28,28 @@ namespace SurfBase
             InitializeComponent();
             this.logic = logic;
             logic.ActiveUser = new Employee(login, password);
+            this.userBox.Text = login;
+
+            string ConString = logic.ActiveUser.connection_string.ConnectionString;
+            string CmdString = string.Empty;
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+                try
+                {
+                    //empty connection to verify the login & password
+                    CmdString = "SELECT * FROM Hangars";
+                    SqlCommand cmd = new SqlCommand(CmdString, con);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable("Days1");
+                    sda.Fill(dt);
+                }
+                catch
+                {
+                    this.Close();
+                    System.Windows.MessageBox.Show("Wrong login/password combination!");
+                    Application.Current.Shutdown();
+                }
+            }
             FillScheduleGrid(logic.ActiveUser);
 
 
@@ -41,12 +63,18 @@ namespace SurfBase
             string CmdString = string.Empty;
             using (SqlConnection con = new SqlConnection(ConString))
             {
-                CmdString = "SELECT dbo.Hours.Client_Id FROM Hours, Days WHERE dbo.Hours.Day_Id=dbo.Days.Id AND dbo.Hours.Day_Id = 7011";
-                SqlCommand cmd = new SqlCommand(CmdString, con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Days1");
-                sda.Fill(dt);
-                Schedule.ItemsSource = dt.DefaultView;
+                try
+                {
+                    CmdString = "SELECT dbo.Hours.Client_Id FROM Hours, Days WHERE dbo.Hours.Day_Id=dbo.Days.Id AND dbo.Hours.Day_Id = 7011";
+                    SqlCommand cmd = new SqlCommand(CmdString, con);
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable("Days1");
+                    sda.Fill(dt);
+                    Schedule.ItemsSource = dt.DefaultView;
+                }
+                catch
+                {
+                }
             }
         }
 
@@ -82,6 +110,16 @@ namespace SurfBase
             surfBaseDataSetDaysTableAdapter.Fill(surfBaseDataSet.Days);
             System.Windows.Data.CollectionViewSource trainersDaysViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("trainersDaysViewSource")));
             trainersDaysViewSource.View.MoveCurrentToFirst();
+            // Load data into the table Schools. You can modify this code as needed.
+            SurfBase.SurfBaseDataSetTableAdapters.SchoolsTableAdapter surfBaseDataSetSchoolsTableAdapter = new SurfBase.SurfBaseDataSetTableAdapters.SchoolsTableAdapter();
+            surfBaseDataSetSchoolsTableAdapter.Fill(surfBaseDataSet.Schools);
+            System.Windows.Data.CollectionViewSource schoolsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("schoolsViewSource")));
+            schoolsViewSource.View.MoveCurrentToFirst();
+            // Load data into the table Hangars. You can modify this code as needed.
+            SurfBase.SurfBaseDataSetTableAdapters.HangarsTableAdapter surfBaseDataSetHangarsTableAdapter = new SurfBase.SurfBaseDataSetTableAdapters.HangarsTableAdapter();
+            surfBaseDataSetHangarsTableAdapter.Fill(surfBaseDataSet.Hangars);
+            System.Windows.Data.CollectionViewSource hangarsViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("hangarsViewSource")));
+            hangarsViewSource.View.MoveCurrentToFirst();
         }
 
         private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)
